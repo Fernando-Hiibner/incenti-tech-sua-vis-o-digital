@@ -27,7 +27,7 @@ const AdvantagesSection = () => (
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div className="flex flex-wrap justify-center gap-8 max-w-5xl mx-auto">
         {advantages.map((item, i) => (
           <motion.div
             key={item.title}
@@ -35,7 +35,7 @@ const AdvantagesSection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="text-center"
+            className="text-center w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)]"
           >
             <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <item.icon className="text-primary" size={24} />

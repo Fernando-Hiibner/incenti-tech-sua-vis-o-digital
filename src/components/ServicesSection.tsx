@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, RefreshCw, Link2, Wrench } from "lucide-react";
+import { Code2, RefreshCw, Link2, Wrench, ShieldCheck } from "lucide-react";
 
 const services = [
   {
@@ -21,6 +21,11 @@ const services = [
     icon: RefreshCw,
     title: "Modernização de Software Legado",
     description: "Transformamos sistemas antigos em soluções modernas, sem perder dados ou funcionalidades. Migração segura para tecnologias atuais com ganho real de performance.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Sustentação de Software Legado",
+    description: "Mantemos sistemas legados críticos em pleno funcionamento. Monitoramento, correções e evoluções contínuas para garantir a continuidade de operações de alto faturamento.",
   },
 ];
 
@@ -51,7 +56,7 @@ const ServicesSection = () => (
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
         {services.map((service, i) => (
           <motion.div
             key={service.title}
@@ -60,7 +65,7 @@ const ServicesSection = () => (
             whileInView="visible"
             viewport={{ once: true }}
             variants={cardVariants}
-            className="glass-card p-8 group hover:border-primary/30 transition-all duration-300"
+            className="glass-card p-8 group hover:border-primary/30 transition-all duration-300 w-full md:w-[calc(50%-0.75rem)]"
           >
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
               <service.icon className="text-primary" size={24} />

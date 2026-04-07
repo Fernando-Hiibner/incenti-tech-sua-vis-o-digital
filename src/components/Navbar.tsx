@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import logo from "@/assets/logo.png";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
   { label: "Serviços", href: "#servicos" },
   { label: "Vantagens", href: "#vantagens" },
-  { label: "Diferenciais", href: "#diferenciais" },
+  { label: "Projetos", href: "#projetos" },
   { label: "Tecnologias", href: "#tecnologias" },
   { label: "Contato", href: "#contato" },
 ];
@@ -34,9 +35,12 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <a href="#inicio" className="font-heading text-xl font-bold tracking-tight">
-          <span className="text-primary">Incenti</span>
-          <span className="text-foreground"> Tech</span>
+        <a href="#inicio" className="flex items-center gap-2 font-heading text-xl font-bold tracking-tight">
+          <img src={logo} alt="Incenti Tech" className="h-8 w-8" />
+          <span>
+            <span className="text-primary">Incenti</span>
+            <span className="text-foreground"> Tech</span>
+          </span>
         </a>
 
         {/* Desktop */}
