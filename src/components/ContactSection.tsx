@@ -146,7 +146,7 @@ const ContactSection = () => {
             </div>
             <div className="flex items-center gap-2">
               <Phone size={16} className="text-primary" />
-              (11) 9999-9999
+              +55 (11) 97154-2519
             </div>
           </div>
         </motion.div>
