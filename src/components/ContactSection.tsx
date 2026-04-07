@@ -142,7 +142,7 @@ const ContactSection = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-muted-foreground text-sm">
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-primary" />
-              contato@incentitech.com.br
+              fernando@incentitech.com.br
             </div>
             <div className="flex items-center gap-2">
               <Phone size={16} className="text-primary" />
