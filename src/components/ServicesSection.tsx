@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code2, RefreshCw, Link2, Wrench } from "lucide-react";
+import { Code2, RefreshCw, Link2, Wrench, ShieldCheck } from "lucide-react";
 
 const services = [
   {
@@ -21,6 +21,11 @@ const services = [
     icon: RefreshCw,
     title: "Modernização de Software Legado",
     description: "Transformamos sistemas antigos em soluções modernas, sem perder dados ou funcionalidades. Migração segura para tecnologias atuais com ganho real de performance.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Sustentação de Software Legado",
+    description: "Mantemos sistemas legados críticos em pleno funcionamento. Monitoramento, correções e evoluções contínuas para garantir a continuidade de operações de alto faturamento.",
   },
 ];
 

@@ -27,7 +27,7 @@ const AdvantagesSection = () => (
         </p>
       </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto [&>*:nth-last-child(-n+2):nth-child(3n+1)]:lg:col-start-1 [&>*:nth-last-child(2):nth-child(3n+1)]:lg:col-start-2 justify-items-center">
         {advantages.map((item, i) => (
           <motion.div
             key={item.title}
