@@ -44,26 +44,14 @@ const Navbar = () => {
         </a>
 
         {/* Desktop */}
-        <ul className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <button
-                onClick={() => handleClick(link.href)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
-              >
-                {link.label}
-              </button>
-            </li>
-          ))}
-          <li>
-            <button
-              onClick={() => handleClick("#contato")}
-              className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-            >
-              Fale conosco
-            </button>
-          </li>
-        </ul>
+        <div className="hidden md:block">
+          <button
+            onClick={() => handleClick("#contato")}
+            className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            Fale conosco
+          </button>
+        </div>
 
         {/* Mobile toggle */}
         <button
