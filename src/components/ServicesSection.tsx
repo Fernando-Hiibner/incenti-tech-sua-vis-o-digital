@@ -56,7 +56,7 @@ const ServicesSection = () => (
         </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+      <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
         {services.map((service, i) => (
           <motion.div
             key={service.title}
@@ -65,7 +65,7 @@ const ServicesSection = () => (
             whileInView="visible"
             viewport={{ once: true }}
             variants={cardVariants}
-            className="glass-card p-8 group hover:border-primary/30 transition-all duration-300"
+            className="glass-card p-8 group hover:border-primary/30 transition-all duration-300 w-full md:w-[calc(50%-0.75rem)]"
           >
             <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
               <service.icon className="text-primary" size={24} />
