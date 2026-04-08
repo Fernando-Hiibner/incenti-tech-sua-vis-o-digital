@@ -53,48 +53,15 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-lg border-b border-border/50 overflow-hidden"
+        {/* Mobile CTA */}
+        <div className="md:hidden">
+          <button
+            onClick={() => handleClick("#contato")}
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
           >
-            <ul className="flex flex-col gap-1 p-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <button
-                    onClick={() => handleClick(link.href)}
-                    className="w-full text-left px-4 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-lg transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                </li>
-              ))}
-              <li className="mt-2">
-                <button
-                  onClick={() => handleClick("#contato")}
-                  className="w-full bg-primary text-primary-foreground px-4 py-3 rounded-lg font-medium"
-                >
-                  Fale conosco
-                </button>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Fale conosco
+          </button>
+        </div>
     </nav>
   );
 };
