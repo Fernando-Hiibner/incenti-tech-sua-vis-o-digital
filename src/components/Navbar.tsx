@@ -1,20 +1,8 @@
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/logo.png";
-
-const navLinks = [
-  { label: "Início", href: "#inicio" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "Vantagens", href: "#vantagens" },
-  { label: "Projetos", href: "#projetos" },
-  { label: "Tecnologias", href: "#tecnologias" },
-  { label: "Contato", href: "#contato" },
-];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -23,7 +11,6 @@ const Navbar = () => {
   }, []);
 
   const handleClick = (href: string) => {
-    setMobileOpen(false);
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
@@ -43,25 +30,13 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Desktop */}
-        <div className="hidden md:block">
-          <button
-            onClick={() => handleClick("#contato")}
-            className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-          >
-            Fale conosco
-          </button>
-        </div>
-
-        {/* Mobile CTA */}
-        <div className="md:hidden">
-          <button
-            onClick={() => handleClick("#contato")}
-            className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-          >
-            Fale conosco
-          </button>
-        </div>
+        <button
+          onClick={() => handleClick("#contato")}
+          className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+        >
+          Fale conosco
+        </button>
+      </div>
     </nav>
   );
 };
