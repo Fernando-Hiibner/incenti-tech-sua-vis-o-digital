@@ -244,7 +244,7 @@ export const siteContent = {
       description: "We combine technical expertise, business vision, and a strong commitment to results.",
       items: [
         {
-          title: "Tailored Solutions",
+          title: "Tailor made solutions",
           description:
             "Every project is unique. We develop software that adapts to your workflow, not the other way around.",
         },
