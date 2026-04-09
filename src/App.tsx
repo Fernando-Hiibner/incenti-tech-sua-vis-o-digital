@@ -5,8 +5,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import type { Locale } from "@/lib/siteContent";
 
 const queryClient = new QueryClient();
+
+const renderIndex = (locale: Locale) => <Index locale={locale} />;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -15,8 +18,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/" element={renderIndex("pt-BR")} />
+          <Route path="/en" element={renderIndex("en")} />
+          <Route path="/en/" element={renderIndex("en")} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

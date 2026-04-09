@@ -1,24 +1,30 @@
 import { useState, useRef, FormEvent } from "react";
 import { motion } from "framer-motion";
 import { Send, Mail, Phone, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { siteContent, type Locale } from "@/lib/siteContent";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
-const ContactSection = () => {
+type ContactSectionProps = {
+  locale: Locale;
+};
+
+const ContactSection = ({ locale }: ContactSectionProps) => {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [mensagemLen, setMensagemLen] = useState(0);
+  const [messageLength, setMessageLength] = useState(0);
   const lastSubmitRef = useRef(0);
-  const MAX_MENSAGEM = 3000;
+  const maxMessageLength = 3000;
+  const content = siteContent[locale].contact;
 
   const validate = (data: Record<string, string>) => {
-    const errs: Record<string, string> = {};
-    if (!data.nome?.trim()) errs.nome = "Nome é obrigatório";
-    if (!data.email?.trim()) errs.email = "E-mail é obrigatório";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = "E-mail inválido";
-    if (!data.mensagem?.trim()) errs.mensagem = "Mensagem é obrigatória";
-    else if (data.mensagem.length > 3000) errs.mensagem = "Mensagem não pode ultrapassar 3.000 caracteres";
-    return errs;
+    const nextErrors: Record<string, string> = {};
+    if (!data.nome?.trim()) nextErrors.nome = content.validation.requiredName;
+    if (!data.email?.trim()) nextErrors.email = content.validation.requiredEmail;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) nextErrors.email = content.validation.invalidEmail;
+    if (!data.mensagem?.trim()) nextErrors.mensagem = content.validation.requiredMessage;
+    else if (data.mensagem.length > maxMessageLength) nextErrors.mensagem = content.validation.messageTooLong;
+    return nextErrors;
   };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -26,22 +32,20 @@ const ContactSection = () => {
     const form = e.currentTarget;
     const formData = new FormData(form);
     const data: Record<string, string> = {};
-    formData.forEach((v, k) => (data[k] = v.toString()));
+    formData.forEach((value, key) => (data[key] = value.toString()));
 
-    // Honeypot anti-bot
     if (data.website?.trim()) {
-      setErrors({ form: "Falha ao enviar formulário." });
+      setErrors({ form: content.validation.honeypot });
       return;
     }
 
-    const errs = validate(data);
-    setErrors(errs);
-    if (Object.keys(errs).length > 0) return;
+    const nextErrors = validate(data);
+    setErrors(nextErrors);
+    if (Object.keys(nextErrors).length > 0) return;
 
-    // Rate limit - 10s entre envios
     const now = Date.now();
     if (now - lastSubmitRef.current < 10000) {
-      setErrors({ form: "Aguarde alguns segundos antes de enviar novamente." });
+      setErrors({ form: content.validation.rateLimit });
       return;
     }
     lastSubmitRef.current = now;
@@ -73,29 +77,27 @@ const ContactSection = () => {
         setStatus("success");
         form.reset();
         setErrors({});
+        setMessageLength(0);
         return;
       }
 
-      // 400 - erro de validação
       if (response.status === 400) {
-        setErrors(result.fields || { form: result.error || "Dados inválidos." });
+        setErrors(result.fields || { form: result.error || content.validation.invalidData });
         setStatus("idle");
         return;
       }
 
-      // 429 - rate limit do backend
       if (response.status === 429) {
-        setErrors({ form: "Muitas tentativas. Aguarde um pouco e tente novamente." });
+        setErrors({ form: content.validation.tooManyAttempts });
         setStatus("idle");
         return;
       }
 
-      // outros erros
-      setErrors({ form: result.error || "Erro ao enviar formulário." });
+      setErrors({ form: result.error || content.validation.submitError });
       setStatus("error");
     } catch (error) {
-      console.error("Erro ao enviar formulário:", error);
-      setErrors({ form: "Não foi possível conectar ao servidor." });
+      console.error("Error sending form:", error);
+      setErrors({ form: content.validation.connectionError });
       setStatus("error");
     }
   };
@@ -114,13 +116,9 @@ const ContactSection = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-primary text-sm font-semibold uppercase tracking-widest">Contato</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">
-            Vamos conversar sobre o seu projeto
-          </h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">
-            Preencha o formulário abaixo e nossa equipe entrará em contato para entender suas necessidades.
-          </p>
+          <span className="text-primary text-sm font-semibold uppercase tracking-widest">{content.eyebrow}</span>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{content.title}</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">{content.description}</p>
         </motion.div>
 
         <motion.div
@@ -133,62 +131,58 @@ const ContactSection = () => {
             {status === "success" ? (
               <div className="text-center py-10">
                 <CheckCircle className="text-primary mx-auto mb-4" size={56} />
-                <h3 className="text-xl font-heading font-semibold mb-2">Mensagem enviada!</h3>
-                <p className="text-muted-foreground">Retornaremos o mais breve possível.</p>
+                <h3 className="text-xl font-heading font-semibold mb-2">{content.successTitle}</h3>
+                <p className="text-muted-foreground">{content.successDescription}</p>
                 <button
                   onClick={() => setStatus("idle")}
                   className="mt-6 text-primary hover:underline text-sm"
                 >
-                  Enviar outra mensagem
+                  {content.sendAnother}
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="relative space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Nome *</label>
-                    <input name="nome" type="text" placeholder="Seu nome" className={inputClass("nome")} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.name}</label>
+                    <input name="nome" type="text" placeholder={content.fields.namePlaceholder} className={inputClass("nome")} />
                     {errors.nome && <p className="text-xs text-destructive mt-1">{errors.nome}</p>}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Empresa</label>
-                    <input name="empresa" type="text" placeholder="Empresa" className={inputClass("empresa")} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.company}</label>
+                    <input name="empresa" type="text" placeholder={content.fields.companyPlaceholder} className={inputClass("empresa")} />
                   </div>
                 </div>
 
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">E-mail *</label>
-                    <input name="email" type="email" placeholder="seu@email.com" className={inputClass("email")} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.email}</label>
+                    <input name="email" type="email" placeholder={content.fields.emailPlaceholder} className={inputClass("email")} />
                     {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">Telefone</label>
-                    <input name="telefone" type="tel" placeholder="(00) 00000-0000" className={inputClass("telefone")} />
+                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.phone}</label>
+                    <input name="telefone" type="tel" placeholder={content.fields.phonePlaceholder} className={inputClass("telefone")} />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">Mensagem *</label>
+                  <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.message}</label>
                   <textarea
                     name="mensagem"
                     rows={5}
-                    placeholder="Conte-nos sobre seu projeto..."
+                    placeholder={content.fields.messagePlaceholder}
                     className={inputClass("mensagem") + " resize-none"}
-                    onChange={(e) => setMensagemLen(e.target.value.length)}
+                    onChange={(e) => setMessageLength(e.target.value.length)}
                   />
                   <div className="flex justify-between items-center mt-1">
-                    {errors.mensagem
-                      ? <p className="text-xs text-destructive">{errors.mensagem}</p>
-                      : <span />
-                    }
-                    <span className={`text-xs ml-auto ${mensagemLen > MAX_MENSAGEM ? "text-destructive" : "text-muted-foreground"}`}>
-                      {mensagemLen}/{MAX_MENSAGEM}
+                    {errors.mensagem ? <p className="text-xs text-destructive">{errors.mensagem}</p> : <span />}
+                    <span className={`text-xs ml-auto ${messageLength > maxMessageLength ? "text-destructive" : "text-muted-foreground"}`}>
+                      {messageLength}/{maxMessageLength}
                     </span>
                   </div>
                 </div>
 
-                {/* honeypot anti-bot */}
                 <div
                   className="absolute -left-[9999px] opacity-0 pointer-events-none"
                   aria-hidden="true"
@@ -207,7 +201,7 @@ const ContactSection = () => {
                 {(errors.form || status === "error") && (
                   <div className="flex items-center gap-2 text-sm text-destructive">
                     <AlertCircle className="h-4 w-4" />
-                    {errors.form || "Erro ao enviar. Tente novamente."}
+                    {errors.form || content.genericSubmitError}
                   </div>
                 )}
 
@@ -219,12 +213,12 @@ const ContactSection = () => {
                   {status === "loading" ? (
                     <>
                       <Loader2 className="h-5 w-5 animate-spin" />
-                      Enviando...
+                      {content.submitLoading}
                     </>
                   ) : (
                     <>
                       <Send size={18} />
-                      Enviar mensagem
+                      {content.submitIdle}
                     </>
                   )}
                 </button>

@@ -1,33 +1,8 @@
 import { motion } from "framer-motion";
 import { Code2, RefreshCw, Link2, Wrench, ShieldCheck } from "lucide-react";
+import { siteContent, type Locale } from "@/lib/siteContent";
 
-const services = [
-  {
-    icon: Code2,
-    title: "Desenvolvimento Web sob Medida",
-    description: "Criamos sistemas web completos, pensados para as necessidades específicas do seu negócio. Do planejamento à entrega, cada linha de código é feita para resolver o seu problema.",
-  },
-  {
-    icon: Wrench,
-    title: "Manutenção de Sistemas",
-    description: "Mantemos seus sistemas funcionando com estabilidade, segurança e performance. Atualizações, correções e melhorias contínuas para garantir operação sem interrupções.",
-  },
-  {
-    icon: Link2,
-    title: "Integrações entre Plataformas",
-    description: "Conectamos seus sistemas a meios de pagamento, marketplaces, ERPs e APIs de terceiros. Integrações robustas que automatizam processos e eliminam retrabalho.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Modernização de Software Legado",
-    description: "Transformamos sistemas antigos em soluções modernas, sem perder dados ou funcionalidades. Migração segura para tecnologias atuais com ganho real de performance.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Sustentação de Software Legado",
-    description: "Mantemos sistemas legados críticos em pleno funcionamento. Monitoramento, correções e evoluções contínuas para garantir a continuidade de operações de alto faturamento.",
-  },
-];
+const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -38,45 +13,53 @@ const cardVariants = {
   }),
 };
 
-const ServicesSection = () => (
-  <section id="servicos" className="section-padding">
-    <div className="container mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <span className="text-primary text-sm font-semibold uppercase tracking-widest">Serviços</span>
-        <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">
-          O que fazemos de melhor
-        </h2>
-        <p className="text-muted-foreground max-w-xl mx-auto">
-          Soluções completas de software para empresas que precisam de tecnologia confiável e resultados concretos.
-        </p>
-      </motion.div>
+type ServicesSectionProps = {
+  locale: Locale;
+};
 
-      <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
-        {services.map((service, i) => (
-          <motion.div
-            key={service.title}
-            custom={i}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={cardVariants}
-            className="glass-card p-8 group hover:border-primary/30 transition-all duration-300 w-full md:w-[calc(50%-0.75rem)]"
-          >
-            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-              <service.icon className="text-primary" size={24} />
-            </div>
-            <h3 className="text-xl font-heading font-semibold mb-3">{service.title}</h3>
-            <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-          </motion.div>
-        ))}
+const ServicesSection = ({ locale }: ServicesSectionProps) => {
+  const content = siteContent[locale].services;
+
+  return (
+    <section id="servicos" className="section-padding">
+      <div className="container mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <span className="text-primary text-sm font-semibold uppercase tracking-widest">{content.eyebrow}</span>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{content.title}</h2>
+          <p className="text-muted-foreground max-w-xl mx-auto">{content.description}</p>
+        </motion.div>
+
+        <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
+          {content.items.map((service, i) => {
+            const Icon = serviceIcons[i];
+
+            return (
+              <motion.div
+                key={service.title}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={cardVariants}
+                className="glass-card p-8 group hover:border-primary/30 transition-all duration-300 w-full md:w-[calc(50%-0.75rem)]"
+              >
+                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
+                  <Icon className="text-primary" size={24} />
+                </div>
+                <h3 className="text-xl font-heading font-semibold mb-3">{service.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
+              </motion.div>
+            );
+          })}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default ServicesSection;

@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import logo from "@/assets/logo.png";
+import { localePaths, localeSwitchLabel, siteContent, type Locale } from "@/lib/siteContent";
 
-const Navbar = () => {
+type NavbarProps = {
+  locale: Locale;
+};
+
+const Navbar = ({ locale }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const content = siteContent[locale].nav;
+  const switchHref = locale === "pt-BR" ? localePaths.en : localePaths["pt-BR"];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -30,12 +37,22 @@ const Navbar = () => {
           </span>
         </a>
 
-        <button
-          onClick={() => handleClick("#contato")}
-          className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          Fale conosco
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => window.location.assign(switchHref)}
+            className="border border-border/70 bg-background/60 px-3 py-2 rounded-lg text-xs font-semibold tracking-wide text-foreground hover:bg-secondary/70 transition-colors"
+            aria-label={content.languageButtonAriaLabel}
+          >
+            {localeSwitchLabel[locale]}
+          </button>
+          <button
+            onClick={() => handleClick("#contato")}
+            className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            {content.contactButton}
+          </button>
+        </div>
       </div>
     </nav>
   );
