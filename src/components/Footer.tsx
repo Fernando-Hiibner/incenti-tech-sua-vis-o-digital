@@ -4,6 +4,7 @@ const Footer = () => (
       <div className="font-heading">
         <span className="text-primary font-bold">Incenti</span> Tech
       </div>
+      <p>CNPJ: 63.404.846/0001-07</p>
       <p>© {new Date().getFullYear()} Incenti Tech. Todos os direitos reservados.</p>
     </div>
   </footer>
