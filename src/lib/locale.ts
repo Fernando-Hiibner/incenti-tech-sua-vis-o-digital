@@ -23,4 +23,4 @@ export const getPreferredLocale = (): Locale => {
 };
 
 export const getLocaleFromPathname = (pathname: string): Locale =>
-  pathname.startsWith("/pt-br") ? BRAZILIAN_PORTUGUESE_LOCALE : DEFAULT_LOCALE;
+  pathname.toLowerCase().startsWith("/pt-br") ? BRAZILIAN_PORTUGUESE_LOCALE : DEFAULT_LOCALE;
