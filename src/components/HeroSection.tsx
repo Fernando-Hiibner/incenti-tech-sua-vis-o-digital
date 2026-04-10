@@ -12,7 +12,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pb-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-20"
       style={{ background: "var(--hero-gradient)" }}
     >
       <div
