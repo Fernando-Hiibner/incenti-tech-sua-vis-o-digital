@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Code2, RefreshCw, Link2, Wrench, ShieldCheck } from "lucide-react";
+import { Code2, RefreshCw, Link2, Wrench, ShieldCheck, Bot } from "lucide-react";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
-const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck];
+const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck, Bot];
 
 const cardVariants = {
   hidden: { opacity: 0, y: 30 },

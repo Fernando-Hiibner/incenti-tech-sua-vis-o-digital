@@ -57,6 +57,11 @@ export const siteContent = {
           description:
             "Mantemos sistemas legados críticos em pleno funcionamento. Monitoramento, correções e evoluções contínuas para garantir a continuidade de operações de alto faturamento.",
         },
+        {
+          title: "Revisão e Manutenção de Software Gerado por IA",
+          description:
+            "Revisamos, otimizamos e damos manutenção a sistemas desenvolvidos com auxílio de inteligência artificial. Garantimos qualidade de código, segurança e escalabilidade para projetos que nasceram de prototipagem assistida por IA.",
+        },
       ],
     },
     advantages: {
@@ -235,6 +240,11 @@ export const siteContent = {
           title: "Legacy Software Support",
           description:
             "We keep mission-critical legacy systems fully operational. Monitoring, fixes, and continuous improvements protect revenue-generating operations.",
+        },
+        {
+          title: "AI-Generated Software Review & Maintenance",
+          description:
+            "We review, optimize, and maintain systems built with AI-assisted development tools. We ensure code quality, security, and scalability for projects that started as AI-generated prototypes.",
         },
       ],
     },
