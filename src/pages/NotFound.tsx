@@ -1,10 +1,11 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { getLocaleFromPathname } from "@/lib/locale";
 import { localePaths, siteContent, type Locale } from "@/lib/siteContent";
 
 const NotFound = () => {
   const location = useLocation();
-  const locale: Locale = location.pathname.startsWith("/en") ? "en" : "pt-BR";
+  const locale: Locale = getLocaleFromPathname(location.pathname);
   const content = siteContent[locale].notFound;
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 export type Locale = "pt-BR" | "en";
 
 export const localePaths: Record<Locale, string> = {
-  "pt-BR": "/",
+  "pt-BR": "/pt-br/",
   en: "/en/",
 };
 

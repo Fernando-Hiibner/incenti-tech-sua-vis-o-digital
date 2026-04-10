@@ -1,17 +1,36 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Incenti Tech | Desenvolvimento de Software sob Medida</title>
+    <title>Incenti Tech</title>
     <meta
       name="description"
-      content="Incenti Tech - Empresa brasileira especializada em desenvolvimento de software web, integrações complexas e soluções digitais personalizadas."
+      content="Incenti Tech - redirecting visitors to their preferred language version."
     />
     <meta name="author" content="Incenti Tech" />
-    <link rel="canonical" href="https://incentitech.com.br/" />
-    <link rel="alternate" hreflang="pt-BR" href="https://incentitech.com.br/" />
-    <link rel="alternate" hreflang="en" href="https://incentitech.com.br/en" />
+    <link rel="canonical" href="https://incentitech.com.br/en/" />
+    <link rel="alternate" hreflang="pt-BR" href="https://incentitech.com.br/pt-br/" />
+    <link rel="alternate" hreflang="en" href="https://incentitech.com.br/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://incentitech.com.br/en/" />
+
+    <script>
+      (function () {
+        var preferred = "en";
+        var languages = Array.isArray(navigator.languages) && navigator.languages.length > 0
+          ? navigator.languages
+          : [navigator.language || ""];
+
+        for (var i = 0; i < languages.length; i += 1) {
+          if (String(languages[i]).trim().toLowerCase() === "pt-br") {
+            preferred = "pt-br";
+            break;
+          }
+        }
+
+        window.location.replace(preferred === "pt-br" ? "/pt-br/" : "/en/");
+      })();
+    </script>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXJ7J2404S"></script>
     <script>
@@ -26,17 +45,17 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/29ba2d99-ef56-4983-a530-03f02dd8b95a/id-preview-5fbdbb6a--155575ed-1042-48f4-8754-d52787cea0f9.lovable.app-1775524304006.png">
-    <meta property="og:title" content="Incenti Tech | Desenvolvimento de Software sob Medida">
-    <meta name="twitter:title" content="Incenti Tech | Desenvolvimento de Software sob Medida">
+    <meta property="og:title" content="Incenti Tech">
+    <meta name="twitter:title" content="Incenti Tech">
     <meta
       property="og:description"
-      content="Incenti Tech - Empresa brasileira especializada em desenvolvimento de software web, integrações complexas e soluções digitais personalizadas."
+      content="Incenti Tech - redirecting visitors to their preferred language version."
     />
     <meta
       name="twitter:description"
-      content="Incenti Tech - Empresa brasileira especializada em desenvolvimento de software web, integrações complexas e soluções digitais personalizadas."
+      content="Incenti Tech - redirecting visitors to their preferred language version."
     />
-    <script type="module" crossorigin src="/assets/main-CnmtI9m1.js"></script>
+    <script type="module" crossorigin src="/assets/main-D6hG_RUi.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/main-DefvifvH.css">
   </head>
 

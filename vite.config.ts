@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       input: {
         main: path.resolve(__dirname, "index.html"),
+        ptBr: path.resolve(__dirname, "pt-br/index.html"),
         en: path.resolve(__dirname, "en/index.html"),
       },
     },
