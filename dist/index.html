@@ -16,6 +16,11 @@
 
     <script>
       (function () {
+        var pathname = window.location.pathname;
+        if (pathname !== "/" && pathname !== "/index.html") {
+          return;
+        }
+
         var preferred = "en";
         var languages = Array.isArray(navigator.languages) && navigator.languages.length > 0
           ? navigator.languages
@@ -28,7 +33,10 @@
           }
         }
 
-        window.location.replace(preferred === "pt-br" ? "/pt-br/" : "/en/");
+        var target = preferred === "pt-br" ? "/pt-br/" : "/en/";
+        if (pathname !== target) {
+          window.location.replace(target);
+        }
       })();
     </script>
 
