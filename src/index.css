@@ -205,6 +205,46 @@
     );
   }
 
+  .home-hero-title {
+    @apply mt-7 max-w-4xl font-heading text-[2.85rem] font-semibold leading-[0.92] tracking-[-0.065em] text-white sm:text-[4rem] md:text-[5rem] xl:text-[5.85rem];
+  }
+
+  .home-hero-copy {
+    @apply mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-lg md:text-[1.2rem] md:leading-9;
+  }
+
+  .home-section-title {
+    @apply mt-5 max-w-lg font-heading text-[2rem] font-semibold leading-[1.02] tracking-[-0.055em] text-white sm:text-[2.5rem] lg:text-[3.1rem];
+  }
+
+  .home-section-copy {
+    @apply mt-6 max-w-lg text-[0.98rem] leading-8 text-muted-foreground md:text-[1.075rem];
+  }
+
+  .home-card-title {
+    @apply break-words font-heading text-[1.32rem] font-semibold leading-[1.06] tracking-[-0.04em] text-white md:text-[1.5rem];
+  }
+
+  .home-card-copy {
+    @apply break-words text-[0.95rem] leading-7 text-muted-foreground md:text-base;
+  }
+
+  .home-nav-link {
+    @apply rounded-full px-4 py-2 text-[0.95rem] font-medium tracking-[0.01em] text-white/70 transition-colors hover:bg-white/5 hover:text-white;
+  }
+
+  .home-footer-link {
+    @apply block text-[0.95rem] font-medium tracking-[0.01em] text-muted-foreground transition-colors hover:text-white;
+  }
+
+  .home-contact-link {
+    @apply text-[0.95rem] font-medium tracking-[0.01em];
+  }
+
+  .home-form-label {
+    @apply mb-2 block text-[0.82rem] font-semibold tracking-[0.01em] text-white;
+  }
+
   .home-input {
     border: 1px solid hsl(0 0% 100% / 0.08);
     border-radius: 1.25rem;

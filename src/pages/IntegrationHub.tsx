@@ -868,7 +868,7 @@ const content = {
         namePlaceholder: "Your full name",
         emailPlaceholder: "you@company.com",
         companyPlaceholder: "Your company name",
-        phonePlaceholder: "+55 (11) 99999-9999",
+        phonePlaceholder: "+1 (555) 123-4567",
         messagePlaceholder:
           "Tell us about your operation, integration volume, and current challenges...",
         submitIdle: "Send Message",
@@ -1364,10 +1364,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 {page.contact.eyebrow}
               </span>
             </div>
-            <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-              {page.contact.title}
-            </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
+            <h2 className="ih-section-title mb-6">{page.contact.title}</h2>
+            <p className="ih-section-copy mb-8 max-w-xl">
               {page.contact.description}
             </p>
             <div className="space-y-4">
@@ -1380,10 +1378,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                     <CheckCircle2 className="h-5 w-5 text-primary" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="mb-1 break-words font-semibold">
+                    <h3 className="ih-card-title mb-1 break-words">
                       {item.title}
                     </h3>
-                    <p className="break-words text-sm text-muted-foreground">
+                    <p className="ih-card-copy break-words">
                       {item.description}
                     </p>
                   </div>
@@ -1403,7 +1401,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center font-medium transition-colors hover:text-foreground"
+              className="ih-contact-link ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
             >
               <Mail className="h-4 w-4 text-primary" />
               <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
@@ -1412,7 +1410,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               href={CONTACT_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center font-medium transition-colors hover:text-foreground"
+              className="ih-contact-link ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
               aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
             >
               <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
@@ -1476,28 +1474,16 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             </div>
 
             <nav className="hidden items-center gap-6 lg:flex">
-              <a
-                href="#recursos"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
+              <a href="#recursos" className="ih-nav-link">
                 {page.nav.features}
               </a>
-              <a
-                href="#diferenciais"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
+              <a href="#diferenciais" className="ih-nav-link">
                 {page.nav.differentiators}
               </a>
-              <a
-                href="#seguranca"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
+              <a href="#seguranca" className="ih-nav-link">
                 {page.nav.security}
               </a>
-              <a
-                href="#contato"
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-              >
+              <a href="#contato" className="ih-nav-link">
                 {page.nav.contact}
               </a>
             </nav>
@@ -1538,28 +1524,28 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <a
                   href="#recursos"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="ih-nav-link"
                 >
                   {page.nav.features}
                 </a>
                 <a
                   href="#diferenciais"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="ih-nav-link"
                 >
                   {page.nav.differentiators}
                 </a>
                 <a
                   href="#seguranca"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="ih-nav-link"
                 >
                   {page.nav.security}
                 </a>
                 <a
                   href="#contato"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="ih-nav-link"
                 >
                   {page.nav.contact}
                 </a>
@@ -1594,7 +1580,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               <Sparkles className="h-4 w-4" />
               {page.solution.eyebrow}
             </div>
-            <h1 className="ih-animate-slide-up mt-6 max-w-4xl font-heading text-4xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-5xl md:text-6xl xl:text-7xl">
+            <h1 className="ih-animate-slide-up ih-hero-title mt-6 max-w-4xl">
               {page.hero.titleLead}{" "}
               <span className="ih-text-gradient">
                 {page.hero.titleHighlight}
@@ -1602,7 +1588,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {page.hero.titleTail}
             </h1>
             <p
-              className="ih-animate-slide-up mt-6 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl"
+              className="ih-animate-slide-up ih-section-copy mt-6 max-w-3xl"
               style={{ animationDelay: "0.1s" }}
             >
               {page.hero.description}
@@ -1659,10 +1645,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 {page.problem.eyebrow}
               </span>
             </div>
-            <h2 className="mx-auto mb-4 max-w-3xl text-3xl font-bold md:text-4xl">
+            <h2 className="ih-section-title mx-auto mb-4 max-w-3xl">
               {page.problem.title}
             </h2>
-            <p className="mx-auto max-w-xl text-muted-foreground">
+            <p className="ih-section-copy mx-auto max-w-xl">
               {page.problem.description}
             </p>
           </div>
@@ -1699,10 +1685,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 {page.solution.eyebrow}
               </span>
             </div>
-            <h2 className="mx-auto mb-4 max-w-3xl text-3xl font-bold md:text-4xl">
+            <h2 className="ih-section-title mx-auto mb-4 max-w-3xl">
               {page.solution.title}
             </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.solution.description}
             </p>
           </div>
@@ -1719,10 +1705,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="mb-1 break-words font-semibold">
+                      <h3 className="ih-card-title mb-1 break-words">
                         {card.title}
                       </h3>
-                      <p className="break-words text-sm text-muted-foreground">
+                      <p className="ih-card-copy break-words">
                         {card.description}
                       </p>
                     </div>
@@ -1739,10 +1725,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       <section className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              {page.audiences.title}
-            </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <h2 className="ih-section-title mb-4">{page.audiences.title}</h2>
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.audiences.description}
             </p>
           </div>
@@ -1754,10 +1738,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="mb-4 break-words text-2xl font-bold">
+                  <h3 className="ih-card-title mb-4 break-words">
                     {item.title}
                   </h3>
-                  <p className="mb-6 break-words text-muted-foreground">
+                  <p className="ih-card-copy mb-6 break-words">
                     {item.description}
                   </p>
                   <ul className="space-y-3">
@@ -1784,12 +1768,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                     <item.Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <h3 className="mb-2 break-words text-lg font-semibold transition-colors group-hover:text-primary">
+                  <h3 className="ih-card-title mb-2 break-words transition-colors group-hover:text-primary">
                     {item.title}
                   </h3>
-                  <p className="break-words text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <p className="ih-card-copy break-words">{item.description}</p>
                 </div>
               )}
             />
@@ -1806,10 +1788,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 {page.singleIntegration.eyebrow}
               </span>
             </div>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+            <h2 className="ih-section-title mb-4">
               {page.singleIntegration.title}
             </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.singleIntegration.description}
             </p>
           </div>
@@ -1931,10 +1913,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   {page.priceHistory.eyebrow}
                 </span>
               </div>
-              <h2 className="mb-6 text-3xl font-bold md:text-4xl">
+              <h2 className="ih-section-title mb-6">
                 {page.priceHistory.title}
               </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
+              <p className="ih-section-copy mb-8 max-w-xl">
                 {page.priceHistory.description}
               </p>
               <ul className="space-y-4">
@@ -2051,22 +2033,18 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 {page.pricing.eyebrow}
               </span>
             </div>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              {page.pricing.title}
-            </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <h2 className="ih-section-title mb-4">{page.pricing.title}</h2>
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.pricing.description}
             </p>
           </div>
           <div className="mx-auto grid max-w-6xl items-start gap-8 xl:grid-cols-2">
             <div className="ih-shell ih-shadow-elevated rounded-[32px] border border-border p-8">
               <div className="mb-6">
-                <h3 className="mb-2 text-lg font-semibold">
+                <h3 className="ih-card-title mb-2">
                   {page.pricing.panelTitle}
                 </h3>
-                <p className="text-sm text-muted-foreground">
-                  {page.pricing.panelDescription}
-                </p>
+                <p className="ih-card-copy">{page.pricing.panelDescription}</p>
               </div>
               <div className="rounded-xl bg-secondary p-4">
                 <div className="mb-4 flex items-center gap-4">
@@ -2139,8 +2117,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                     <item.Icon className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="mb-1 text-lg font-semibold">{item.title}</h3>
-                    <p className="text-muted-foreground">{item.description}</p>
+                    <h3 className="ih-card-title mb-1">{item.title}</h3>
+                    <p className="ih-card-copy">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -2152,10 +2130,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       <section id="recursos" className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-              {page.features.title}
-            </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <h2 className="ih-section-title mb-4">{page.features.title}</h2>
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.features.description}
             </p>
           </div>
@@ -2167,10 +2143,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                   <item.Icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="mb-2 break-words font-semibold">{item.title}</h3>
-                <p className="break-words text-sm text-muted-foreground">
-                  {item.description}
-                </p>
+                <h3 className="ih-card-title mb-2 break-words">{item.title}</h3>
+                <p className="ih-card-copy break-words">{item.description}</p>
               </div>
             )}
           />
@@ -2180,10 +2154,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       <section id="diferenciais" className="bg-secondary/30 py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+            <h2 className="ih-section-title mb-4">
               {page.differentiators.title}
             </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.differentiators.description}
             </p>
           </div>
@@ -2197,12 +2171,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <CheckCircle2 className="h-5 w-5 text-primary" />
                 </div>
                 <div className="min-w-0">
-                  <h3 className="mb-2 break-words text-lg font-semibold">
+                  <h3 className="ih-card-title mb-2 break-words">
                     {item.title}
                   </h3>
-                  <p className="break-words text-muted-foreground">
-                    {item.description}
-                  </p>
+                  <p className="ih-card-copy break-words">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -2213,10 +2185,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       <section className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">
+            <h2 className="ih-section-title mb-4">
               {page.businessBenefits.title}
             </h2>
-            <p className="mx-auto max-w-2xl text-muted-foreground">
+            <p className="ih-section-copy mx-auto max-w-2xl">
               {page.businessBenefits.description}
             </p>
           </div>
@@ -2235,12 +2207,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <div className="mb-4 text-sm text-muted-foreground">
                   {item.highlightLabel}
                 </div>
-                <h3 className="mb-3 break-words text-xl font-semibold">
-                  {item.title}
-                </h3>
-                <p className="break-words text-muted-foreground">
-                  {item.description}
-                </p>
+                <h3 className="ih-card-title mb-3 break-words">{item.title}</h3>
+                <p className="ih-card-copy break-words">{item.description}</p>
               </div>
             ))}
           </div>
@@ -2250,10 +2218,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       <section id="seguranca" className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mx-auto max-w-6xl">
-            <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-              {page.security.title}
-            </h2>
-            <p className="mb-8 text-lg text-muted-foreground">
+            <h2 className="ih-section-title mb-6">{page.security.title}</h2>
+            <p className="ih-section-copy mb-8 max-w-3xl">
               {page.security.description}
             </p>
             <div className="grid gap-4 md:grid-cols-2">
@@ -2266,10 +2232,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                     <item.Icon className="h-5 w-5 text-primary" />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="mb-1 break-words font-semibold">
+                    <h3 className="ih-card-title mb-1 break-words">
                       {item.title}
                     </h3>
-                    <p className="break-words text-sm text-muted-foreground">
+                    <p className="ih-card-copy break-words">
                       {item.description}
                     </p>
                   </div>
@@ -2315,26 +2281,17 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 </h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li>
-                    <a
-                      href="#recursos"
-                      className="font-medium transition-colors hover:text-foreground"
-                    >
+                    <a href="#recursos" className="ih-footer-link">
                       {page.nav.features}
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="#diferenciais"
-                      className="font-medium transition-colors hover:text-foreground"
-                    >
+                    <a href="#diferenciais" className="ih-footer-link">
                       {page.nav.differentiators}
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="#seguranca"
-                      className="font-medium transition-colors hover:text-foreground"
-                    >
+                    <a href="#seguranca" className="ih-footer-link">
                       {page.nav.security}
                     </a>
                   </li>
@@ -2346,17 +2303,14 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 </h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li>
-                    <a
-                      href="#contato"
-                      className="font-medium transition-colors hover:text-foreground"
-                    >
+                    <a href="#contato" className="ih-footer-link">
                       {page.nav.contact}
                     </a>
                   </li>
                   <li>
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
-                      className="block break-all font-medium transition-colors hover:text-foreground sm:break-normal"
+                      className="ih-footer-link block break-all sm:break-normal"
                     >
                       {CONTACT_EMAIL}
                     </a>
@@ -2366,7 +2320,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                       href={CONTACT_WHATSAPP_URL}
                       target="_blank"
                       rel="noreferrer"
-                      className="font-medium transition-colors hover:text-foreground"
+                      className="ih-footer-link"
                     >
                       {CONTACT_PHONE_DISPLAY}
                     </a>

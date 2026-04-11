@@ -27,12 +27,8 @@ const TechSection = ({ locale }: TechSectionProps) => {
             className="lg:pr-8 xl:pr-10"
           >
             <p className="home-kicker">{content.eyebrow}</p>
-            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
-              {content.title}
-            </h2>
-            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
-              {content.description}
-            </p>
+            <h2 className="home-section-title">{content.title}</h2>
+            <p className="home-section-copy">{content.description}</p>
           </motion.div>
 
           <motion.div
@@ -48,7 +44,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
                   className="min-w-0 rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
                 >
                   <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
-                    <p className="min-w-0 break-words text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                    <p className="min-w-0 break-words text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary">
                       {category}
                     </p>
                     <span className="shrink-0 text-right text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
@@ -59,7 +55,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
                     {items.map((name) => (
                       <span
                         key={name}
-                        className="home-chip max-w-full break-words px-4 py-2 text-center text-sm text-white"
+                        className="home-chip max-w-full break-words px-4 py-2 text-center text-[0.92rem] text-white"
                       >
                         {name}
                       </span>

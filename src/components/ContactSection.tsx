@@ -136,12 +136,8 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
             viewport={{ once: true, amount: 0.25 }}
           >
             <p className="home-kicker">{content.eyebrow}</p>
-            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
-              {content.title}
-            </h2>
-            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
-              {content.description}
-            </p>
+            <h2 className="home-section-title">{content.title}</h2>
+            <p className="home-section-copy">{content.description}</p>
 
             <div className="mt-8 space-y-4">
               {valueProps.map((item) => (
@@ -152,7 +148,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary">
                     <ShieldCheck className="h-4 w-4" />
                   </div>
-                  <p className="min-w-0 break-words text-sm leading-6 text-muted-foreground">
+                  <p className="min-w-0 break-words text-[0.95rem] leading-6 text-muted-foreground">
                     {item}
                   </p>
                 </div>
@@ -188,7 +184,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               <form onSubmit={handleSubmit} className="relative space-y-5">
                 <div className="grid gap-5 lg:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-white">
+                    <label className="home-form-label">
                       {content.fields.name}
                     </label>
                     <input
@@ -204,7 +200,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-white">
+                    <label className="home-form-label">
                       {content.fields.company}
                     </label>
                     <input
@@ -218,7 +214,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
 
                 <div className="grid gap-5 lg:grid-cols-2">
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-white">
+                    <label className="home-form-label">
                       {content.fields.email}
                     </label>
                     <input
@@ -234,7 +230,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-2 block text-sm font-medium text-white">
+                    <label className="home-form-label">
                       {content.fields.phone}
                     </label>
                     <input
@@ -247,7 +243,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 </div>
 
                 <div>
-                  <label className="mb-2 block text-sm font-medium text-white">
+                  <label className="home-form-label">
                     {content.fields.message}
                   </label>
                   <textarea
@@ -325,7 +321,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
           <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center font-medium transition-colors hover:text-white"
+              className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
             >
               <Mail className="h-4 w-4 text-primary" />
               <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
@@ -334,7 +330,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               href={CONTACT_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center font-medium transition-colors hover:text-white"
+              className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
               aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
             >
               <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />

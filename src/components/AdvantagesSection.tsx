@@ -22,12 +22,8 @@ const AdvantagesSection = ({ locale }: AdvantagesSectionProps) => {
             className="lg:pr-8 xl:pr-10"
           >
             <p className="home-kicker">{content.eyebrow}</p>
-            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
-              {content.title}
-            </h2>
-            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
-              {content.description}
-            </p>
+            <h2 className="home-section-title">{content.title}</h2>
+            <p className="home-section-copy">{content.description}</p>
           </motion.div>
 
           <motion.div
@@ -53,16 +49,14 @@ const AdvantagesSection = ({ locale }: AdvantagesSectionProps) => {
                     </div>
                     <div className="min-w-0">
                       <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                        <h3 className="min-w-0 break-words font-heading text-xl font-semibold tracking-[-0.04em] text-white">
+                        <h3 className="home-card-title min-w-0">
                           {item.title}
                         </h3>
                         <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                       </div>
-                      <p className="mt-3 break-words text-sm leading-7 text-muted-foreground md:text-base">
-                        {item.description}
-                      </p>
+                      <p className="home-card-copy mt-3">{item.description}</p>
                     </div>
                   </article>
                 );

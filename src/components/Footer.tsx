@@ -33,7 +33,7 @@ const Footer = ({ locale }: FooterProps) => {
                 </p>
               </div>
             </div>
-            <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
+            <p className="mt-5 max-w-xl text-[0.95rem] leading-7 text-muted-foreground">
               {content.description}
             </p>
           </div>
@@ -48,7 +48,7 @@ const Footer = ({ locale }: FooterProps) => {
                   <a
                     key={link.href}
                     href={link.href}
-                    className="block text-sm font-medium text-muted-foreground transition-colors hover:text-white"
+                    className="home-footer-link"
                   >
                     {link.label}
                   </a>
@@ -63,7 +63,7 @@ const Footer = ({ locale }: FooterProps) => {
                 <p>63.404.846/0001-07</p>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="block break-all font-medium transition-colors hover:text-white sm:break-normal"
+                  className="home-footer-link break-all sm:break-normal"
                 >
                   {CONTACT_EMAIL}
                 </a>
@@ -71,7 +71,7 @@ const Footer = ({ locale }: FooterProps) => {
                   href={CONTACT_WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="block font-medium transition-colors hover:text-white"
+                  className="home-footer-link"
                 >
                   {CONTACT_PHONE_DISPLAY}
                 </a>

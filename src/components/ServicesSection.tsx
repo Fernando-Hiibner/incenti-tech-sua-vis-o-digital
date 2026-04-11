@@ -30,12 +30,8 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
             className="lg:pr-8 xl:pr-10"
           >
             <p className="home-kicker">{content.eyebrow}</p>
-            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
-              {content.title}
-            </h2>
-            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
-              {content.description}
-            </p>
+            <h2 className="home-section-title">{content.title}</h2>
+            <p className="home-section-copy">{content.description}</p>
 
             <div className="home-signal-line mt-8 w-full max-w-sm" />
 
@@ -70,10 +66,10 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
-                  <h3 className="max-w-md min-w-0 break-words font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
+                  <h3 className="home-card-title max-w-md min-w-0">
                     {service.title}
                   </h3>
-                  <p className="max-w-2xl min-w-0 break-words text-sm leading-7 text-muted-foreground md:text-base">
+                  <p className="home-card-copy max-w-2xl min-w-0">
                     {service.description}
                   </p>
                 </article>

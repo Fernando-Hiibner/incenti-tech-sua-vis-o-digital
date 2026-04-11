@@ -35,15 +35,13 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
             </span>
           </div>
 
-          <h1 className="mt-7 max-w-4xl font-heading text-4xl font-semibold leading-[0.95] tracking-[-0.06em] text-white sm:text-5xl md:text-6xl xl:text-7xl">
+          <h1 className="home-hero-title">
             {content.titleStart}{" "}
             <span className="text-gradient">{content.titleHighlight}</span>{" "}
             {content.titleEnd}
           </h1>
 
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
-            {content.description}
-          </p>
+          <p className="home-hero-copy">{content.description}</p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a

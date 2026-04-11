@@ -35,12 +35,8 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
           className="mb-14 max-w-3xl"
         >
           <p className="home-kicker">{content.eyebrow}</p>
-          <h2 className="mt-5 font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
-            {content.title}
-          </h2>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
-            {content.description}
-          </p>
+          <h2 className="home-section-title max-w-3xl">{content.title}</h2>
+          <p className="home-section-copy max-w-2xl">{content.description}</p>
         </motion.div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -63,12 +59,12 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                   </div>
                 </div>
                 <h3
-                  className={`mt-6 break-words font-heading font-semibold tracking-[-0.04em] text-white ${isFeatured ? "text-3xl" : "text-2xl"}`}
+                  className={`mt-6 break-words font-heading font-semibold leading-[1.02] tracking-[-0.045em] text-white ${isFeatured ? "text-[1.95rem] md:text-[2.25rem]" : "text-[1.45rem] md:text-[1.7rem]"}`}
                 >
                   {item.title}
                 </h3>
                 <p
-                  className={`mt-4 break-words leading-7 text-muted-foreground ${isFeatured ? "max-w-2xl text-base" : "text-sm md:text-base"}`}
+                  className={`mt-4 break-words leading-7 text-muted-foreground ${isFeatured ? "max-w-2xl text-[0.98rem] md:text-[1.05rem]" : "text-[0.95rem] md:text-base"}`}
                 >
                   {item.description}
                 </p>
