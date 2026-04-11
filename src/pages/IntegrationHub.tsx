@@ -28,7 +28,9 @@ import {
   Link2,
   Loader2,
   Lock,
+  Mail,
   Menu,
+  Phone,
   RefreshCw,
   Search,
   Send,
@@ -2222,6 +2224,22 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               <div className="absolute inset-0 rounded-full bg-primary opacity-5 blur-3xl" />
               <div className="ih-shell ih-shadow-elevated relative rounded-[32px] border border-border p-8 md:p-10">
                 <IntegrationHubContactForm locale={locale} />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
+              <a
+                href="mailto:fernando@incentitech.com.br"
+                className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
+              >
+                <Mail className="h-4 w-4 text-primary" />
+                fernando@incentitech.com.br
+              </a>
+              <div className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center">
+                <Phone className="h-4 w-4 text-primary" />
+                +55 (11) 97154-2519
               </div>
             </div>
           </div>

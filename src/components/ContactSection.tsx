@@ -326,15 +326,15 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <div className="flex w-full max-w-xl flex-col gap-4 text-sm text-muted-foreground">
+          <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
               href="mailto:fernando@incentitech.com.br"
-              className="home-shell-soft flex items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
+              className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
             >
               <Mail className="h-4 w-4 text-primary" />
               fernando@incentitech.com.br
             </a>
-            <div className="home-shell-soft flex items-center justify-center gap-3 px-5 py-4 text-center">
+            <div className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center">
               <Phone className="h-4 w-4 text-primary" />
               +55 (11) 97154-2519
             </div>

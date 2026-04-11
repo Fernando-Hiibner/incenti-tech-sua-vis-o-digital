@@ -46,7 +46,7 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {content.items.map((item, index) => {
             const Icon = projectIcons[index];
-            const isFeatured = index === 0 || index === 4;
+            const isFeatured = index === 0 || index === 2 || index === 4;
 
             return (
               <motion.article
