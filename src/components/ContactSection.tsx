@@ -1,6 +1,15 @@
-import { useState, useRef, FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
-import { Send, Mail, Phone, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowRight,
+  CheckCircle,
+  Loader2,
+  Mail,
+  Phone,
+  Send,
+  ShieldCheck,
+} from "lucide-react";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -16,20 +25,36 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   const lastSubmitRef = useRef(0);
   const maxMessageLength = 3000;
   const content = siteContent[locale].contact;
+  const valueProps =
+    locale === "pt-BR"
+      ? [
+          "Resposta inicial em ate 24 horas uteis.",
+          "Conversa tecnica focada em contexto, risco e viabilidade.",
+          "Escopo pensado para entrega real, nao para discurso vazio.",
+        ]
+      : [
+          "Initial response within 24 business hours.",
+          "Technical conversation focused on context, risk, and feasibility.",
+          "Scope shaped for real delivery, not empty positioning.",
+        ];
 
   const validate = (data: Record<string, string>) => {
     const nextErrors: Record<string, string> = {};
     if (!data.nome?.trim()) nextErrors.nome = content.validation.requiredName;
-    if (!data.email?.trim()) nextErrors.email = content.validation.requiredEmail;
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) nextErrors.email = content.validation.invalidEmail;
-    if (!data.mensagem?.trim()) nextErrors.mensagem = content.validation.requiredMessage;
-    else if (data.mensagem.length > maxMessageLength) nextErrors.mensagem = content.validation.messageTooLong;
+    if (!data.email?.trim())
+      nextErrors.email = content.validation.requiredEmail;
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
+      nextErrors.email = content.validation.invalidEmail;
+    if (!data.mensagem?.trim())
+      nextErrors.mensagem = content.validation.requiredMessage;
+    else if (data.mensagem.length > maxMessageLength)
+      nextErrors.mensagem = content.validation.messageTooLong;
     return nextErrors;
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
     const formData = new FormData(form);
     const data: Record<string, string> = {};
     formData.forEach((value, key) => (data[key] = value.toString()));
@@ -57,9 +82,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
       const API_BASE = import.meta.env.VITE_API_URL || "";
       const response = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: data.nome || "",
           email: data.email || "",
@@ -82,7 +105,11 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
       }
 
       if (response.status === 400) {
-        setErrors(result.fields || { form: result.error || content.validation.invalidData });
+        setErrors(
+          result.fields || {
+            form: result.error || content.validation.invalidData,
+          },
+        );
         setStatus("idle");
         return;
       }
@@ -103,88 +130,159 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   };
 
   const inputClass = (field: string) =>
-    `w-full bg-secondary/50 border ${
-      errors[field] ? "border-destructive" : "border-border"
-    } rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all`;
+    `home-input w-full px-4 py-3.5 text-base ${errors[field] ? "border-destructive" : ""}`;
 
   return (
     <section id="contato" className="section-padding">
       <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary text-sm font-semibold uppercase tracking-widest">{content.eyebrow}</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{content.title}</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">{content.description}</p>
-        </motion.div>
+        <div className="grid gap-8 xl:grid-cols-[0.82fr_1.18fr] xl:items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            <p className="home-kicker">{content.eyebrow}</p>
+            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
+              {content.title}
+            </h2>
+            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
+              {content.description}
+            </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="max-w-2xl mx-auto"
-        >
-          <div className="glass-card p-8 md:p-10">
+            <div className="mt-8 space-y-4">
+              {valueProps.map((item) => (
+                <div
+                  key={item}
+                  className="glass-card flex items-start gap-4 p-5"
+                >
+                  <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                    <ShieldCheck className="h-5 w-5" />
+                  </div>
+                  <p className="text-sm leading-7 text-muted-foreground">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="home-shell p-7 md:p-9"
+          >
             {status === "success" ? (
-              <div className="text-center py-10">
-                <CheckCircle className="text-primary mx-auto mb-4" size={56} />
-                <h3 className="text-xl font-heading font-semibold mb-2">{content.successTitle}</h3>
-                <p className="text-muted-foreground">{content.successDescription}</p>
+              <div className="py-10 text-center">
+                <CheckCircle className="mx-auto mb-4 h-14 w-14 text-primary" />
+                <h3 className="font-heading text-2xl font-semibold text-white">
+                  {content.successTitle}
+                </h3>
+                <p className="mt-3 text-muted-foreground">
+                  {content.successDescription}
+                </p>
                 <button
+                  type="button"
                   onClick={() => setStatus("idle")}
-                  className="mt-6 text-primary hover:underline text-sm"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
                 >
                   {content.sendAnother}
+                  <ArrowRight className="h-4 w-4" />
                 </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="relative space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.name}</label>
-                    <input name="nome" type="text" placeholder={content.fields.namePlaceholder} className={inputClass("nome")} />
-                    {errors.nome && <p className="text-xs text-destructive mt-1">{errors.nome}</p>}
+                    <label className="mb-2 block text-sm font-medium text-white">
+                      {content.fields.name}
+                    </label>
+                    <input
+                      name="nome"
+                      type="text"
+                      placeholder={content.fields.namePlaceholder}
+                      className={inputClass("nome")}
+                    />
+                    {errors.nome && (
+                      <p className="mt-2 text-xs text-destructive">
+                        {errors.nome}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.company}</label>
-                    <input name="empresa" type="text" placeholder={content.fields.companyPlaceholder} className={inputClass("empresa")} />
+                    <label className="mb-2 block text-sm font-medium text-white">
+                      {content.fields.company}
+                    </label>
+                    <input
+                      name="empresa"
+                      type="text"
+                      placeholder={content.fields.companyPlaceholder}
+                      className={inputClass("empresa")}
+                    />
                   </div>
                 </div>
 
-                <div className="grid sm:grid-cols-2 gap-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.email}</label>
-                    <input name="email" type="email" placeholder={content.fields.emailPlaceholder} className={inputClass("email")} />
-                    {errors.email && <p className="text-xs text-destructive mt-1">{errors.email}</p>}
+                    <label className="mb-2 block text-sm font-medium text-white">
+                      {content.fields.email}
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      placeholder={content.fields.emailPlaceholder}
+                      className={inputClass("email")}
+                    />
+                    {errors.email && (
+                      <p className="mt-2 text-xs text-destructive">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.phone}</label>
-                    <input name="telefone" type="tel" placeholder={content.fields.phonePlaceholder} className={inputClass("telefone")} />
+                    <label className="mb-2 block text-sm font-medium text-white">
+                      {content.fields.phone}
+                    </label>
+                    <input
+                      name="telefone"
+                      type="tel"
+                      placeholder={content.fields.phonePlaceholder}
+                      className={inputClass("telefone")}
+                    />
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium text-foreground mb-1.5 block">{content.fields.message}</label>
+                  <label className="mb-2 block text-sm font-medium text-white">
+                    {content.fields.message}
+                  </label>
                   <textarea
                     name="mensagem"
                     rows={5}
                     placeholder={content.fields.messagePlaceholder}
-                    className={inputClass("mensagem") + " resize-none"}
-                    onChange={(e) => setMessageLength(e.target.value.length)}
+                    className={`${inputClass("mensagem")} resize-none`}
+                    onChange={(event) =>
+                      setMessageLength(event.target.value.length)
+                    }
                   />
-                  <div className="flex justify-between items-center mt-1">
-                    {errors.mensagem ? <p className="text-xs text-destructive">{errors.mensagem}</p> : <span />}
-                    <span className={`text-xs ml-auto ${messageLength > maxMessageLength ? "text-destructive" : "text-muted-foreground"}`}>
+                  <div className="mt-2 flex items-center justify-between">
+                    {errors.mensagem ? (
+                      <p className="text-xs text-destructive">
+                        {errors.mensagem}
+                      </p>
+                    ) : (
+                      <span />
+                    )}
+                    <span
+                      className={`text-xs ${messageLength > maxMessageLength ? "text-destructive" : "text-muted-foreground"}`}
+                    >
                       {messageLength}/{maxMessageLength}
                     </span>
                   </div>
                 </div>
 
                 <div
-                  className="absolute -left-[9999px] opacity-0 pointer-events-none"
+                  className="pointer-events-none absolute -left-[9999px] opacity-0"
                   aria-hidden="true"
                 >
                   <label htmlFor="website">Website</label>
@@ -208,7 +306,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 <button
                   type="submit"
                   disabled={status === "loading"}
-                  className="w-full bg-primary text-primary-foreground py-4 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-[0_32px_48px_-28px_rgba(207,63,71,0.92)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {status === "loading" ? (
                     <>
@@ -217,28 +315,31 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                     </>
                   ) : (
                     <>
-                      <Send size={18} />
+                      <Send className="h-4 w-4" />
                       {content.submitIdle}
                     </>
                   )}
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
+        </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-muted-foreground text-sm">
-            <div className="flex items-center gap-2">
-              <Mail size={16} className="text-primary" />
-              <a href="mailto:fernando@incentitech.com.br" className="transition-colors hover:text-foreground">
-                fernando@incentitech.com.br
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone size={16} className="text-primary" />
+        <div className="mt-8 flex justify-center">
+          <div className="flex w-full max-w-xl flex-col gap-4 text-sm text-muted-foreground">
+            <a
+              href="mailto:fernando@incentitech.com.br"
+              className="home-shell-soft flex items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
+            >
+              <Mail className="h-4 w-4 text-primary" />
+              fernando@incentitech.com.br
+            </a>
+            <div className="home-shell-soft flex items-center justify-center gap-3 px-5 py-4 text-center">
+              <Phone className="h-4 w-4 text-primary" />
               +55 (11) 97154-2519
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type HeroSectionProps = {
@@ -8,79 +8,99 @@ type HeroSectionProps = {
 
 const HeroSection = ({ locale }: HeroSectionProps) => {
   const content = siteContent[locale].hero;
-  const headlineHighlight =
-    locale === "pt-BR" ? "sistemas e solucoes digitais" : "software systems and digital solutions";
+  const proofItems =
+    locale === "pt-BR"
+      ? [
+          { value: "sob medida", label: "arquitetura orientada ao negocio" },
+          {
+            value: "integracao",
+            label: "marketplaces, APIs, pagamentos e legado",
+          },
+          {
+            value: "continuidade",
+            label: "evolucao, sustentacao e entrega real",
+          },
+        ]
+      : [
+          {
+            value: "tailored",
+            label: "architecture aligned with your business",
+          },
+          {
+            value: "integration",
+            label: "marketplaces, APIs, payments and legacy",
+          },
+          {
+            value: "continuity",
+            label: "evolution, support and real delivery",
+          },
+        ];
 
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-20"
+      className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
       style={{ background: "var(--hero-gradient)" }}
     >
-      <div
-        className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: "linear-gradient(hsl(0,0%,100%) 1px, transparent 1px), linear-gradient(90deg, hsl(0,0%,100%) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      <div className="home-grid absolute opacity-40" />
+      <div className="home-floating-orb orb-a" />
+      <div className="home-floating-orb orb-b" />
+      <div className="home-floating-orb orb-c" />
 
-      <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full opacity-20 blur-[120px] bg-primary" />
-
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container relative z-10 mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl mx-auto text-center"
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="mx-auto flex max-w-5xl flex-col items-center text-center"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="inline-block mb-6 px-4 py-1.5 rounded-full border border-primary/30 bg-primary/5"
-          >
-            <span className="text-sm text-primary font-medium">{content.badge}</span>
-          </motion.div>
+          <div className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <span className="text-sm font-medium text-primary">
+              {content.badge}
+            </span>
+          </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6">
-            {content.titleStart} <span className="text-gradient">{headlineHighlight}</span>{" "}
+          <h1 className="mt-7 max-w-4xl font-heading text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-6xl lg:text-7xl">
+            {content.titleStart}{" "}
+            <span className="text-gradient">{content.titleHighlight}</span>{" "}
             {content.titleEnd}
           </h1>
 
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground md:text-xl">
             {content.description}
           </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
+          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contato"
-              className="bg-primary text-primary-foreground px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary/90 transition-all animate-pulse-glow"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_32px_48px_-28px_rgba(207,63,71,0.92)] transition-all hover:-translate-y-0.5 hover:bg-primary/90"
             >
               {content.primaryCta}
+              <ArrowRight className="h-4 w-4" />
             </a>
             <a
               href="#servicos"
-              className="border border-border text-foreground px-8 py-4 rounded-lg text-lg font-medium hover:bg-secondary/50 transition-colors"
+              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-medium text-white transition-colors hover:bg-white/10"
             >
               {content.secondaryCta}
             </a>
-          </motion.div>
+          </div>
+
+          <div className="mt-10 grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+            {proofItems.map((item) => (
+              <div key={item.value} className="home-shell-soft px-5 py-5">
+                <p className="font-heading text-2xl font-semibold tracking-[-0.05em] text-white">
+                  {item.value}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  {item.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
-
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <ChevronDown className="text-muted-foreground" size={28} />
-      </motion.div>
     </section>
   );
 };

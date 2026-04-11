@@ -1,30 +1,60 @@
 .integration-hub-theme {
-  --background: 0 0% 100%;
-  --foreground: 225 45% 12%;
+  --background: 210 40% 99%;
+  --foreground: 223 36% 12%;
   --card: 0 0% 100%;
-  --card-foreground: 225 45% 12%;
+  --card-foreground: 223 36% 12%;
   --popover: 0 0% 100%;
-  --popover-foreground: 225 45% 12%;
-  --primary: 0 72% 52%;
+  --popover-foreground: 223 36% 12%;
+  --primary: 0 67% 54%;
   --primary-foreground: 210 25% 98%;
-  --secondary: 220 30% 96%;
-  --secondary-foreground: 225 45% 18%;
-  --muted: 220 22% 94%;
-  --muted-foreground: 220 12% 40%;
-  --accent: 220 30% 96%;
-  --accent-foreground: 225 45% 18%;
-  --destructive: 0 84% 60%;
+  --secondary: 220 38% 97%;
+  --secondary-foreground: 223 36% 18%;
+  --muted: 220 28% 95%;
+  --muted-foreground: 221 12% 42%;
+  --accent: 220 38% 97%;
+  --accent-foreground: 223 36% 18%;
+  --destructive: 0 75% 55%;
   --destructive-foreground: 210 25% 98%;
-  --border: 220 18% 84%;
-  --input: 220 18% 84%;
-  --ring: 0 72% 52%;
-  --radius: 0.75rem;
-  --ih-gradient-primary: linear-gradient(135deg, hsl(0 72% 52%) 0%, hsl(350 68% 62%) 100%);
-  --ih-gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 24% 95%) 100%);
-  --ih-gradient-glow: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(0 72% 52% / 0.25) 0%, transparent 70%);
-  --ih-text-gradient: linear-gradient(135deg, hsl(0 78% 54%) 0%, hsl(350 72% 46%) 100%);
-  --ih-shadow-glow: 0 0 60px hsl(0 72% 52% / 0.2);
-  --ih-shadow-elevated: 0 8px 32px hsl(220 30% 30% / 0.16);
+  --border: 220 20% 87%;
+  --input: 220 20% 87%;
+  --ring: 0 67% 54%;
+  --radius: 1rem;
+  --ih-gradient-primary: linear-gradient(
+    135deg,
+    hsl(0 67% 54%) 0%,
+    hsl(355 74% 61%) 100%
+  );
+  --ih-gradient-card: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(245, 247, 251, 0.98) 100%
+  );
+  --ih-gradient-glow: radial-gradient(
+    ellipse 78% 48% at 50% -18%,
+    hsl(0 67% 54% / 0.18) 0%,
+    transparent 72%
+  );
+  --ih-text-gradient: linear-gradient(
+    135deg,
+    hsl(0 70% 54%) 0%,
+    hsl(355 72% 46%) 100%
+  );
+  --ih-shadow-glow: 0 0 54px hsl(0 67% 54% / 0.18);
+  --ih-shadow-elevated: 0 38px 80px -54px hsl(222 40% 18% / 0.24);
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at top left,
+      hsl(0 67% 54% / 0.09),
+      transparent 22rem
+    ),
+    radial-gradient(
+      circle at top right,
+      hsl(215 78% 62% / 0.08),
+      transparent 26rem
+    ),
+    linear-gradient(180deg, #ffffff 0%, #f6f8fc 45%, #ffffff 100%);
   font-family: "Inter", system-ui, sans-serif;
 }
 
@@ -39,8 +69,23 @@
   background: var(--ih-gradient-primary);
 }
 
-.integration-hub-theme .ih-bg-gradient-card {
+.integration-hub-theme .ih-bg-gradient-card,
+.integration-hub-theme .ih-shell {
   background: var(--ih-gradient-card);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    0 38px 80px -54px rgba(15, 23, 42, 0.24);
+}
+
+.integration-hub-theme .ih-shell-soft {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.94) 0%,
+    rgba(248, 249, 252, 0.94) 100%
+  );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 24px 56px -42px rgba(15, 23, 42, 0.18);
 }
 
 .integration-hub-theme .ih-bg-gradient-glow {
@@ -56,10 +101,65 @@
 }
 
 .integration-hub-theme .ih-grid-pattern {
+  inset: -42%;
   background-image:
-    linear-gradient(hsl(220 15% 78% / 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(220 15% 78% / 0.5) 1px, transparent 1px);
-  background-size: 60px 60px;
+    linear-gradient(hsl(220 18% 82% / 0.65) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(220 18% 82% / 0.65) 1px, transparent 1px);
+  background-size: 58px 58px;
+  transform: rotate(45deg) scale(1.02);
+  transform-origin: center;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 62%);
+  pointer-events: none;
+}
+
+.integration-hub-theme .ih-nav-shell {
+  border: 1px solid rgba(217, 223, 235, 0.92);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.84),
+    0 24px 60px -42px rgba(15, 23, 42, 0.22);
+  backdrop-filter: blur(20px);
+}
+
+.integration-hub-theme .ih-chip {
+  border: 1px solid rgba(214, 67, 74, 0.16);
+  background: rgba(214, 67, 74, 0.06);
+  color: hsl(var(--primary));
+}
+
+.integration-hub-theme .ih-card-hover {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.integration-hub-theme .ih-card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.84),
+    0 40px 90px -56px rgba(15, 23, 42, 0.28);
+}
+
+.integration-hub-theme .ih-stat-card {
+  border: 1px solid rgba(217, 223, 235, 0.9);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.78),
+    0 20px 48px -38px rgba(15, 23, 42, 0.18);
+}
+
+.integration-hub-theme .ih-hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(214, 67, 74, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(214, 67, 74, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(180deg, black, transparent 92%);
 }
 
 .integration-hub-theme .ih-animate-fade-in {

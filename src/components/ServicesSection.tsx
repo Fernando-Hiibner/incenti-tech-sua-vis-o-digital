@@ -1,17 +1,15 @@
 import { motion } from "framer-motion";
-import { Code2, RefreshCw, Link2, Wrench, ShieldCheck, Bot } from "lucide-react";
+import {
+  Bot,
+  Code2,
+  Link2,
+  RefreshCw,
+  ShieldCheck,
+  Wrench,
+} from "lucide-react";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck, Bot];
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.15, duration: 0.5 },
-  }),
-};
 
 type ServicesSectionProps = {
   locale: Locale;
@@ -19,45 +17,80 @@ type ServicesSectionProps = {
 
 const ServicesSection = ({ locale }: ServicesSectionProps) => {
   const content = siteContent[locale].services;
-  const sectionTitle =
-    locale === "pt-BR" ? "Desenvolvimento de software e integracoes" : "Software development and integrations";
+  const supportItems =
+    locale === "pt-BR"
+      ? [
+          "arquitetura sob medida",
+          "integracao e legado",
+          "sustentacao com continuidade",
+        ]
+      : [
+          "tailored architecture",
+          "integration and legacy",
+          "continuity and support",
+        ];
 
   return (
     <section id="servicos" className="section-padding">
       <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary text-sm font-semibold uppercase tracking-widest">{content.eyebrow}</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{sectionTitle}</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">{content.description}</p>
-        </motion.div>
+        <div className="grid gap-10 xl:grid-cols-[0.78fr_1.22fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            className="xl:pr-10"
+          >
+            <p className="home-kicker">{content.eyebrow}</p>
+            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
+              {content.title}
+            </h2>
+            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
+              {content.description}
+            </p>
 
-        <div className="flex flex-wrap justify-center gap-6 max-w-4xl mx-auto">
-          {content.items.map((service, i) => {
-            const Icon = serviceIcons[i];
+            <div className="home-signal-line mt-8 w-full max-w-sm" />
 
-            return (
-              <motion.div
-                key={service.title}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={cardVariants}
-                className="glass-card p-8 group hover:border-primary/30 transition-all duration-300 w-full md:w-[calc(50%-0.75rem)]"
-              >
-                <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors">
-                  <Icon className="text-primary" size={24} />
-                </div>
-                <h3 className="text-xl font-heading font-semibold mb-3">{service.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{service.description}</p>
-              </motion.div>
-            );
-          })}
+            <div className="mt-8 flex flex-wrap gap-3">
+              {supportItems.map((item) => (
+                <span key={item} className="home-chip px-4 py-2 text-sm">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 26 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            className="home-shell overflow-hidden p-7 md:p-8"
+          >
+            {content.items.map((service, index) => {
+              const Icon = serviceIcons[index];
+
+              return (
+                <article
+                  key={service.title}
+                  className={`grid gap-5 border-white/8 py-7 md:grid-cols-[auto_220px_minmax(0,1fr)] md:gap-6 ${index !== 0 ? "border-t" : ""} ${index === 0 ? "pt-0" : ""} ${index === content.items.length - 1 ? "pb-0" : ""}`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="max-w-md font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
+                    {service.title}
+                  </h3>
+                  <p className="max-w-2xl text-sm leading-7 text-muted-foreground md:text-base">
+                    {service.description}
+                  </p>
+                </article>
+              );
+            })}
+          </motion.div>
         </div>
       </div>
     </section>

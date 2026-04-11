@@ -7,37 +7,68 @@ type TechSectionProps = {
 
 const TechSection = ({ locale }: TechSectionProps) => {
   const content = siteContent[locale].tech;
+  const groupedItems = content.items.reduce<Record<string, string[]>>(
+    (acc, item) => {
+      if (!acc[item.category]) acc[item.category] = [];
+      acc[item.category].push(item.name);
+      return acc;
+    },
+    {},
+  );
 
   return (
-    <section id="tecnologias" className="section-padding bg-secondary/30">
+    <section id="tecnologias" className="section-padding bg-secondary/20">
       <div className="container mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-primary text-sm font-semibold uppercase tracking-widest">{content.eyebrow}</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{content.title}</h2>
-          <p className="text-muted-foreground max-w-xl mx-auto">{content.description}</p>
-        </motion.div>
+        <div className="grid gap-10 xl:grid-cols-[0.8fr_1.2fr]">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            className="xl:pr-10"
+          >
+            <p className="home-kicker">{content.eyebrow}</p>
+            <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
+              {content.title}
+            </h2>
+            <p className="mt-6 max-w-lg text-base leading-8 text-muted-foreground md:text-lg">
+              {content.description}
+            </p>
+          </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-          {content.items.map((tech, i) => (
-            <motion.div
-              key={tech.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="glass-card p-5 text-center group hover:border-primary/30 transition-all"
-            >
-              <div className="text-lg font-heading font-bold mb-1 group-hover:text-primary transition-colors">
-                {tech.name}
-              </div>
-              <span className="text-xs text-muted-foreground uppercase tracking-wider">{tech.category}</span>
-            </motion.div>
-          ))}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            className="home-shell p-7 md:p-8"
+          >
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+              {Object.entries(groupedItems).map(([category, items], index) => (
+                <div
+                  key={category}
+                  className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                      {category}
+                    </p>
+                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="mt-5 flex flex-wrap gap-3">
+                    {items.map((name) => (
+                      <span
+                        key={name}
+                        className="home-chip px-4 py-2 text-sm text-white"
+                      >
+                        {name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

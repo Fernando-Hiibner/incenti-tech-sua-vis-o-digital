@@ -12,6 +12,7 @@ import type { Locale } from "@/lib/siteContent";
 const queryClient = new QueryClient();
 const IndexPage = lazy(() => import("./pages/Index.tsx"));
 const IntegrationHubPage = lazy(() => import("./pages/IntegrationHub.tsx"));
+const SystemDesignPage = lazy(() => import("./pages/SystemDesign.tsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFound.tsx"));
 
 const RouteFallback = () => <div className="min-h-screen bg-background" />;
@@ -56,6 +57,22 @@ const App = () => (
           <Route path="/pt-br/integration-hub/" element={renderIntegrationHub("pt-BR")} />
           <Route path="/en/integration-hub" element={renderIntegrationHub("en")} />
           <Route path="/en/integration-hub/" element={renderIntegrationHub("en")} />
+          <Route
+            path="/system-design"
+            element={
+              <Suspense fallback={<RouteFallback />}>
+                <SystemDesignPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/system-design/"
+            element={
+              <Suspense fallback={<RouteFallback />}>
+                <SystemDesignPage />
+              </Suspense>
+            }
+          />
           <Route
             path="*"
             element={

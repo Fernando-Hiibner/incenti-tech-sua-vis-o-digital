@@ -1,0 +1,207 @@
+.sd-page {
+  position: relative;
+  background:
+    radial-gradient(circle at top left, rgba(214, 67, 74, 0.12), transparent 22rem),
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.1), transparent 26rem),
+    #050816;
+  color: #f6f8ff;
+}
+
+.sd-page::before,
+.sd-page::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.sd-page::before {
+  opacity: 0.07;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.9) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 78%);
+}
+
+.sd-page::after {
+  background: linear-gradient(180deg, rgba(5, 8, 22, 0) 0%, rgba(5, 8, 22, 0.68) 100%);
+}
+
+.sd-kicker {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.sd-shell-dark {
+  background: linear-gradient(180deg, rgba(13, 18, 35, 0.98) 0%, rgba(7, 11, 22, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 48px 120px -72px rgba(0, 0, 0, 0.88),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.sd-shell-light {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 247, 251, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 40px 100px -68px rgba(15, 23, 42, 0.36),
+    0 0 0 1px rgba(217, 223, 235, 0.3);
+}
+
+.sd-swatch-fill {
+  background: var(--swatch);
+}
+
+.sd-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(72px);
+  opacity: 0.4;
+  animation: sd-float 16s ease-in-out infinite;
+}
+
+.sd-orb-a {
+  left: -8rem;
+  top: 8rem;
+  height: 18rem;
+  width: 18rem;
+  background: rgba(214, 67, 74, 0.4);
+}
+
+.sd-orb-b {
+  right: -10rem;
+  top: 30rem;
+  height: 22rem;
+  width: 22rem;
+  animation-delay: -5s;
+  background: rgba(59, 130, 246, 0.22);
+}
+
+.sd-orb-c {
+  left: 40%;
+  bottom: 8rem;
+  height: 16rem;
+  width: 16rem;
+  animation-delay: -9s;
+  background: rgba(245, 158, 11, 0.14);
+}
+
+.sd-poster {
+  position: relative;
+  min-height: 40rem;
+}
+
+.sd-poster-card-dark,
+.sd-poster-card-light {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+}
+
+.sd-poster-card-dark::before,
+.sd-poster-card-light::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(180deg, black, transparent 90%);
+}
+
+.sd-poster-card-dark {
+  margin-right: 3.5rem;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at top right, rgba(214, 67, 74, 0.18), transparent 16rem),
+    linear-gradient(180deg, rgba(13, 18, 35, 0.98) 0%, rgba(7, 11, 22, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 48px 120px -76px rgba(0, 0, 0, 0.9);
+}
+
+.sd-poster-card-light {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(82%, 36rem);
+  padding: 2rem;
+  border: 1px solid rgba(217, 223, 235, 0.9);
+  background:
+    radial-gradient(circle at top right, rgba(214, 67, 74, 0.1), transparent 14rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 247, 251, 0.98) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 40px 100px -64px rgba(15, 23, 42, 0.34);
+  animation: sd-lift 12s ease-in-out infinite;
+}
+
+.sd-floating-tag {
+  position: absolute;
+  left: 0;
+  bottom: 2rem;
+  padding: 0.95rem 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(9, 15, 29, 0.76);
+  box-shadow: 0 24px 60px -36px rgba(0, 0, 0, 0.82);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px);
+}
+
+@keyframes sd-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+@keyframes sd-lift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+@media (max-width: 1024px) {
+  .sd-poster {
+    min-height: auto;
+  }
+
+  .sd-poster-card-dark {
+    margin-right: 0;
+  }
+
+  .sd-poster-card-light {
+    position: relative;
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+
+  .sd-floating-tag {
+    position: relative;
+    display: inline-flex;
+    margin-top: 1rem;
+    bottom: auto;
+    left: auto;
+  }
+}
