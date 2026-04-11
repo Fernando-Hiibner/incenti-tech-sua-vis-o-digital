@@ -7,18 +7,7 @@ type FooterProps = {
 
 const Footer = ({ locale }: FooterProps) => {
   const content = siteContent[locale].footer;
-  const links =
-    locale === "pt-BR"
-      ? [
-          { href: "#servicos", label: "Servicos" },
-          { href: "#projetos", label: "Projetos" },
-          { href: "#contato", label: "Contato" },
-        ]
-      : [
-          { href: "#servicos", label: "Services" },
-          { href: "#projetos", label: "Work" },
-          { href: "#contato", label: "Contact" },
-        ];
+  const links = content.links;
 
   return (
     <footer className="border-t border-white/8 bg-[#040713] px-4 py-14 sm:px-6">
@@ -34,25 +23,20 @@ const Footer = ({ locale }: FooterProps) => {
                 />
               </div>
               <div className="min-w-0">
-                <p className="break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-white/46">
-                  Custom software studio
-                </p>
                 <p className="break-words font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
                   <span className="text-primary">Incenti</span> Tech
                 </p>
               </div>
             </div>
             <p className="mt-5 max-w-xl text-sm leading-7 text-muted-foreground">
-              {locale === "pt-BR"
-                ? "Software sob medida, integracoes complexas e sustentacao para operacoes que precisam de clareza tecnica e continuidade."
-                : "Custom software, complex integrations, and support for operations that need technical clarity and continuity."}
+              {content.description}
             </p>
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="min-w-0">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
-                {locale === "pt-BR" ? "Navegacao" : "Navigation"}
+                {content.navigationLabel}
               </p>
               <div className="space-y-3">
                 {links.map((link) => (
@@ -85,11 +69,7 @@ const Footer = ({ locale }: FooterProps) => {
           <p>
             &copy; {new Date().getFullYear()} Incenti Tech. {content.rights}
           </p>
-          <p>
-            {locale === "pt-BR"
-              ? "Tecnologia com presenca, estrutura e continuidade."
-              : "Technology with presence, structure, and continuity."}
-          </p>
+          <p>{content.closingStatement}</p>
         </div>
       </div>
     </footer>

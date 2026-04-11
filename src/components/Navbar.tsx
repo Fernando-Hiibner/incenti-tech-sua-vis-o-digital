@@ -16,20 +16,7 @@ const Navbar = ({ locale }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const content = siteContent[locale].nav;
   const switchHref = locale === "pt-BR" ? localePaths.en : localePaths["pt-BR"];
-  const navItems =
-    locale === "pt-BR"
-      ? [
-          { href: "#servicos", label: "Servicos" },
-          { href: "#projetos", label: "Projetos" },
-          { href: "#tecnologias", label: "Stack" },
-          { href: "#contato", label: "Contato" },
-        ]
-      : [
-          { href: "#servicos", label: "Services" },
-          { href: "#projetos", label: "Work" },
-          { href: "#tecnologias", label: "Stack" },
-          { href: "#contato", label: "Contact" },
-        ];
+  const navItems = content.items;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -103,9 +90,7 @@ const Navbar = ({ locale }: NavbarProps) => {
               className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_24px_40px_-24px_rgba(207,63,71,0.9)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:px-5"
             >
               <span className="hidden sm:inline">{content.contactButton}</span>
-              <span className="sm:hidden">
-                {locale === "pt-BR" ? "Contato" : "Contact"}
-              </span>
+              <span className="sm:hidden">{content.contactButtonCompact}</span>
               <ArrowRight className="h-4 w-4" />
             </button>
           </div>

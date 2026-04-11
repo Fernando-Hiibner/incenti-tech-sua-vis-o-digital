@@ -8,33 +8,7 @@ type HeroSectionProps = {
 
 const HeroSection = ({ locale }: HeroSectionProps) => {
   const content = siteContent[locale].hero;
-  const proofItems =
-    locale === "pt-BR"
-      ? [
-          { value: "sob medida", label: "arquitetura orientada ao negocio" },
-          {
-            value: "integracao",
-            label: "marketplaces, APIs, pagamentos e legado",
-          },
-          {
-            value: "continuidade",
-            label: "evolucao, sustentacao e entrega real",
-          },
-        ]
-      : [
-          {
-            value: "tailored",
-            label: "architecture aligned with your business",
-          },
-          {
-            value: "integration",
-            label: "marketplaces, APIs, payments and legacy",
-          },
-          {
-            value: "continuity",
-            label: "evolution, support and real delivery",
-          },
-        ];
+  const proofItems = content.proofItems;
 
   return (
     <section

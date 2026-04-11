@@ -25,18 +25,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   const lastSubmitRef = useRef(0);
   const maxMessageLength = 3000;
   const content = siteContent[locale].contact;
-  const valueProps =
-    locale === "pt-BR"
-      ? [
-          "Resposta inicial em ate 24 horas uteis.",
-          "Conversa tecnica focada em contexto, risco e viabilidade.",
-          "Escopo pensado para entrega real, nao para discurso vazio.",
-        ]
-      : [
-          "Initial response within 24 business hours.",
-          "Technical conversation focused on context, risk, and feasibility.",
-          "Scope shaped for real delivery, not empty positioning.",
-        ];
+  const valueProps = content.valueProps;
 
   const validate = (data: Record<string, string>) => {
     const nextErrors: Record<string, string> = {};
@@ -285,7 +274,9 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                   className="pointer-events-none absolute -left-[9999px] opacity-0"
                   aria-hidden="true"
                 >
-                  <label htmlFor="website">Website</label>
+                  <label htmlFor="website">
+                    {content.fields.honeypotLabel}
+                  </label>
                   <input
                     id="website"
                     name="website"

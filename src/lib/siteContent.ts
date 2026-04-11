@@ -13,7 +13,14 @@ export const localeSwitchLabel: Record<Locale, string> = {
 export const siteContent = {
   "pt-BR": {
     nav: {
+      items: [
+        { href: "#servicos", label: "Servicos" },
+        { href: "#projetos", label: "Projetos" },
+        { href: "#tecnologias", label: "Stack" },
+        { href: "#contato", label: "Contato" },
+      ],
       contactButton: "Fale conosco",
+      contactButtonCompact: "Contato",
       languageButtonAriaLabel: "Mudar idioma para ingles",
     },
     hero: {
@@ -25,12 +32,28 @@ export const siteContent = {
         "Somos especialistas em criar sistemas web robustos, integrações complexas e softwares personalizados que resolvem problemas reais da sua empresa.",
       primaryCta: "Fale conosco",
       secondaryCta: "Conheça nossos serviços",
+      proofItems: [
+        { value: "sob medida", label: "arquitetura orientada ao negocio" },
+        {
+          value: "integracao",
+          label: "marketplaces, APIs, pagamentos e legado",
+        },
+        {
+          value: "continuidade",
+          label: "evolucao, sustentacao e entrega real",
+        },
+      ],
     },
     services: {
       eyebrow: "Serviços",
       title: "O que fazemos de melhor",
       description:
         "Soluções completas de software para empresas que precisam de tecnologia confiável e resultados concretos.",
+      supportItems: [
+        "arquitetura sob medida",
+        "integracao e legado",
+        "sustentacao com continuidade",
+      ],
       items: [
         {
           title: "Desenvolvimento Web sob Medida",
@@ -177,6 +200,11 @@ export const siteContent = {
       successTitle: "Mensagem enviada!",
       successDescription: "Retornaremos o mais breve possível.",
       sendAnother: "Enviar outra mensagem",
+      valueProps: [
+        "Resposta inicial em ate 24 horas uteis.",
+        "Conversa tecnica focada em contexto, risco e viabilidade.",
+        "Escopo pensado para entrega real, nao para discurso vazio.",
+      ],
       fields: {
         name: "Nome *",
         namePlaceholder: "Seu nome",
@@ -188,6 +216,7 @@ export const siteContent = {
         phonePlaceholder: "(00) 00000-0000",
         message: "Mensagem *",
         messagePlaceholder: "Conte-nos sobre seu projeto...",
+        honeypotLabel: "Site",
       },
       submitIdle: "Enviar mensagem",
       submitLoading: "Enviando...",
@@ -208,16 +237,35 @@ export const siteContent = {
       },
     },
     footer: {
+      description:
+        "Software sob medida, integracoes complexas e sustentacao para operacoes que precisam de clareza tecnica e continuidade.",
+      navigationLabel: "Navegacao",
+      links: [
+        { href: "#servicos", label: "Servicos" },
+        { href: "#projetos", label: "Projetos" },
+        { href: "#contato", label: "Contato" },
+      ],
+      closingStatement: "Tecnologia com presenca, estrutura e continuidade.",
       rights: "Todos os direitos reservados.",
     },
     notFound: {
-      message: "Ops! Página não encontrada",
-      action: "Voltar para a página inicial",
+      eyebrow: "Erro 404",
+      message: "Ops! P??gina n??o encontrada",
+      description:
+        "O endereco solicitado nao existe ou foi movido. Use o atalho abaixo para continuar navegando.",
+      action: "Voltar para a p??gina inicial",
     },
   },
   en: {
     nav: {
+      items: [
+        { href: "#servicos", label: "Services" },
+        { href: "#projetos", label: "Projects" },
+        { href: "#tecnologias", label: "Stack" },
+        { href: "#contato", label: "Contact" },
+      ],
       contactButton: "Contact us",
+      contactButtonCompact: "Contact",
       languageButtonAriaLabel: "Switch language to Portuguese",
     },
     hero: {
@@ -229,12 +277,31 @@ export const siteContent = {
         "We specialize in building robust web systems, complex integrations, and custom software that solves real problems for your company.",
       primaryCta: "Contact us",
       secondaryCta: "Explore our services",
+      proofItems: [
+        {
+          value: "tailored",
+          label: "architecture aligned with your business",
+        },
+        {
+          value: "integration",
+          label: "marketplaces, APIs, payments and legacy",
+        },
+        {
+          value: "continuity",
+          label: "evolution, support and real delivery",
+        },
+      ],
     },
     services: {
       eyebrow: "Services",
       title: "What we do best",
       description:
         "Complete software solutions for companies that need reliable technology and measurable results.",
+      supportItems: [
+        "tailored architecture",
+        "integration and legacy",
+        "continuity and support",
+      ],
       items: [
         {
           title: "Custom Web Development",
@@ -381,6 +448,11 @@ export const siteContent = {
       successTitle: "Message sent!",
       successDescription: "We will get back to you as soon as possible.",
       sendAnother: "Send another message",
+      valueProps: [
+        "Initial response within 24 business hours.",
+        "Technical conversation focused on context, risk, and feasibility.",
+        "Scope shaped for real delivery, not empty positioning.",
+      ],
       fields: {
         name: "Name *",
         namePlaceholder: "Your name",
@@ -392,6 +464,7 @@ export const siteContent = {
         phonePlaceholder: "+1 (555) 123-4567",
         message: "Message *",
         messagePlaceholder: "Tell us about your project...",
+        honeypotLabel: "Website",
       },
       submitIdle: "Send message",
       submitLoading: "Sending...",
@@ -412,10 +485,22 @@ export const siteContent = {
       },
     },
     footer: {
+      description:
+        "Custom software, complex integrations, and support for operations that need technical clarity and continuity.",
+      navigationLabel: "Navigation",
+      links: [
+        { href: "#servicos", label: "Services" },
+        { href: "#projetos", label: "Projects" },
+        { href: "#contato", label: "Contact" },
+      ],
+      closingStatement: "Technology with presence, structure, and continuity.",
       rights: "All rights reserved.",
     },
     notFound: {
+      eyebrow: "Error 404",
       message: "Oops! Page not found",
+      description:
+        "The requested address does not exist or has moved. Use the shortcut below to keep browsing.",
       action: "Return to the homepage",
     },
   },

@@ -17,18 +17,7 @@ type ServicesSectionProps = {
 
 const ServicesSection = ({ locale }: ServicesSectionProps) => {
   const content = siteContent[locale].services;
-  const supportItems =
-    locale === "pt-BR"
-      ? [
-          "arquitetura sob medida",
-          "integracao e legado",
-          "sustentacao com continuidade",
-        ]
-      : [
-          "tailored architecture",
-          "integration and legacy",
-          "continuity and support",
-        ];
+  const supportItems = content.supportItems;
 
   return (
     <section id="servicos" className="section-padding">

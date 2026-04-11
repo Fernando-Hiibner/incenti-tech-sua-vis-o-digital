@@ -93,6 +93,11 @@ const content = {
         { value: "1", label: "Única Integração" },
         { value: "24/7", label: "Disponibilidade" },
       ],
+      signals: [
+        "uma unica integracao",
+        "catalogo unificado",
+        "governanca e disponibilidade",
+      ],
     },
     problem: {
       eyebrow: "O Problema Real",
@@ -222,6 +227,7 @@ const content = {
       lowestPriceLabel: "Ponto Frio - Mar/25",
       historyBadge: "até 24 meses",
       historyBadgeLabel: "de dados históricos para análise estratégica",
+      months: ["Set", "Out", "Nov", "Dez", "Jan", "Fev", "Mar"],
     },
     pricing: {
       eyebrow: "Otimização de Preços",
@@ -232,6 +238,8 @@ const content = {
       panelDescription:
         "Configure regras por marketplace para maximizar margem",
       basePriceLabel: "Preço base: R$ 2.199",
+      sampleProductName: "Celular 256GB generico",
+      sampleProductAlt: "Celular 256GB generico",
       benefits: [
         {
           title: "Aumente suas Margens",
@@ -444,6 +452,7 @@ const content = {
         sendAnother: "Enviar outra mensagem",
         privacy: "Ao enviar, você concorda com nossa política de privacidade.",
         genericError: "Erro ao enviar. Tente novamente.",
+        honeypotLabel: "Site",
       },
       validation: {
         requiredName: "Nome é obrigatório",
@@ -471,6 +480,7 @@ const content = {
       rights: "© 2025 IncentiTech. Todos os direitos reservados.",
       privacy: "Política de Privacidade",
       terms: "Termos de Uso",
+      productLabel: "produto da Incenti Tech",
     },
   },
   en: {
@@ -486,7 +496,7 @@ const content = {
     langSwitchAria: "Switch language to Portuguese",
     nav: {
       features: "Features",
-      differentiators: "Advantages",
+      differentiators: "Differentiators",
       security: "Security",
       contact: "Contact",
       cta: "Request Demo",
@@ -504,6 +514,11 @@ const content = {
         { value: "1M+", label: "Available Products" },
         { value: "1", label: "Single Integration" },
         { value: "24/7", label: "Availability" },
+      ],
+      signals: [
+        "single integration",
+        "unified catalog",
+        "governance and availability",
       ],
     },
     problem: {
@@ -633,6 +648,7 @@ const content = {
       lowestPriceLabel: "Ponto Frio - Mar/25",
       historyBadge: "up to 24 months",
       historyBadgeLabel: "of historical data for strategic analysis",
+      months: ["Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar"],
     },
     pricing: {
       eyebrow: "Price Optimization",
@@ -642,6 +658,8 @@ const content = {
       panelTitle: "Dynamic Pricing Adjustments",
       panelDescription: "Configure marketplace rules to maximize margin",
       basePriceLabel: "Base price: R$ 2,199",
+      sampleProductName: "Generic 256GB smartphone",
+      sampleProductAlt: "Generic 256GB smartphone",
       benefits: [
         {
           title: "Increase Margins",
@@ -856,6 +874,7 @@ const content = {
         privacy: "By submitting, you agree with our privacy policy.",
         genericError:
           "There was an error sending your message. Please try again.",
+        honeypotLabel: "Website",
       },
       validation: {
         requiredName: "Name is required",
@@ -882,6 +901,7 @@ const content = {
       rights: "© 2025 IncentiTech. All rights reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Use",
+      productLabel: "IncentiTech product",
     },
   },
 } as const;
@@ -1140,7 +1160,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
         className="pointer-events-none absolute -left-[9999px] opacity-0"
         aria-hidden="true"
       >
-        <label htmlFor="website">Website</label>
+        <label htmlFor="website">{contact.form.honeypotLabel}</label>
         <input
           id="website"
           name="website"
@@ -1260,8 +1280,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
   const switchLocale: Locale = locale === "pt-BR" ? "en" : "pt-BR";
   const switchPath = getIntegrationHubPath(switchLocale);
   const canonical = `https://incentitech.com.br${getIntegrationHubPath(locale)}`;
-  const productLabel =
-    locale === "pt-BR" ? "produto da Incenti Tech" : "IncentiTech product";
+  const productLabel = page.footer.productLabel;
   const audienceCards = page.audiences.cards.map((item, index) => ({
     ...item,
     Icon: audienceCardIcons[index],
@@ -1327,18 +1346,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
     },
     { marketplace: "Extra", logo: logoExtra, adjustment: -5, final: 2089 },
   ];
-  const heroSignals =
-    locale === "pt-BR"
-      ? [
-          "uma unica integracao",
-          "catalogo unificado",
-          "governanca e disponibilidade",
-        ]
-      : [
-          "single integration",
-          "unified catalog",
-          "governance and availability",
-        ];
+  const heroSignals = page.hero.signals;
   const contactSection = (
     <section id="contato" className="relative overflow-hidden py-24">
       <div className="ih-bg-gradient-glow absolute inset-0 opacity-30" />
@@ -1980,13 +1988,9 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                     </svg>
                     <div className="absolute bottom-0 left-0 right-0 translate-y-4 text-[10px] text-muted-foreground">
                       <div className="flex justify-between">
-                        <span>{locale === "pt-BR" ? "Set" : "Sep"}</span>
-                        <span>{locale === "pt-BR" ? "Out" : "Oct"}</span>
-                        <span>Nov</span>
-                        <span>{locale === "pt-BR" ? "Dez" : "Dec"}</span>
-                        <span>Jan</span>
-                        <span>{locale === "pt-BR" ? "Fev" : "Feb"}</span>
-                        <span>Mar</span>
+                        {page.priceHistory.months.map((month) => (
+                          <span key={month}>{month}</span>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -2059,20 +2063,14 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <div className="mb-4 flex items-center gap-4">
                   <img
                     src="https://t2.tudocdn.net/655954?w=147&h=304"
-                    alt={
-                      locale === "pt-BR"
-                        ? "Celular 256GB generico"
-                        : "Generic 256GB smartphone"
-                    }
+                    alt={page.pricing.sampleProductAlt}
                     className="h-16 w-16 rounded-md border border-border object-cover"
                     loading="lazy"
                     decoding="async"
                   />
                   <div className="flex-1">
                     <p className="font-medium">
-                      {locale === "pt-BR"
-                        ? "Celular 256GB genérico"
-                        : "Generic 256GB smartphone"}
+                      {page.pricing.sampleProductName}
                     </p>
                     <span className="text-sm text-muted-foreground">
                       {page.pricing.basePriceLabel}

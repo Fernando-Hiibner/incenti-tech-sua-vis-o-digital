@@ -35,15 +35,13 @@ const NotFound = () => {
       />
       <div className="max-w-xl px-6 text-center">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-          Error 404
+          {content.eyebrow}
         </p>
         <h1 className="mb-4 text-4xl font-bold md:text-5xl">
           {content.message}
         </h1>
         <p className="mb-8 text-lg text-muted-foreground">
-          {locale === "pt-BR"
-            ? "O endereco solicitado nao existe ou foi movido. Use o atalho abaixo para continuar navegando."
-            : "The requested address does not exist or has moved. Use the shortcut below to keep browsing."}
+          {content.description}
         </p>
         <div className="flex items-center justify-center">
           <a
