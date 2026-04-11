@@ -153,7 +153,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               {valueProps.map((item) => (
                 <div
                   key={item}
-                  className="glass-card flex items-start gap-3.5 p-4"
+                  className="glass-card grid grid-cols-[2.25rem_minmax(0,1fr)] items-center gap-3.5 p-4"
                 >
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary">
                     <ShieldCheck className="h-4 w-4" />
