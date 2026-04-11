@@ -65,7 +65,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
           email: data.email || "",
           phone: data.telefone || "",
           company: data.empresa || "",
-          serviceType: "",
+          serviceType: "Incenti Tech",
           message: data.mensagem || "",
           website: data.website || "",
         }),
