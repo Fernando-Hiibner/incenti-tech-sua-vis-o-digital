@@ -71,6 +71,7 @@
 
 .integration-hub-theme .ih-bg-gradient-card,
 .integration-hub-theme .ih-shell {
+  min-width: 0;
   background: var(--ih-gradient-card);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.78),
@@ -78,6 +79,7 @@
 }
 
 .integration-hub-theme .ih-shell-soft {
+  min-width: 0;
   background: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0.94) 0%,
@@ -123,8 +125,14 @@
 
 .integration-hub-theme .ih-chip {
   border: 1px solid rgba(214, 67, 74, 0.16);
+  display: inline-flex;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
   background: rgba(214, 67, 74, 0.06);
   color: hsl(var(--primary));
+  text-align: center;
 }
 
 .integration-hub-theme .ih-card-hover {
@@ -144,10 +152,23 @@
 .integration-hub-theme .ih-stat-card {
   border: 1px solid rgba(217, 223, 235, 0.9);
   border-radius: 1.5rem;
+  min-width: 0;
   background: rgba(255, 255, 255, 0.88);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.78),
     0 20px 48px -38px rgba(15, 23, 42, 0.18);
+}
+
+.integration-hub-theme .ih-shell :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
+.integration-hub-theme
+  .ih-shell-soft
+  :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
+.integration-hub-theme
+  .ih-stat-card
+  :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
+.integration-hub-theme .ih-chip {
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .integration-hub-theme .ih-hero-panel::before {

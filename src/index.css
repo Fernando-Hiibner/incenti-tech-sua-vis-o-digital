@@ -88,12 +88,13 @@
   }
 
   .section-padding {
-    @apply px-4 py-24 md:px-8 md:py-32;
+    @apply px-4 py-20 sm:px-6 md:py-24 lg:px-8 lg:py-28 xl:py-32;
   }
 
   .glass-card {
     border: 1px solid hsl(0 0% 100% / 0.08);
     border-radius: 1.75rem;
+    min-width: 0;
     background: linear-gradient(
       180deg,
       rgba(13, 18, 35, 0.92) 0%,
@@ -140,6 +141,7 @@
   .home-shell {
     border: 1px solid hsl(0 0% 100% / 0.08);
     border-radius: 2rem;
+    min-width: 0;
     background:
       radial-gradient(
         circle at top right,
@@ -159,6 +161,7 @@
   .home-shell-soft {
     border: 1px solid hsl(0 0% 100% / 0.08);
     border-radius: 1.75rem;
+    min-width: 0;
     background: linear-gradient(
       180deg,
       rgba(11, 16, 30, 0.94) 0%,
@@ -172,8 +175,22 @@
   .home-chip {
     border: 1px solid hsl(0 0% 100% / 0.1);
     border-radius: 999px;
+    display: inline-flex;
+    max-width: 100%;
+    min-width: 0;
+    align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.04);
     color: hsl(var(--muted-foreground));
+    text-align: center;
+  }
+
+  .glass-card :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
+  .home-shell :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
+  .home-shell-soft :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
+  .home-chip {
+    overflow-wrap: break-word;
+    word-break: normal;
   }
 
   .home-signal-line {

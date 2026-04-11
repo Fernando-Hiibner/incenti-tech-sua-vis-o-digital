@@ -55,7 +55,7 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ delay: index * 0.06 }}
-                className={`glass-card p-7 md:p-8 ${isFeatured ? "md:col-span-2" : ""}`}
+                className={`glass-card min-w-0 p-7 md:p-8 ${isFeatured ? "md:col-span-2 xl:col-span-2" : ""}`}
               >
                 <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
@@ -63,12 +63,12 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                   </div>
                 </div>
                 <h3
-                  className={`mt-6 font-heading font-semibold tracking-[-0.04em] text-white ${isFeatured ? "text-3xl" : "text-2xl"}`}
+                  className={`mt-6 break-words font-heading font-semibold tracking-[-0.04em] text-white ${isFeatured ? "text-3xl" : "text-2xl"}`}
                 >
                   {item.title}
                 </h3>
                 <p
-                  className={`mt-4 leading-7 text-muted-foreground ${isFeatured ? "max-w-2xl text-base" : "text-sm md:text-base"}`}
+                  className={`mt-4 break-words leading-7 text-muted-foreground ${isFeatured ? "max-w-2xl text-base" : "text-sm md:text-base"}`}
                 >
                   {item.description}
                 </p>

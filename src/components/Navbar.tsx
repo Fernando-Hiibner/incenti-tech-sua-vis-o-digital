@@ -44,7 +44,7 @@ const Navbar = ({ locale }: NavbarProps) => {
 
   return (
     <nav className="fixed inset-x-0 top-4 z-50">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 sm:px-6">
         <div
           className={`home-nav-shell flex items-center justify-between gap-4 rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "py-3" : "py-4"}`}
         >

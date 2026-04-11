@@ -19,12 +19,12 @@ const TechSection = ({ locale }: TechSectionProps) => {
   return (
     <section id="tecnologias" className="section-padding bg-secondary/20">
       <div className="container mx-auto">
-        <div className="grid gap-10 xl:grid-cols-[0.8fr_1.2fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            className="xl:pr-10"
+            className="lg:pr-8 xl:pr-10"
           >
             <p className="home-kicker">{content.eyebrow}</p>
             <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
@@ -45,13 +45,13 @@ const TechSection = ({ locale }: TechSectionProps) => {
               {Object.entries(groupedItems).map(([category, items], index) => (
                 <div
                   key={category}
-                  className="rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
+                  className="min-w-0 rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
                 >
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
+                    <p className="min-w-0 break-words text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                       {category}
                     </p>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
+                    <span className="shrink-0 text-right text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -59,7 +59,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
                     {items.map((name) => (
                       <span
                         key={name}
-                        className="home-chip px-4 py-2 text-sm text-white"
+                        className="home-chip max-w-full break-words px-4 py-2 text-center text-sm text-white"
                       >
                         {name}
                       </span>

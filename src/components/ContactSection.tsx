@@ -135,7 +135,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   return (
     <section id="contato" className="section-padding">
       <div className="container mx-auto">
-        <div className="grid gap-8 xl:grid-cols-[0.82fr_1.18fr] xl:items-start">
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -153,12 +153,12 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               {valueProps.map((item) => (
                 <div
                   key={item}
-                  className="glass-card grid grid-cols-[2.25rem_minmax(0,1fr)] items-center gap-3.5 p-4"
+                  className="glass-card grid min-w-0 grid-cols-[2.25rem_minmax(0,1fr)] items-center gap-3.5 p-4"
                 >
                   <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary">
                     <ShieldCheck className="h-4 w-4" />
                   </div>
-                  <p className="text-sm leading-6 text-muted-foreground">
+                  <p className="min-w-0 break-words text-sm leading-6 text-muted-foreground">
                     {item}
                   </p>
                 </div>
@@ -192,7 +192,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="relative space-y-5">
-                <div className="grid gap-5 md:grid-cols-2">
+                <div className="grid gap-5 lg:grid-cols-2">
                   <div>
                     <label className="mb-2 block text-sm font-medium text-white">
                       {content.fields.name}
@@ -222,7 +222,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                   </div>
                 </div>
 
-                <div className="grid gap-5 md:grid-cols-2">
+                <div className="grid gap-5 lg:grid-cols-2">
                   <div>
                     <label className="mb-2 block text-sm font-medium text-white">
                       {content.fields.email}
@@ -265,7 +265,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                       setMessageLength(event.target.value.length)
                     }
                   />
-                  <div className="mt-2 flex items-center justify-between">
+                  <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                     {errors.mensagem ? (
                       <p className="text-xs text-destructive">
                         {errors.mensagem}
@@ -297,7 +297,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 </div>
 
                 {(errors.form || status === "error") && (
-                  <div className="flex items-center gap-2 text-sm text-destructive">
+                  <div className="flex items-start gap-2 text-sm text-destructive">
                     <AlertCircle className="h-4 w-4" />
                     {errors.form || content.genericSubmitError}
                   </div>
@@ -332,7 +332,9 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
             >
               <Mail className="h-4 w-4 text-primary" />
-              fernando@incentitech.com.br
+              <span className="break-all sm:break-normal">
+                fernando@incentitech.com.br
+              </span>
             </a>
             <div className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center">
               <Phone className="h-4 w-4 text-primary" />

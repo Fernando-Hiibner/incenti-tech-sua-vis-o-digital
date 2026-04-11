@@ -1052,7 +1052,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
 
   return (
     <form onSubmit={handleSubmit} className="relative space-y-5">
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         <div>
           <label className="mb-1.5 block text-sm font-medium">
             {contact.form.name}
@@ -1083,7 +1083,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
         </div>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-5 lg:grid-cols-2">
         <div>
           <label className="mb-1.5 block text-sm font-medium">
             {contact.form.company}
@@ -1122,7 +1122,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
           className={inputClass("mensagem") + " resize-none"}
           onChange={(event) => setMessageLength(event.target.value.length)}
         />
-        <div className="mt-1 flex items-center justify-between">
+        <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
           {errors.mensagem ? (
             <p className="text-xs text-destructive">{errors.mensagem}</p>
           ) : (
@@ -1342,8 +1342,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
   const contactSection = (
     <section id="contato" className="relative overflow-hidden py-24">
       <div className="ih-bg-gradient-glow absolute inset-0 opacity-30" />
-      <div className="container relative z-10 mx-auto px-6">
-        <div className="grid items-start gap-16 lg:grid-cols-2">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
+        <div className="grid items-start gap-12 xl:grid-cols-2">
           <div>
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2">
               <Send className="h-4 w-4 text-primary" />
@@ -1361,14 +1361,16 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {page.contact.valueProps.map((item) => (
                 <div
                   key={item.title}
-                  className="ih-shell-soft flex gap-4 rounded-[24px] border border-border p-5"
+                  className="ih-shell-soft flex min-w-0 gap-4 rounded-[24px] border border-border p-5"
                 >
                   <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10">
                     <CheckCircle2 className="h-5 w-5 text-primary" />
                   </div>
-                  <div>
-                    <h3 className="mb-1 font-semibold">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="min-w-0">
+                    <h3 className="mb-1 break-words font-semibold">
+                      {item.title}
+                    </h3>
+                    <p className="break-words text-sm text-muted-foreground">
                       {item.description}
                     </p>
                   </div>
@@ -1391,7 +1393,9 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
             >
               <Mail className="h-4 w-4 text-primary" />
-              fernando@incentitech.com.br
+              <span className="break-all sm:break-normal">
+                fernando@incentitech.com.br
+              </span>
             </a>
             <div className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center">
               <Phone className="h-4 w-4 text-primary" />
@@ -1428,7 +1432,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       />
 
       <header className="fixed left-0 right-0 top-4 z-50">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div
             className={`ih-nav-shell flex items-center justify-between gap-4 rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "py-3" : "py-4"}`}
           >
@@ -1454,7 +1458,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               </div>
             </div>
 
-            <nav className="hidden items-center gap-7 md:flex">
+            <nav className="hidden items-center gap-6 lg:flex">
               <a
                 href="#recursos"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -1481,7 +1485,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               </a>
             </nav>
 
-            <div className="hidden items-center gap-3 md:flex">
+            <div className="hidden items-center gap-3 lg:flex">
               <button
                 type="button"
                 onClick={() => window.location.assign(switchPath)}
@@ -1500,7 +1504,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
 
             <button
               type="button"
-              className="text-foreground md:hidden"
+              className="text-foreground lg:hidden"
               onClick={() => setMobileMenuOpen((value) => !value)}
             >
               {mobileMenuOpen ? (
@@ -1512,7 +1516,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           </div>
 
           {mobileMenuOpen && (
-            <div className="ih-nav-shell mt-3 rounded-[28px] border border-border p-5 md:hidden">
+            <div className="ih-nav-shell mt-3 rounded-[28px] border border-border p-5 lg:hidden">
               <nav className="flex flex-col gap-4">
                 <a
                   href="#recursos"
@@ -1564,16 +1568,16 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </header>
 
-      <section className="relative overflow-hidden pt-32 pb-24 md:pt-40 md:pb-28">
+      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28">
         <div className="ih-bg-gradient-glow absolute inset-0" />
         <div className="ih-grid-pattern absolute opacity-70" />
-        <div className="container relative z-10 mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
             <div className="ih-animate-slide-up inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-medium text-primary">
               <Sparkles className="h-4 w-4" />
               {page.solution.eyebrow}
             </div>
-            <h1 className="ih-animate-slide-up mt-6 max-w-4xl font-heading text-5xl font-semibold leading-[0.96] tracking-[-0.06em] md:text-6xl lg:text-7xl">
+            <h1 className="ih-animate-slide-up mt-6 max-w-4xl font-heading text-4xl font-semibold leading-[0.96] tracking-[-0.06em] sm:text-5xl md:text-6xl xl:text-7xl">
               {page.hero.titleLead}{" "}
               <span className="ih-text-gradient">
                 {page.hero.titleHighlight}
@@ -1605,14 +1609,14 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {heroSignals.map((item) => (
                 <span
                   key={item}
-                  className="ih-chip rounded-full px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em]"
+                  className="ih-chip rounded-full px-4 py-2 text-center text-[10px] font-semibold uppercase leading-4 tracking-[0.14em] sm:text-[11px] sm:tracking-[0.18em]"
                 >
                   {item}
                 </span>
               ))}
             </div>
 
-            <div className="mt-10 grid w-full max-w-4xl gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-10 grid w-full max-w-4xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {page.hero.stats.map((stat) => (
                 <div key={stat.label} className="ih-stat-card p-5">
                   <div className="ih-text-gradient text-3xl font-bold tracking-[-0.04em] md:text-4xl">
@@ -1630,7 +1634,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
 
       <section className="relative overflow-hidden py-24">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-destructive/[0.03] to-background" />
-        <div className="container relative z-10 mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-destructive/30 bg-destructive/5 px-3 py-1">
               <AlertTriangle className="h-4 w-4 text-destructive" />
@@ -1649,12 +1653,12 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             {[GitBranch, Database, Settings2, Eye].map((Icon, index) => (
               <div
                 key={page.problem.painPoints[index]}
-                className="ih-shell-soft ih-card-hover group relative w-full max-w-[220px] rounded-[24px] border border-destructive/20 p-5 text-center sm:w-[calc(50%-0.5rem)] md:w-[calc(25%-0.75rem)]"
+                className="ih-shell-soft ih-card-hover group relative w-full max-w-[220px] min-w-0 rounded-[24px] border border-destructive/20 p-5 text-center sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]"
               >
                 <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-xl bg-destructive/10 transition-colors group-hover:bg-destructive/15">
                   <Icon className="h-6 w-6 text-destructive" />
                 </div>
-                <p className="text-sm font-medium">
+                <p className="break-words text-sm font-medium">
                   {page.problem.painPoints[index]}
                 </p>
               </div>
@@ -1670,7 +1674,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
 
       <section className="relative overflow-hidden bg-secondary/30 py-24">
         <div className="ih-bg-gradient-glow absolute inset-0 opacity-40" />
-        <div className="container relative z-10 mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1">
               <Layers className="h-4 w-4 text-primary" />
@@ -1691,15 +1695,17 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               return (
                 <div
                   key={card.title}
-                  className="ih-shell-soft ih-card-hover rounded-[28px] border border-border p-7"
+                  className="ih-shell-soft ih-card-hover min-w-0 rounded-[28px] border border-border p-7"
                 >
                   <div className="flex items-start gap-4">
                     <div className="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-primary/10">
                       <Icon className="h-5 w-5 text-primary" />
                     </div>
-                    <div>
-                      <h3 className="mb-1 font-semibold">{card.title}</h3>
-                      <p className="text-sm text-muted-foreground">
+                    <div className="min-w-0">
+                      <h3 className="mb-1 break-words font-semibold">
+                        {card.title}
+                      </h3>
+                      <p className="break-words text-sm text-muted-foreground">
                         {card.description}
                       </p>
                     </div>
@@ -1714,7 +1720,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       {contactSection}
 
       <section className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
               {page.audiences.title}
@@ -1723,16 +1729,18 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {page.audiences.description}
             </p>
           </div>
-          <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+          <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
             {audienceCards.map(({ Icon, ...item }) => (
               <div key={item.title} className="group relative">
                 <div className="absolute inset-0 rounded-3xl bg-primary opacity-5 blur-2xl transition-opacity group-hover:opacity-10" />
-                <div className="ih-shell-soft ih-card-hover relative h-full rounded-[30px] border border-border p-8">
+                <div className="ih-shell-soft ih-card-hover relative h-full min-w-0 rounded-[30px] border border-border p-8">
                   <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                     <Icon className="h-8 w-8 text-primary" />
                   </div>
-                  <h3 className="mb-4 text-2xl font-bold">{item.title}</h3>
-                  <p className="mb-6 text-muted-foreground">
+                  <h3 className="mb-4 break-words text-2xl font-bold">
+                    {item.title}
+                  </h3>
+                  <p className="mb-6 break-words text-muted-foreground">
                     {item.description}
                   </p>
                   <ul className="space-y-3">
@@ -1742,7 +1750,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                         className="flex items-center gap-3 text-sm"
                       >
                         <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-primary" />
-                        <span>{bullet}</span>
+                        <span className="min-w-0 break-words">{bullet}</span>
                       </li>
                     ))}
                   </ul>
@@ -1753,16 +1761,18 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           <div className="mx-auto mt-10 max-w-6xl">
             <EmblaCarousel
               items={audienceExamples}
-              slidesPerView="basis-[85%] sm:basis-[60%] md:basis-1/2 lg:basis-1/3"
+              slidesPerView="basis-[85%] sm:basis-[60%] md:basis-1/2 xl:basis-1/3"
               renderItem={(item) => (
-                <div className="ih-shell-soft ih-card-hover group h-full rounded-[24px] border border-border p-6">
+                <div className="ih-shell-soft ih-card-hover group h-full min-w-0 rounded-[24px] border border-border p-6">
                   <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                     <item.Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <h3 className="mb-2 text-lg font-semibold transition-colors group-hover:text-primary">
+                  <h3 className="mb-2 break-words text-lg font-semibold transition-colors group-hover:text-primary">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground">{item.description}</p>
+                  <p className="break-words text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
               )}
             />
@@ -1771,7 +1781,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <section className="bg-secondary/30 py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1">
               <Link2 className="h-4 w-4 text-primary" />
@@ -1847,7 +1857,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   />
                 </svg>
               </div>
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
+              <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
                 {retailerLogos.map((brand) => (
                   <div
                     key={brand.name}
@@ -1872,16 +1882,18 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <p className="mb-4 text-center text-sm font-semibold">
                   {page.singleIntegration.whyTitle}
                 </p>
-                <div className="grid grid-cols-1 gap-3 rounded-xl border border-border/50 bg-secondary/35 p-4 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-3 rounded-xl border border-border/50 bg-secondary/35 p-4 lg:grid-cols-3">
                   {page.singleIntegration.benefits.map((item, index) => {
                     const Icon = [Zap, RefreshCw, Gauge][index];
                     return (
                       <div
                         key={item}
-                        className="flex items-center justify-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-2 text-sm"
+                        className="flex min-w-0 items-center justify-center gap-2 rounded-full border border-border/60 bg-background/70 px-3 py-2 text-sm"
                       >
                         <Icon className="h-4 w-4 text-primary" />
-                        <span>{item}</span>
+                        <span className="min-w-0 break-words text-center leading-5">
+                          {item}
+                        </span>
                       </div>
                     );
                   })}
@@ -1893,8 +1905,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="grid items-center gap-16 lg:grid-cols-2">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="grid items-center gap-12 xl:grid-cols-2">
             <div>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1">
                 <History className="h-4 w-4 text-primary" />
@@ -2018,7 +2030,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
 
       <section className="relative overflow-hidden bg-secondary/30 py-24">
         <div className="ih-bg-gradient-glow absolute inset-0 opacity-30" />
-        <div className="container relative z-10 mx-auto px-6">
+        <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1">
               <DollarSign className="h-4 w-4 text-primary" />
@@ -2033,7 +2045,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {page.pricing.description}
             </p>
           </div>
-          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl items-start gap-8 xl:grid-cols-2">
             <div className="ih-shell ih-shadow-elevated rounded-[32px] border border-border p-8">
               <div className="mb-6">
                 <h3 className="mb-2 text-lg font-semibold">
@@ -2071,7 +2083,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   {pricingItems.map((item) => (
                     <div
                       key={item.marketplace}
-                      className="grid grid-cols-[auto,1fr] items-center gap-2 rounded-lg bg-background/50 p-2 sm:grid-cols-[auto,1fr,auto,auto] sm:gap-3"
+                      className="grid grid-cols-[auto,minmax(0,1fr)] items-center gap-2 rounded-lg bg-background/50 p-2 sm:grid-cols-[auto,minmax(0,1fr),auto,auto] sm:gap-3"
                     >
                       <div className="flex h-7 w-12 items-center justify-center rounded border border-border bg-white px-1.5 py-0.5">
                         <img
@@ -2131,7 +2143,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <section id="recursos" className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
               {page.features.title}
@@ -2142,14 +2154,14 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           </div>
           <EmblaCarousel
             items={featureItems}
-            slidesPerView="basis-[85%] sm:basis-[60%] md:basis-[42%] lg:basis-1/3 xl:basis-1/4"
+            slidesPerView="basis-[85%] sm:basis-[60%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
             renderItem={(item) => (
-              <div className="ih-shell-soft ih-card-hover group h-full rounded-[24px] border border-border p-6">
+              <div className="ih-shell-soft ih-card-hover group h-full min-w-0 rounded-[24px] border border-border p-6">
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                   <item.Icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="mb-2 font-semibold">{item.title}</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="mb-2 break-words font-semibold">{item.title}</h3>
+                <p className="break-words text-sm text-muted-foreground">
                   {item.description}
                 </p>
               </div>
@@ -2159,7 +2171,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <section id="diferenciais" className="bg-secondary/30 py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
               {page.differentiators.title}
@@ -2172,14 +2184,18 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             {page.differentiators.items.map((item) => (
               <div
                 key={item.title}
-                className="ih-shell-soft flex gap-4 rounded-[24px] border border-border p-5"
+                className="ih-shell-soft flex min-w-0 gap-4 rounded-[24px] border border-border p-5"
               >
                 <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10">
                   <CheckCircle2 className="h-5 w-5 text-primary" />
                 </div>
-                <div>
-                  <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
-                  <p className="text-muted-foreground">{item.description}</p>
+                <div className="min-w-0">
+                  <h3 className="mb-2 break-words text-lg font-semibold">
+                    {item.title}
+                  </h3>
+                  <p className="break-words text-muted-foreground">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -2188,7 +2204,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <section className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold md:text-4xl">
               {page.businessBenefits.title}
@@ -2197,11 +2213,11 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {page.businessBenefits.description}
             </p>
           </div>
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {businessBenefits.map((item) => (
               <div
                 key={item.title}
-                className="ih-shell-soft ih-card-hover group rounded-[30px] border border-border p-8 text-center"
+                className="ih-shell-soft ih-card-hover group min-w-0 rounded-[30px] border border-border p-8 text-center"
               >
                 <div className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 transition-colors group-hover:bg-primary/20">
                   <item.Icon className="h-7 w-7 text-primary" />
@@ -2212,8 +2228,12 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <div className="mb-4 text-sm text-muted-foreground">
                   {item.highlightLabel}
                 </div>
-                <h3 className="mb-3 text-xl font-semibold">{item.title}</h3>
-                <p className="text-muted-foreground">{item.description}</p>
+                <h3 className="mb-3 break-words text-xl font-semibold">
+                  {item.title}
+                </h3>
+                <p className="break-words text-muted-foreground">
+                  {item.description}
+                </p>
               </div>
             ))}
           </div>
@@ -2221,7 +2241,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <section id="seguranca" className="py-24">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="mx-auto max-w-6xl">
             <h2 className="mb-6 text-3xl font-bold md:text-4xl">
               {page.security.title}
@@ -2233,14 +2253,16 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {securityItems.map((item) => (
                 <div
                   key={item.title}
-                  className="ih-shell-soft flex gap-4 rounded-[24px] border border-border p-5"
+                  className="ih-shell-soft flex min-w-0 gap-4 rounded-[24px] border border-border p-5"
                 >
                   <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10">
                     <item.Icon className="h-5 w-5 text-primary" />
                   </div>
-                  <div>
-                    <h3 className="mb-1 font-semibold">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground">
+                  <div className="min-w-0">
+                    <h3 className="mb-1 break-words font-semibold">
+                      {item.title}
+                    </h3>
+                    <p className="break-words text-sm text-muted-foreground">
                       {item.description}
                     </p>
                   </div>
@@ -2252,10 +2274,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       </section>
 
       <footer className="border-t border-border py-16">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto px-4 sm:px-6">
           <div className="ih-shell rounded-[32px] border border-border p-8 md:p-10">
-            <div className="mb-10 grid gap-12 md:grid-cols-4">
-              <div className="md:col-span-2">
+            <div className="mb-10 grid gap-10 md:grid-cols-2 xl:grid-cols-4">
+              <div className="min-w-0 md:col-span-2">
                 <div className="mb-4 flex items-center gap-3">
                   <div className="rounded-2xl border border-white/60 bg-white/80 p-2">
                     <img
@@ -2264,11 +2286,11 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                       className="h-10 w-10 rounded-xl object-cover"
                     />
                   </div>
-                  <div className="leading-tight">
-                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  <div className="min-w-0 leading-tight">
+                    <p className="break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                       {productLabel}
                     </p>
-                    <p className="font-heading text-2xl font-semibold tracking-[-0.04em]">
+                    <p className="break-words font-heading text-2xl font-semibold tracking-[-0.04em]">
                       Integration Hub
                     </p>
                   </div>
@@ -2280,8 +2302,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   {page.footer.tagline}
                 </p>
               </div>
-              <div>
-                <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="min-w-0">
+                <h4 className="mb-4 break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   {page.footer.product}
                 </h4>
                 <ul className="space-y-3 text-muted-foreground">
@@ -2311,8 +2333,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   </li>
                 </ul>
               </div>
-              <div>
-                <h4 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              <div className="min-w-0">
+                <h4 className="mb-4 break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   {page.footer.contact}
                 </h4>
                 <ul className="space-y-3 text-muted-foreground">
@@ -2324,7 +2346,9 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                       {page.nav.contact}
                     </a>
                   </li>
-                  <li>fernando@incentitech.com.br</li>
+                  <li className="break-all sm:break-normal">
+                    fernando@incentitech.com.br
+                  </li>
                   <li>+55 (11) 97154-2519</li>
                 </ul>
               </div>

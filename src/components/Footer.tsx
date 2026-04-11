@@ -21,10 +21,10 @@ const Footer = ({ locale }: FooterProps) => {
         ];
 
   return (
-    <footer className="border-t border-white/8 bg-[#040713] px-4 py-14">
+    <footer className="border-t border-white/8 bg-[#040713] px-4 py-14 sm:px-6">
       <div className="container mx-auto">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr] md:items-end">
-          <div>
+        <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+          <div className="min-w-0">
             <div className="flex items-center gap-3">
               <div className="rounded-2xl border border-white/10 bg-white/5 p-2">
                 <img
@@ -33,11 +33,11 @@ const Footer = ({ locale }: FooterProps) => {
                   className="h-10 w-10 rounded-xl object-contain"
                 />
               </div>
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/46">
+              <div className="min-w-0">
+                <p className="break-words text-[11px] font-semibold uppercase tracking-[0.18em] text-white/46">
                   Custom software studio
                 </p>
-                <p className="font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
+                <p className="break-words font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
                   <span className="text-primary">Incenti</span> Tech
                 </p>
               </div>
@@ -50,7 +50,7 @@ const Footer = ({ locale }: FooterProps) => {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2">
-            <div>
+            <div className="min-w-0">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
                 {locale === "pt-BR" ? "Navegacao" : "Navigation"}
               </p>
@@ -66,13 +66,15 @@ const Footer = ({ locale }: FooterProps) => {
                 ))}
               </div>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
                 Incenti Tech
               </p>
               <div className="space-y-3 text-sm text-muted-foreground">
                 <p>63.404.846/0001-07</p>
-                <p>fernando@incentitech.com.br</p>
+                <p className="break-all sm:break-normal">
+                  fernando@incentitech.com.br
+                </p>
                 <p>+55 (11) 97154-2519</p>
               </div>
             </div>

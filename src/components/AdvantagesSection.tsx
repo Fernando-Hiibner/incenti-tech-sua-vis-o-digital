@@ -14,12 +14,12 @@ const AdvantagesSection = ({ locale }: AdvantagesSectionProps) => {
   return (
     <section id="vantagens" className="section-padding bg-secondary/20">
       <div className="container mx-auto">
-        <div className="grid gap-10 xl:grid-cols-[0.82fr_1.18fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
-            className="xl:pr-10"
+            className="lg:pr-8 xl:pr-10"
           >
             <p className="home-kicker">{content.eyebrow}</p>
             <h2 className="mt-5 max-w-lg font-heading text-4xl font-semibold tracking-[-0.05em] text-white md:text-5xl">
@@ -43,21 +43,21 @@ const AdvantagesSection = ({ locale }: AdvantagesSectionProps) => {
                 return (
                   <article
                     key={item.title}
-                    className="flex gap-4 rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
+                    className="flex min-w-0 gap-4 rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
                   >
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <div>
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-heading text-xl font-semibold tracking-[-0.04em] text-white">
+                    <div className="min-w-0">
+                      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
+                        <h3 className="min-w-0 break-words font-heading text-xl font-semibold tracking-[-0.04em] text-white">
                           {item.title}
                         </h3>
-                        <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
+                        <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
                           {String(index + 1).padStart(2, "0")}
                         </span>
                       </div>
-                      <p className="mt-3 text-sm leading-7 text-muted-foreground md:text-base">
+                      <p className="mt-3 break-words text-sm leading-7 text-muted-foreground md:text-base">
                         {item.description}
                       </p>
                     </div>

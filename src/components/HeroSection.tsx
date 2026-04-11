@@ -39,7 +39,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
   return (
     <section
       id="inicio"
-      className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28"
+      className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28"
       style={{ background: "var(--hero-gradient)" }}
     >
       <div className="home-grid absolute opacity-40" />
@@ -61,7 +61,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
             </span>
           </div>
 
-          <h1 className="mt-7 max-w-4xl font-heading text-5xl font-semibold leading-[0.95] tracking-[-0.06em] text-white md:text-6xl lg:text-7xl">
+          <h1 className="mt-7 max-w-4xl font-heading text-4xl font-semibold leading-[0.95] tracking-[-0.06em] text-white sm:text-5xl md:text-6xl xl:text-7xl">
             {content.titleStart}{" "}
             <span className="text-gradient">{content.titleHighlight}</span>{" "}
             {content.titleEnd}
@@ -87,7 +87,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
             </a>
           </div>
 
-          <div className="mt-10 grid w-full max-w-4xl gap-4 sm:grid-cols-3">
+          <div className="mt-10 grid w-full max-w-4xl gap-4 md:grid-cols-3">
             {proofItems.map((item) => (
               <div key={item.value} className="home-shell-soft px-5 py-5">
                 <p className="font-heading text-2xl font-semibold tracking-[-0.05em] text-white">
