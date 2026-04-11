@@ -41,7 +41,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
             viewport={{ once: true, amount: 0.25 }}
             className="home-shell p-7 md:p-8"
           >
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {Object.entries(groupedItems).map(([category, items], index) => (
                 <div
                   key={category}

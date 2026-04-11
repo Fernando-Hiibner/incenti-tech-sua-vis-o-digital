@@ -1260,6 +1260,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
   const switchLocale: Locale = locale === "pt-BR" ? "en" : "pt-BR";
   const switchPath = getIntegrationHubPath(switchLocale);
   const canonical = `https://incentitech.com.br${getIntegrationHubPath(locale)}`;
+  const productLabel =
+    locale === "pt-BR" ? "produto da Incenti Tech" : "IncentiTech product";
   const audienceCards = page.audiences.cards.map((item, index) => ({
     ...item,
     Icon: audienceCardIcons[index],
@@ -1337,6 +1339,69 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           "unified catalog",
           "governance and availability",
         ];
+  const contactSection = (
+    <section id="contato" className="relative overflow-hidden py-24">
+      <div className="ih-bg-gradient-glow absolute inset-0 opacity-30" />
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="grid items-start gap-16 lg:grid-cols-2">
+          <div>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2">
+              <Send className="h-4 w-4 text-primary" />
+              <span className="text-sm font-medium text-primary">
+                {page.contact.eyebrow}
+              </span>
+            </div>
+            <h2 className="mb-6 text-3xl font-bold md:text-4xl">
+              {page.contact.title}
+            </h2>
+            <p className="mb-8 text-lg text-muted-foreground">
+              {page.contact.description}
+            </p>
+            <div className="space-y-4">
+              {page.contact.valueProps.map((item) => (
+                <div
+                  key={item.title}
+                  className="ih-shell-soft flex gap-4 rounded-[24px] border border-border p-5"
+                >
+                  <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10">
+                    <CheckCircle2 className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="mb-1 font-semibold">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div className="absolute inset-0 rounded-full bg-primary opacity-5 blur-3xl" />
+            <div className="ih-shell ih-shadow-elevated relative rounded-[32px] border border-border p-8 md:p-10">
+              <IntegrationHubContactForm locale={locale} />
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
+            <a
+              href="mailto:fernando@incentitech.com.br"
+              className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
+            >
+              <Mail className="h-4 w-4 text-primary" />
+              fernando@incentitech.com.br
+            </a>
+            <div className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center">
+              <Phone className="h-4 w-4 text-primary" />
+              +55 (11) 97154-2519
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -1379,7 +1444,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               </div>
               <div className="leading-tight">
                 <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                  IncentiTech product
+                  {productLabel}
                 </p>
                 <p
                   className={`font-heading font-semibold tracking-[-0.04em] transition-all duration-300 ${scrolled ? "text-lg" : "text-xl"}`}
@@ -1645,6 +1710,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           </div>
         </div>
       </section>
+
+      {contactSection}
 
       <section className="py-24">
         <div className="container mx-auto px-6">
@@ -2101,7 +2168,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {page.differentiators.description}
             </p>
           </div>
-          <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-2">
+          <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-3">
             {page.differentiators.items.map((item) => (
               <div
                 key={item.title}
@@ -2155,14 +2222,14 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
 
       <section id="seguranca" className="py-24">
         <div className="container mx-auto px-6">
-          <div className="mx-auto max-w-3xl">
+          <div className="mx-auto max-w-6xl">
             <h2 className="mb-6 text-3xl font-bold md:text-4xl">
               {page.security.title}
             </h2>
             <p className="mb-8 text-lg text-muted-foreground">
               {page.security.description}
             </p>
-            <div className="space-y-4">
+            <div className="grid gap-4 md:grid-cols-2">
               {securityItems.map((item) => (
                 <div
                   key={item.title}
@@ -2184,68 +2251,6 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section id="contato" className="relative overflow-hidden py-24">
-        <div className="ih-bg-gradient-glow absolute inset-0 opacity-30" />
-        <div className="container relative z-10 mx-auto px-6">
-          <div className="grid items-start gap-16 lg:grid-cols-2">
-            <div>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2">
-                <Send className="h-4 w-4 text-primary" />
-                <span className="text-sm font-medium text-primary">
-                  {page.contact.eyebrow}
-                </span>
-              </div>
-              <h2 className="mb-6 text-3xl font-bold md:text-4xl">
-                {page.contact.title}
-              </h2>
-              <p className="mb-8 text-lg text-muted-foreground">
-                {page.contact.description}
-              </p>
-              <div className="space-y-4">
-                {page.contact.valueProps.map((item) => (
-                  <div
-                    key={item.title}
-                    className="ih-shell-soft flex gap-4 rounded-[24px] border border-border p-5"
-                  >
-                    <div className="mt-1 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10">
-                      <CheckCircle2 className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="mb-1 font-semibold">{item.title}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 rounded-full bg-primary opacity-5 blur-3xl" />
-              <div className="ih-shell ih-shadow-elevated relative rounded-[32px] border border-border p-8 md:p-10">
-                <IntegrationHubContactForm locale={locale} />
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
-              <a
-                href="mailto:fernando@incentitech.com.br"
-                className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
-              >
-                <Mail className="h-4 w-4 text-primary" />
-                fernando@incentitech.com.br
-              </a>
-              <div className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center">
-                <Phone className="h-4 w-4 text-primary" />
-                +55 (11) 97154-2519
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <footer className="border-t border-border py-16">
         <div className="container mx-auto px-6">
           <div className="ih-shell rounded-[32px] border border-border p-8 md:p-10">
@@ -2261,7 +2266,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   </div>
                   <div className="leading-tight">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-                      IncentiTech product
+                      {productLabel}
                     </p>
                     <p className="font-heading text-2xl font-semibold tracking-[-0.04em]">
                       Integration Hub

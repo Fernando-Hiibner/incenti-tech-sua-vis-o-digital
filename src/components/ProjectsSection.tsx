@@ -57,14 +57,10 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                 transition={{ delay: index * 0.06 }}
                 className={`glass-card p-7 md:p-8 ${isFeatured ? "md:col-span-2" : ""}`}
               >
-                <div className="flex items-start justify-between gap-4">
+                <div className="flex items-start gap-4">
                   <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className="home-chip px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em]">
-                    {locale === "pt-BR" ? "caso" : "case"}{" "}
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
                 </div>
                 <h3
                   className={`mt-6 font-heading font-semibold tracking-[-0.04em] text-white ${isFeatured ? "text-3xl" : "text-2xl"}`}

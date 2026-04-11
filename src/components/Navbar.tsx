@@ -66,9 +66,6 @@ const Navbar = ({ locale }: NavbarProps) => {
               />
             </div>
             <div className="leading-tight">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/48">
-                Custom software studio
-              </p>
               <p className="font-heading text-lg font-semibold tracking-[-0.04em] text-white md:text-xl">
                 <span className="text-primary">Incenti</span> Tech
               </p>
