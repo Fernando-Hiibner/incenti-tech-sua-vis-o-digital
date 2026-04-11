@@ -99,9 +99,9 @@ const content = {
         { value: "24/7", label: "Disponibilidade" },
       ],
       signals: [
-        "uma única integração",
-        "catálogo unificado",
-        "governança e disponibilidade",
+        "Uma única integração",
+        "Catálogo unificado",
+        "Governança e disponibilidade",
       ],
     },
     problem: {
@@ -482,7 +482,7 @@ const content = {
       product: "Produto",
       contact: "Contato",
       backToForm: "Voltar ao formulário",
-      rights: "© 2025 IncentiTech. Todos os direitos reservados.",
+      rights: "© 2026 IncentiTech. Todos os direitos reservados.",
       privacy: "Política de Privacidade",
       terms: "Termos de Uso",
       productLabel: "produto da Incenti Tech",
@@ -521,9 +521,9 @@ const content = {
         { value: "24/7", label: "Availability" },
       ],
       signals: [
-        "single integration",
-        "unified catalog",
-        "governance and availability",
+        "Single integration",
+        "Unified catalog",
+        "Governance and availability",
       ],
     },
     problem: {
@@ -903,7 +903,7 @@ const content = {
       product: "Product",
       contact: "Contact",
       backToForm: "Back to form",
-      rights: "© 2025 IncentiTech. All rights reserved.",
+      rights: "© 2026 IncentiTech. All rights reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Use",
       productLabel: "IncentiTech product",
@@ -1186,7 +1186,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
         type="submit"
         variant="hero"
         size="lg"
-        className="w-full"
+        className="h-[54px] w-full rounded-2xl px-6 text-base font-semibold"
         disabled={status === "loading"}
       >
         {status === "loading" ? (
@@ -1612,7 +1612,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               {heroSignals.map((item) => (
                 <span
                   key={item}
-                  className="ih-chip rounded-full px-4 py-2 text-center text-[10px] font-semibold uppercase leading-4 tracking-[0.14em] sm:text-[11px] sm:tracking-[0.18em]"
+                  className="ih-chip rounded-full px-4 py-2 text-center text-[10px] font-semibold leading-4 tracking-[0.14em] sm:text-[11px] sm:tracking-[0.18em]"
                 >
                   {item}
                 </span>

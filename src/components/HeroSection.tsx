@@ -8,7 +8,6 @@ type HeroSectionProps = {
 
 const HeroSection = ({ locale }: HeroSectionProps) => {
   const content = siteContent[locale].hero;
-  const proofItems = content.proofItems;
 
   return (
     <section
@@ -57,19 +56,6 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
             >
               {content.secondaryCta}
             </a>
-          </div>
-
-          <div className="mt-10 grid w-full max-w-4xl gap-4 md:grid-cols-3">
-            {proofItems.map((item) => (
-              <div key={item.value} className="home-shell-soft px-5 py-5">
-                <p className="font-heading text-2xl font-semibold tracking-[-0.05em] text-white">
-                  {item.value}
-                </p>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {item.label}
-                </p>
-              </div>
-            ))}
           </div>
         </motion.div>
       </div>

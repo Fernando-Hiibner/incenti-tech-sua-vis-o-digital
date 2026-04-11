@@ -38,19 +38,14 @@ const TechSection = ({ locale }: TechSectionProps) => {
             className="home-shell p-7 md:p-8"
           >
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {Object.entries(groupedItems).map(([category, items], index) => (
+              {Object.entries(groupedItems).map(([category, items]) => (
                 <div
                   key={category}
                   className="min-w-0 rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
                 >
-                  <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-4">
-                    <p className="min-w-0 break-words text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary">
-                      {category}
-                    </p>
-                    <span className="shrink-0 text-right text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
+                  <p className="min-w-0 break-words text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary">
+                    {category}
+                  </p>
                   <div className="mt-5 flex flex-wrap gap-3">
                     {items.map((name) => (
                       <span

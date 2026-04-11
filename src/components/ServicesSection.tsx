@@ -58,15 +58,12 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                   key={service.title}
                   className={`grid min-w-0 gap-5 border-white/8 py-7 lg:grid-cols-[auto_220px_minmax(0,1fr)] lg:gap-6 ${index !== 0 ? "border-t" : ""} ${index === 0 ? "pt-0" : ""} ${index === content.items.length - 1 ? "pb-0" : ""}`}
                 >
-                  <div className="flex items-center gap-4">
+                  <div className="flex items-center">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
                   </div>
-                  <h3 className="home-card-title max-w-md min-w-0">
+                  <h3 className="home-card-title max-w-md min-w-0 lg:self-center">
                     {service.title}
                   </h3>
                   <p className="home-card-copy max-w-2xl min-w-0">

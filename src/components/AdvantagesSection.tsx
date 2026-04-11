@@ -48,14 +48,7 @@ const AdvantagesSection = ({ locale }: AdvantagesSectionProps) => {
                       <Icon className="h-5 w-5" />
                     </div>
                     <div className="min-w-0">
-                      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-3">
-                        <h3 className="home-card-title min-w-0">
-                          {item.title}
-                        </h3>
-                        <span className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/36">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                      </div>
+                      <h3 className="home-card-title min-w-0">{item.title}</h3>
                       <p className="home-card-copy mt-3">{item.description}</p>
                     </div>
                   </article>

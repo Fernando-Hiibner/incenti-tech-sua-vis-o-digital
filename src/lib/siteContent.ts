@@ -50,9 +50,9 @@ export const siteContent = {
       description:
         "Soluções completas de software para empresas que precisam de tecnologia confiável e resultados concretos.",
       supportItems: [
-        "arquitetura sob medida",
-        "integração e legado",
-        "sustentação com continuidade",
+        "Arquitetura sob medida",
+        "Integração e legado",
+        "Sustentação com continuidade",
       ],
       items: [
         {
@@ -177,7 +177,7 @@ export const siteContent = {
         { name: "Vue", category: "Frontend e UI" },
         { name: "jQuery", category: "Frontend e UI" },
         { name: "ASP.NET Web Forms", category: "Frontend e UI" },
-        { name: "SQS e NoSQL", category: "Dados e Persistencia" },
+        { name: "SQL e NoSQL", category: "Dados e Persistencia" },
         { name: "Redis", category: "Dados e Persistencia" },
         { name: "Docker", category: "Infra" },
         { name: "AWS", category: "Infra" },
@@ -290,9 +290,9 @@ export const siteContent = {
       description:
         "Complete software solutions for companies that need reliable technology and measurable results.",
       supportItems: [
-        "tailored architecture",
-        "integration and legacy",
-        "continuity and support",
+        "Tailored architecture",
+        "Integration and legacy",
+        "Continuity and support",
       ],
       items: [
         {
@@ -417,7 +417,7 @@ export const siteContent = {
         { name: "Vue", category: "Frontend and UI" },
         { name: "jQuery", category: "Frontend and UI" },
         { name: "ASP.NET Web Forms", category: "Frontend and UI" },
-        { name: "SQS and NoSQL", category: "Data and Persistence" },
+        { name: "SQL and NoSQL", category: "Data and Persistence" },
         { name: "Redis", category: "Data and Persistence" },
         { name: "Docker", category: "Infra" },
         { name: "AWS", category: "Infra" },

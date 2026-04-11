@@ -197,6 +197,11 @@
   background: rgba(214, 67, 74, 0.06);
   color: hsl(var(--primary));
   text-align: center;
+  text-transform: none;
+}
+
+.integration-hub-theme .ih-chip::first-letter {
+  text-transform: uppercase;
 }
 
 .integration-hub-theme .ih-card-hover {

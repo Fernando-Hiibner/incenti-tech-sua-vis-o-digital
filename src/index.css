@@ -186,6 +186,11 @@
     background: rgba(255, 255, 255, 0.04);
     color: hsl(var(--muted-foreground));
     text-align: center;
+    text-transform: none;
+  }
+
+  .home-chip::first-letter {
+    text-transform: uppercase;
   }
 
   .glass-card :where(h1, h2, h3, h4, h5, h6, p, span, a, li),
