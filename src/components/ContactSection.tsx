@@ -6,10 +6,15 @@ import {
   CheckCircle,
   Loader2,
   Mail,
-  Phone,
   Send,
   ShieldCheck,
 } from "lucide-react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_WHATSAPP_URL,
+} from "@/lib/contact";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -319,18 +324,22 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
         <div className="mt-8 flex justify-center">
           <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
-              href="mailto:fernando@incentitech.com.br"
-              className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center font-medium transition-colors hover:text-white"
             >
               <Mail className="h-4 w-4 text-primary" />
-              <span className="break-all sm:break-normal">
-                fernando@incentitech.com.br
-              </span>
+              <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
             </a>
-            <div className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center">
-              <Phone className="h-4 w-4 text-primary" />
-              +55 (11) 97154-2519
-            </div>
+            <a
+              href={CONTACT_WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center font-medium transition-colors hover:text-white"
+              aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
+            >
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              <span>{CONTACT_PHONE_DISPLAY}</span>
+            </a>
           </div>
         </div>
       </div>

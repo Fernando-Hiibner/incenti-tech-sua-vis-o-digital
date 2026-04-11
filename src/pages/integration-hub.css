@@ -56,6 +56,9 @@
     ),
     linear-gradient(180deg, #ffffff 0%, #f6f8fc 45%, #ffffff 100%);
   font-family: "Inter", system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .integration-hub-theme .ih-text-gradient {

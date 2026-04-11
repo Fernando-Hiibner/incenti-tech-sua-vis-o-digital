@@ -30,7 +30,6 @@ import {
   Lock,
   Mail,
   Menu,
-  Phone,
   RefreshCw,
   Search,
   Send,
@@ -45,7 +44,13 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_WHATSAPP_URL,
+} from "@/lib/contact";
 import SeoHead from "@/components/SeoHead";
 import { getIntegrationHubPath } from "@/lib/integrationHubRoutes";
 import { getIntegrationHubStructuredData, integrationHubSeo } from "@/lib/seo";
@@ -94,9 +99,9 @@ const content = {
         { value: "24/7", label: "Disponibilidade" },
       ],
       signals: [
-        "uma unica integracao",
-        "catalogo unificado",
-        "governanca e disponibilidade",
+        "uma única integração",
+        "catálogo unificado",
+        "governança e disponibilidade",
       ],
     },
     problem: {
@@ -238,8 +243,8 @@ const content = {
       panelDescription:
         "Configure regras por marketplace para maximizar margem",
       basePriceLabel: "Preço base: R$ 2.199",
-      sampleProductName: "Celular 256GB generico",
-      sampleProductAlt: "Celular 256GB generico",
+      sampleProductName: "Celular 256GB genérico",
+      sampleProductAlt: "Celular 256GB genérico",
       benefits: [
         {
           title: "Aumente suas Margens",
@@ -1397,18 +1402,22 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         <div className="mt-8 flex justify-center">
           <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
-              href="mailto:fernando@incentitech.com.br"
-              className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center font-medium transition-colors hover:text-foreground"
             >
               <Mail className="h-4 w-4 text-primary" />
-              <span className="break-all sm:break-normal">
-                fernando@incentitech.com.br
-              </span>
+              <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
             </a>
-            <div className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center">
-              <Phone className="h-4 w-4 text-primary" />
-              +55 (11) 97154-2519
-            </div>
+            <a
+              href={CONTACT_WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center font-medium transition-colors hover:text-foreground"
+              aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
+            >
+              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
+              <span>{CONTACT_PHONE_DISPLAY}</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1469,25 +1478,25 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             <nav className="hidden items-center gap-6 lg:flex">
               <a
                 href="#recursos"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {page.nav.features}
               </a>
               <a
                 href="#diferenciais"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {page.nav.differentiators}
               </a>
               <a
                 href="#seguranca"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {page.nav.security}
               </a>
               <a
                 href="#contato"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
               >
                 {page.nav.contact}
               </a>
@@ -1529,28 +1538,28 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <a
                   href="#recursos"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {page.nav.features}
                 </a>
                 <a
                   href="#diferenciais"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {page.nav.differentiators}
                 </a>
                 <a
                   href="#seguranca"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {page.nav.security}
                 </a>
                 <a
                   href="#contato"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="text-muted-foreground transition-colors hover:text-foreground"
+                  className="font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {page.nav.contact}
                 </a>
@@ -2308,7 +2317,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <li>
                     <a
                       href="#recursos"
-                      className="transition-colors hover:text-foreground"
+                      className="font-medium transition-colors hover:text-foreground"
                     >
                       {page.nav.features}
                     </a>
@@ -2316,7 +2325,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <li>
                     <a
                       href="#diferenciais"
-                      className="transition-colors hover:text-foreground"
+                      className="font-medium transition-colors hover:text-foreground"
                     >
                       {page.nav.differentiators}
                     </a>
@@ -2324,7 +2333,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <li>
                     <a
                       href="#seguranca"
-                      className="transition-colors hover:text-foreground"
+                      className="font-medium transition-colors hover:text-foreground"
                     >
                       {page.nav.security}
                     </a>
@@ -2339,15 +2348,29 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   <li>
                     <a
                       href="#contato"
-                      className="transition-colors hover:text-foreground"
+                      className="font-medium transition-colors hover:text-foreground"
                     >
                       {page.nav.contact}
                     </a>
                   </li>
-                  <li className="break-all sm:break-normal">
-                    fernando@incentitech.com.br
+                  <li>
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="block break-all font-medium transition-colors hover:text-foreground sm:break-normal"
+                    >
+                      {CONTACT_EMAIL}
+                    </a>
                   </li>
-                  <li>+55 (11) 97154-2519</li>
+                  <li>
+                    <a
+                      href={CONTACT_WHATSAPP_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium transition-colors hover:text-foreground"
+                    >
+                      {CONTACT_PHONE_DISPLAY}
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>

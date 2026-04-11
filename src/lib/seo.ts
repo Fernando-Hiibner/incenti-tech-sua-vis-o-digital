@@ -64,7 +64,7 @@ export const homeSeo: Record<Locale, PageSeo> = {
     lang: "pt-BR",
     ogLocale: "pt_BR",
     keywords:
-      "desenvolvimento de software, sistemas web, solucoes digitais, software empresarial, integracao de sistemas, desenvolvimento sob medida",
+      "desenvolvimento de software, sistemas web, soluções digitais, software empresarial, integração de sistemas, desenvolvimento sob medida",
     alternates: buildAlternates(HOME_PATHS),
   },
   en: {
@@ -84,12 +84,12 @@ export const integrationHubSeo: Record<Locale, PageSeo> = {
   "pt-BR": {
     title: "Integration Hub para Marketplaces e Incentivo | Incenti Tech",
     description:
-      "Centralize catalogo, estoque, precos e integracoes com grandes varejistas em uma unica plataforma para campanhas de incentivo, marketplaces e operacoes B2B.",
+      "Centralize catálogo, estoque, preços e integrações com grandes varejistas em uma única plataforma para campanhas de incentivo, marketplaces e operações B2B.",
     canonical: `${SITE_URL}${INTEGRATION_HUB_PATHS["pt-BR"]}`,
     lang: "pt-BR",
     ogLocale: "pt_BR",
     keywords:
-      "integration hub, integracao com marketplaces, catalogo de produtos, campanhas de incentivo, integracao b2b, varejistas",
+      "integration hub, integração com marketplaces, catálogo de produtos, campanhas de incentivo, integração b2b, varejistas",
     alternates: buildAlternates(INTEGRATION_HUB_PATHS),
   },
   en: {
@@ -125,8 +125,18 @@ export const getHomeStructuredData = (locale: Locale) => [
     areaServed: "BR",
     serviceType:
       locale === "pt-BR"
-        ? ["Desenvolvimento de software", "Sistemas web", "Integrações", "Modernização de software legado"]
-        : ["Custom software development", "Web systems", "Systems integration", "Legacy modernization"],
+        ? [
+            "Desenvolvimento de software",
+            "Sistemas web",
+            "Integrações",
+            "Modernização de software legado",
+          ]
+        : [
+            "Custom software development",
+            "Web systems",
+            "Systems integration",
+            "Legacy modernization",
+          ],
   },
 ];
 
@@ -149,8 +159,18 @@ export const getIntegrationHubStructuredData = (locale: Locale) => [
     areaServed: "BR",
     serviceType:
       locale === "pt-BR"
-        ? ["Integração com varejistas", "Catálogo unificado", "Histórico de preços", "Sincronização de estoque"]
-        : ["Retailer integration", "Unified catalog", "Price history", "Stock synchronization"],
+        ? [
+            "Integração com varejistas",
+            "Catálogo unificado",
+            "Histórico de preços",
+            "Sincronização de estoque",
+          ]
+        : [
+            "Retailer integration",
+            "Unified catalog",
+            "Price history",
+            "Stock synchronization",
+          ],
   },
 ];
 

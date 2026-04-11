@@ -1,4 +1,9 @@
 import logo from "@/assets/logo.png";
+import {
+  CONTACT_EMAIL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_WHATSAPP_URL,
+} from "@/lib/contact";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type FooterProps = {
@@ -43,7 +48,7 @@ const Footer = ({ locale }: FooterProps) => {
                   <a
                     key={link.href}
                     href={link.href}
-                    className="block text-sm text-muted-foreground transition-colors hover:text-white"
+                    className="block text-sm font-medium text-muted-foreground transition-colors hover:text-white"
                   >
                     {link.label}
                   </a>
@@ -56,10 +61,20 @@ const Footer = ({ locale }: FooterProps) => {
               </p>
               <div className="space-y-3 text-sm text-muted-foreground">
                 <p>63.404.846/0001-07</p>
-                <p className="break-all sm:break-normal">
-                  fernando@incentitech.com.br
-                </p>
-                <p>+55 (11) 97154-2519</p>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="block break-all font-medium transition-colors hover:text-white sm:break-normal"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                <a
+                  href={CONTACT_WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="block font-medium transition-colors hover:text-white"
+                >
+                  {CONTACT_PHONE_DISPLAY}
+                </a>
               </div>
             </div>
           </div>
