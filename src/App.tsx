@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
@@ -7,15 +7,26 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { getIntegrationHubPath } from "@/lib/integrationHubRoutes";
 import { getPreferredLocale } from "@/lib/locale";
 import { localePaths } from "@/lib/siteContent";
-import IntegrationHub from "./pages/IntegrationHub.tsx";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
 import type { Locale } from "@/lib/siteContent";
 
 const queryClient = new QueryClient();
+const IndexPage = lazy(() => import("./pages/Index.tsx"));
+const IntegrationHubPage = lazy(() => import("./pages/IntegrationHub.tsx"));
+const NotFoundPage = lazy(() => import("./pages/NotFound.tsx"));
 
-const renderIndex = (locale: Locale) => <Index locale={locale} />;
-const renderIntegrationHub = (locale: Locale) => <IntegrationHub locale={locale} />;
+const RouteFallback = () => <div className="min-h-screen bg-background" />;
+
+const renderIndex = (locale: Locale) => (
+  <Suspense fallback={<RouteFallback />}>
+    <IndexPage locale={locale} />
+  </Suspense>
+);
+
+const renderIntegrationHub = (locale: Locale) => (
+  <Suspense fallback={<RouteFallback />}>
+    <IntegrationHubPage locale={locale} />
+  </Suspense>
+);
 
 const LocaleRedirect = ({ resolvePath }: { resolvePath: (locale: Locale) => string }) => {
   useEffect(() => {
@@ -45,7 +56,14 @@ const App = () => (
           <Route path="/pt-br/integration-hub/" element={renderIntegrationHub("pt-BR")} />
           <Route path="/en/integration-hub" element={renderIntegrationHub("en")} />
           <Route path="/en/integration-hub/" element={renderIntegrationHub("en")} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<RouteFallback />}>
+                <NotFoundPage />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>

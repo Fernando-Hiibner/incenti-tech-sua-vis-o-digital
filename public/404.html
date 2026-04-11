@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 | Incenti Tech</title>
+    <meta name="robots" content="noindex, follow" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #080d1f;
+        --panel: #121937;
+        --text: #f4f7fb;
+        --muted: #a2adc4;
+        --accent: #b31b1b;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background:
+          radial-gradient(circle at top right, rgba(179, 27, 27, 0.2), transparent 32%),
+          linear-gradient(135deg, var(--bg), #0f1530 60%, #1f0d12);
+        color: var(--text);
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      main {
+        width: min(100%, 720px);
+        padding: 40px;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+        background: rgba(18, 25, 55, 0.9);
+        backdrop-filter: blur(18px);
+        text-align: center;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(2.4rem, 7vw, 4.6rem);
+      }
+
+      p {
+        margin: 0 auto 24px;
+        max-width: 44ch;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+        padding: 14px 18px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        color: var(--text);
+        text-decoration: none;
+        transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      }
+
+      a.primary {
+        background: var(--accent);
+        border-color: transparent;
+      }
+
+      a:hover {
+        transform: translateY(-1px);
+        border-color: rgba(255, 255, 255, 0.16);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>404</p>
+      <h1>Page not found</h1>
+      <p>
+        The requested address could not be found. Continue to the main website or open the
+        Integration Hub page directly.
+      </p>
+      <div class="links">
+        <a class="primary" href="/en/">Go to English site</a>
+        <a href="/pt-br/">Ir para o site em Português</a>
+        <a href="/en/integration-hub/">Open Integration Hub</a>
+      </div>
+    </main>
+  </body>
+</html>

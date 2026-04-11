@@ -229,7 +229,9 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 text-muted-foreground text-sm">
             <div className="flex items-center gap-2">
               <Mail size={16} className="text-primary" />
-              fernando@incentitech.com.br
+              <a href="mailto:fernando@incentitech.com.br" className="transition-colors hover:text-foreground">
+                fernando@incentitech.com.br
+              </a>
             </div>
             <div className="flex items-center gap-2">
               <Phone size={16} className="text-primary" />

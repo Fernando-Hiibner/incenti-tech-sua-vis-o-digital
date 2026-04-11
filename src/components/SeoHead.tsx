@@ -1,15 +1,17 @@
 import { useEffect } from "react";
 
 type SeoHeadProps = {
-  title: string;
-  description: string;
+  alternates: { hrefLang: string; href: string }[];
   canonical: string;
+  description: string;
+  image?: string;
+  keywords?: string;
   lang: string;
   ogLocale: string;
-  alternates: { hrefLang: string; href: string }[];
-  image?: string;
+  robots?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  title: string;
   type?: string;
-  keywords?: string;
 };
 
 const GENERATED_SELECTOR = "[data-seo-generated='true']";
@@ -39,22 +41,45 @@ const upsertLink = (selector: string, attributes: Record<string, string>) => {
   Object.entries(attributes).forEach(([key, value]) => element?.setAttribute(key, value));
 };
 
+const syncStructuredData = (structuredData?: Record<string, unknown> | Record<string, unknown>[]) => {
+  document.head
+    .querySelectorAll<HTMLScriptElement>("script[type='application/ld+json'][data-seo-generated='true']")
+    .forEach((element) => element.remove());
+
+  if (!structuredData) {
+    return;
+  }
+
+  const entries = Array.isArray(structuredData) ? structuredData : [structuredData];
+  entries.forEach((entry) => {
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.dataset.seoGenerated = "true";
+    script.text = JSON.stringify(entry);
+    document.head.appendChild(script);
+  });
+};
+
 const SeoHead = ({
-  title,
-  description,
+  alternates,
   canonical,
+  description,
   lang,
   ogLocale,
-  alternates,
-  image = "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/29ba2d99-ef56-4983-a530-03f02dd8b95a/id-preview-5fbdbb6a--155575ed-1042-48f4-8754-d52787cea0f9.lovable.app-1775524304006.png",
-  type = "website",
+  image = "https://incentitech.com.br/seo-share.png",
   keywords,
+  robots = "index, follow, max-image-preview:large",
+  structuredData,
+  title,
+  type = "website",
 }: SeoHeadProps) => {
   useEffect(() => {
     document.title = title;
     document.documentElement.lang = lang;
 
     upsertMeta("meta[name='description']", { name: "description" }, description);
+    upsertMeta("meta[name='robots']", { name: "robots" }, robots);
+    upsertMeta("meta[property='og:site_name']", { property: "og:site_name" }, "Incenti Tech");
     upsertMeta("meta[property='og:title']", { property: "og:title" }, title);
     upsertMeta("meta[property='og:description']", { property: "og:description" }, description);
     upsertMeta("meta[property='og:type']", { property: "og:type" }, type);
@@ -82,13 +107,15 @@ const SeoHead = ({
       document.head.appendChild(link);
     });
 
+    syncStructuredData(structuredData);
+
     if (typeof window !== "undefined" && "gtag" in window && typeof window.gtag === "function") {
       window.gtag("config", "G-TXJ7J2404S", {
         page_path: window.location.pathname,
         page_title: title,
       });
     }
-  }, [alternates, canonical, description, image, keywords, lang, ogLocale, title, type]);
+  }, [alternates, canonical, description, image, keywords, lang, ogLocale, robots, structuredData, title, type]);
 
   return null;
 };

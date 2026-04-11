@@ -8,6 +8,8 @@ type HeroSectionProps = {
 
 const HeroSection = ({ locale }: HeroSectionProps) => {
   const content = siteContent[locale].hero;
+  const headlineHighlight =
+    locale === "pt-BR" ? "sistemas e solucoes digitais" : "software systems and digital solutions";
 
   return (
     <section
@@ -42,7 +44,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
           </motion.div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold leading-tight mb-6">
-            {content.titleStart} <span className="text-gradient">{content.titleHighlight}</span>{" "}
+            {content.titleStart} <span className="text-gradient">{headlineHighlight}</span>{" "}
             {content.titleEnd}
           </h1>
 

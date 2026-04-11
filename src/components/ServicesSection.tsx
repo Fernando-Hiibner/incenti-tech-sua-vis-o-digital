@@ -19,6 +19,8 @@ type ServicesSectionProps = {
 
 const ServicesSection = ({ locale }: ServicesSectionProps) => {
   const content = siteContent[locale].services;
+  const sectionTitle =
+    locale === "pt-BR" ? "Desenvolvimento de software e integracoes" : "Software development and integrations";
 
   return (
     <section id="servicos" className="section-padding">
@@ -30,7 +32,7 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
           className="text-center mb-16"
         >
           <span className="text-primary text-sm font-semibold uppercase tracking-widest">{content.eyebrow}</span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{content.title}</h2>
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mt-3 mb-4">{sectionTitle}</h2>
           <p className="text-muted-foreground max-w-xl mx-auto">{content.description}</p>
         </motion.div>
 
