@@ -114,6 +114,11 @@ const SeoHead = ({
         page_path: window.location.pathname,
         page_title: title,
       });
+
+      window.gtag("config", "AW-18088168150", {
+        page_path: window.location.pathname,
+        page_title: title,
+      });
     }
   }, [alternates, canonical, description, image, keywords, lang, ogLocale, robots, structuredData, title, type]);
 
