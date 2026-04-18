@@ -7,6 +7,8 @@ type AnalyticsSection = {
   page: string;
 };
 
+const GOOGLE_ADS_CONVERSION_ID = "AW-18088168150/yxYxCJH73ZscENaVjrFD";
+
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
@@ -26,6 +28,20 @@ const trackAnalyticsEvent = (
   );
 
   window.gtag("event", eventName, eventParams);
+};
+
+const trackGoogleAdsConversion = (
+  params: AnalyticsParams = {
+    value: 1,
+    currency: "BRL",
+  },
+) => {
+  trackAnalyticsEvent("conversion", {
+    send_to: GOOGLE_ADS_CONVERSION_ID,
+    value: 1,
+    currency: "BRL",
+    ...params,
+  });
 };
 
 const registerAnalyticsClickTracking = () => {
@@ -105,7 +121,9 @@ const registerSectionViewTracking = (sections: AnalyticsSection[]) => {
 };
 
 export {
+  GOOGLE_ADS_CONVERSION_ID,
   registerAnalyticsClickTracking,
   registerSectionViewTracking,
   trackAnalyticsEvent,
+  trackGoogleAdsConversion,
 };

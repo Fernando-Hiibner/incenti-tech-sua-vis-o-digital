@@ -15,7 +15,10 @@ import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_WHATSAPP_URL,
 } from "@/lib/contact";
-import { trackAnalyticsEvent } from "@/lib/analytics";
+import {
+  trackAnalyticsEvent,
+  trackGoogleAdsConversion,
+} from "@/lib/analytics";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -111,6 +114,13 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
       const result = await response.json();
 
       if (response.ok) {
+        trackGoogleAdsConversion({
+          value: 1,
+          currency: "BRL",
+          page: "home",
+          section: "contato",
+          label: "Formulario Home",
+        });
         setStatus("success");
         form.reset();
         setErrors({});

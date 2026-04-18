@@ -51,6 +51,7 @@ import {
   registerAnalyticsClickTracking,
   registerSectionViewTracking,
   trackAnalyticsEvent,
+  trackGoogleAdsConversion,
 } from "@/lib/analytics";
 import {
   CONTACT_EMAIL,
@@ -1040,6 +1041,13 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
       const result = await response.json();
 
       if (response.ok) {
+        trackGoogleAdsConversion({
+          value: 1,
+          currency: "BRL",
+          page: "integration_hub",
+          section: "contato",
+          label: "Formulario Integration Hub",
+        });
         setStatus("success");
         form.reset();
         setErrors({});
@@ -2497,7 +2505,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                     <img
                       src={integrationHubLogo}
                       alt="Incenti Tech"
-                      className="h-12 w-12 rounded-xl object-contain"
+                      className="h-16 w-16 rounded-xl object-contain"
                     />
                   </div>
                   <div className="min-w-0 leading-tight">
