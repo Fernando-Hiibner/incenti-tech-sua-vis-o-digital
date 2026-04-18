@@ -1589,11 +1589,11 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
       <header className="fixed left-0 right-0 top-4 z-50">
         <div className="container mx-auto px-4 sm:px-6">
           <div
-            className={`ih-nav-shell flex items-center justify-between gap-4 rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "py-3" : "py-4"}`}
+            className={`ih-nav-shell flex items-center justify-between rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "gap-4 py-2" : "gap-3 py-0.5"}`}
           >
             <div className="flex items-center gap-3">
               <div
-                className={`rounded-2xl border border-white/60 bg-white/70 transition-all duration-300 ${scrolled ? "p-1.5" : "p-2"}`}
+                className={`rounded-2xl border border-white/60 bg-white/70 transition-all duration-300 ${scrolled ? "p-1.5" : "p-1"}`}
               >
                 <img
                   src={integrationHubLogo}
@@ -1606,7 +1606,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   {productLabel}
                 </p>
                 <p
-                  className={`font-heading font-semibold tracking-[-0.04em] transition-all duration-300 ${scrolled ? "text-lg" : "text-xl"}`}
+                  className={`font-heading font-semibold tracking-[-0.04em] transition-all duration-300 ${scrolled ? "text-lg" : "text-base md:text-lg"}`}
                 >
                   Integration Hub
                 </p>

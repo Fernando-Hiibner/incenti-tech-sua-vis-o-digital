@@ -40,7 +40,7 @@ const Navbar = ({ locale }: NavbarProps) => {
     <nav className="fixed inset-x-0 top-4 z-50">
       <div className="container mx-auto px-4 sm:px-6">
         <div
-          className={`home-nav-shell flex items-center justify-between gap-4 rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "py-3" : "py-4"}`}
+          className={`home-nav-shell flex items-center justify-between rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "gap-4 py-2" : "gap-3 py-0.5"}`}
         >
           <a
             href="#inicio"
@@ -54,7 +54,7 @@ const Navbar = ({ locale }: NavbarProps) => {
               handleClick("#inicio");
             }}
           >
-            <div className="-my-3 transition-all duration-300">
+            <div className={`${scrolled ? "-my-3" : "-my-5"} transition-all duration-300`}>
               <img
                 src={logo}
                 alt="Incenti Tech"
@@ -62,7 +62,9 @@ const Navbar = ({ locale }: NavbarProps) => {
               />
             </div>
             <div className="leading-tight">
-              <p className="font-heading text-lg font-semibold tracking-[-0.04em] text-white md:text-xl">
+              <p
+                className={`font-heading font-semibold tracking-[-0.04em] text-white transition-all duration-300 ${scrolled ? "text-lg md:text-xl" : "text-base md:text-lg"}`}
+              >
                 <span className="text-primary">Incenti</span> Tech
               </p>
             </div>

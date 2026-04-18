@@ -27,11 +27,11 @@ const Footer = ({ locale }: FooterProps) => {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="min-w-0">
             <div className="flex items-center gap-3">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-2">
+              <div>
                 <img
                   src={logo}
                   alt="Incenti Tech"
-                  className="h-12 w-12 rounded-xl object-contain"
+                  className="h-12 w-12 object-contain"
                 />
               </div>
               <div className="min-w-0">
