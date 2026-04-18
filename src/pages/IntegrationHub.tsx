@@ -968,7 +968,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
     }
 
     hasTrackedFormStartRef.current = true;
-    trackAnalyticsEvent("integration_hub_form_inicio_preenchimento", {
+    trackAnalyticsEvent("ih_form_start", {
       page: "integration_hub",
       section: "contato",
       label: "Formulario Integration Hub",
@@ -1013,7 +1013,7 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
       return;
     }
     lastSubmitRef.current = now;
-    trackAnalyticsEvent("integration_hub_form_fim_preenchimento", {
+    trackAnalyticsEvent("ih_form_submit", {
       page: "integration_hub",
       section: "contato",
       label: "Formulario Integration Hub",
