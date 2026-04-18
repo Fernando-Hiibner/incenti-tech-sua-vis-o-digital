@@ -44,8 +44,14 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import integrationHubLogo from "@/assets/logo-incenti-tech.svg";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
+import {
+  registerAnalyticsClickTracking,
+  registerSectionViewTracking,
+  trackAnalyticsEvent,
+} from "@/lib/analytics";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -950,9 +956,23 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
   >("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [messageLength, setMessageLength] = useState(0);
+  const hasTrackedFormStartRef = useRef(false);
   const lastSubmitRef = useRef(0);
   const maxMessageLength = 3000;
   const contact = content[locale].contact;
+
+  const trackFormStart = () => {
+    if (hasTrackedFormStartRef.current) {
+      return;
+    }
+
+    hasTrackedFormStartRef.current = true;
+    trackAnalyticsEvent("integration_hub_form_inicio_preenchimento", {
+      page: "integration_hub",
+      section: "contato",
+      label: "Formulario Integration Hub",
+    });
+  };
 
   const validate = (data: Record<string, string>) => {
     const nextErrors: Record<string, string> = {};
@@ -992,6 +1012,11 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
       return;
     }
     lastSubmitRef.current = now;
+    trackAnalyticsEvent("integration_hub_form_fim_preenchimento", {
+      page: "integration_hub",
+      section: "contato",
+      label: "Formulario Integration Hub",
+    });
 
     setStatus("loading");
     setErrors({});
@@ -1068,6 +1093,10 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
           variant="outline"
           className="rounded-full"
           onClick={() => setStatus("idle")}
+          data-ga-click="integration_hub_click_form_enviar_novamente"
+          data-ga-page="integration_hub"
+          data-ga-section="contato"
+          data-ga-label={contact.form.sendAnother}
         >
           {contact.form.sendAnother}
         </Button>
@@ -1076,7 +1105,11 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="relative space-y-5">
+    <form
+      onSubmit={handleSubmit}
+      onFocusCapture={trackFormStart}
+      className="relative space-y-5"
+    >
       <div className="grid gap-5 lg:grid-cols-2">
         <div>
           <label className="mb-1.5 block text-sm font-medium">
@@ -1188,6 +1221,10 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
         size="lg"
         className="h-[54px] w-full rounded-2xl px-6 text-base font-semibold"
         disabled={status === "loading"}
+        data-ga-click="integration_hub_click_form_enviar"
+        data-ga-page="integration_hub"
+        data-ga-section="contato"
+        data-ga-label={contact.form.submitIdle}
       >
         {status === "loading" ? (
           <>
@@ -1213,10 +1250,14 @@ const EmblaCarousel = <T,>({
   items,
   renderItem,
   slidesPerView = "basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4",
+  prevClickEvent,
+  nextClickEvent,
 }: {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   slidesPerView?: string;
+  prevClickEvent: string;
+  nextClickEvent: string;
 }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
@@ -1260,6 +1301,10 @@ const EmblaCarousel = <T,>({
           type="button"
           onClick={() => emblaApi?.scrollPrev()}
           disabled={!canScrollPrev}
+          data-ga-click={prevClickEvent}
+          data-ga-page="integration_hub"
+          data-ga-section="carrossel"
+          data-ga-label="Anterior"
           className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-primary/50 disabled:opacity-30"
         >
           <ChevronLeft className="h-5 w-5" />
@@ -1268,6 +1313,10 @@ const EmblaCarousel = <T,>({
           type="button"
           onClick={() => emblaApi?.scrollNext()}
           disabled={!canScrollNext}
+          data-ga-click={nextClickEvent}
+          data-ga-page="integration_hub"
+          data-ga-section="carrossel"
+          data-ga-label="Proximo"
           className="flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background transition-colors hover:border-primary/50 disabled:opacity-30"
         >
           <ChevronRight className="h-5 w-5" />
@@ -1401,6 +1450,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
+              data-ga-click="integration_hub_click_contato_email"
+              data-ga-page="integration_hub"
+              data-ga-section="contato"
+              data-ga-label={CONTACT_EMAIL}
               className="ih-contact-link ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
             >
               <Mail className="h-4 w-4 text-primary" />
@@ -1410,6 +1463,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               href={CONTACT_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
+              data-ga-click="integration_hub_click_contato_whatsapp"
+              data-ga-page="integration_hub"
+              data-ga-section="contato"
+              data-ga-label={CONTACT_PHONE_DISPLAY}
               className="ih-contact-link ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
               aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
             >
@@ -1432,6 +1489,89 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
+
+  useEffect(() => {
+    const removeClickTracking = registerAnalyticsClickTracking();
+    const removeSectionTracking = registerSectionViewTracking([
+      {
+        id: "hero",
+        eventName: "integration_hub_scroll_hero",
+        label: "Hero",
+        page: "integration_hub",
+      },
+      {
+        id: "problema",
+        eventName: "integration_hub_scroll_problema",
+        label: "Problema",
+        page: "integration_hub",
+      },
+      {
+        id: "solucao",
+        eventName: "integration_hub_scroll_solucao",
+        label: "Solucao",
+        page: "integration_hub",
+      },
+      {
+        id: "contato",
+        eventName: "integration_hub_scroll_contato",
+        label: "Contato",
+        page: "integration_hub",
+      },
+      {
+        id: "publicos",
+        eventName: "integration_hub_scroll_publicos",
+        label: "Publicos",
+        page: "integration_hub",
+      },
+      {
+        id: "integracao-unica",
+        eventName: "integration_hub_scroll_integracao_unica",
+        label: "Integracao Unica",
+        page: "integration_hub",
+      },
+      {
+        id: "historico-precos",
+        eventName: "integration_hub_scroll_historico_precos",
+        label: "Historico de Precos",
+        page: "integration_hub",
+      },
+      {
+        id: "precificacao",
+        eventName: "integration_hub_scroll_precificacao",
+        label: "Precificacao",
+        page: "integration_hub",
+      },
+      {
+        id: "recursos",
+        eventName: "integration_hub_scroll_recursos",
+        label: "Recursos",
+        page: "integration_hub",
+      },
+      {
+        id: "diferenciais",
+        eventName: "integration_hub_scroll_diferenciais",
+        label: "Diferenciais",
+        page: "integration_hub",
+      },
+      {
+        id: "beneficios-negocio",
+        eventName: "integration_hub_scroll_beneficios_negocio",
+        label: "Beneficios do Negocio",
+        page: "integration_hub",
+      },
+      {
+        id: "seguranca",
+        eventName: "integration_hub_scroll_seguranca",
+        label: "Seguranca",
+        page: "integration_hub",
+      },
+    ]);
+
+    return () => {
+      removeClickTracking();
+      removeSectionTracking();
+    };
+  }, []);
 
   return (
     <div className="integration-hub-theme relative min-h-screen bg-background text-foreground">
@@ -1456,9 +1596,9 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 className={`rounded-2xl border border-white/60 bg-white/70 transition-all duration-300 ${scrolled ? "p-1.5" : "p-2"}`}
               >
                 <img
-                  src="/seo-share.png"
-                  alt="Integration Hub"
-                  className={`rounded-xl object-cover transition-all duration-300 ${scrolled ? "h-8 w-8" : "h-11 w-11"}`}
+                  src={integrationHubLogo}
+                  alt="Incenti Tech"
+                  className={`rounded-xl object-contain transition-all duration-300 ${scrolled ? "h-20 w-20" : "h-28 w-28"}`}
                 />
               </div>
               <div className="leading-tight">
@@ -1474,16 +1614,44 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             </div>
 
             <nav className="hidden items-center gap-6 lg:flex">
-              <a href="#recursos" className="ih-nav-link">
+              <a
+                href="#recursos"
+                data-ga-click="integration_hub_click_nav_recursos"
+                data-ga-page="integration_hub"
+                data-ga-section="navbar"
+                data-ga-label={page.nav.features}
+                className="ih-nav-link"
+              >
                 {page.nav.features}
               </a>
-              <a href="#diferenciais" className="ih-nav-link">
+              <a
+                href="#diferenciais"
+                data-ga-click="integration_hub_click_nav_diferenciais"
+                data-ga-page="integration_hub"
+                data-ga-section="navbar"
+                data-ga-label={page.nav.differentiators}
+                className="ih-nav-link"
+              >
                 {page.nav.differentiators}
               </a>
-              <a href="#seguranca" className="ih-nav-link">
+              <a
+                href="#seguranca"
+                data-ga-click="integration_hub_click_nav_seguranca"
+                data-ga-page="integration_hub"
+                data-ga-section="navbar"
+                data-ga-label={page.nav.security}
+                className="ih-nav-link"
+              >
                 {page.nav.security}
               </a>
-              <a href="#contato" className="ih-nav-link">
+              <a
+                href="#contato"
+                data-ga-click="integration_hub_click_nav_contato"
+                data-ga-page="integration_hub"
+                data-ga-section="navbar"
+                data-ga-label={page.nav.contact}
+                className="ih-nav-link"
+              >
                 {page.nav.contact}
               </a>
             </nav>
@@ -1493,11 +1661,23 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 type="button"
                 onClick={() => window.location.assign(switchPath)}
                 aria-label={page.langSwitchAria}
+                data-ga-click="integration_hub_click_nav_mudar_idioma"
+                data-ga-page="integration_hub"
+                data-ga-section="navbar"
+                data-ga-label={page.langSwitchLabel}
                 className="rounded-full border border-border bg-white/80 px-4 py-2 text-xs font-semibold tracking-[0.18em] transition-colors hover:border-primary/35 hover:text-primary"
               >
                 {page.langSwitchLabel}
               </button>
-              <Button variant="hero" size="sm" asChild>
+              <Button
+                variant="hero"
+                size="sm"
+                asChild
+                data-ga-click="integration_hub_click_nav_cta"
+                data-ga-page="integration_hub"
+                data-ga-section="navbar"
+                data-ga-label={page.nav.cta}
+              >
                 <a href="#contato">
                   {page.nav.cta}
                   <ArrowRight className="h-4 w-4" />
@@ -1509,6 +1689,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               type="button"
               className="text-foreground lg:hidden"
               onClick={() => setMobileMenuOpen((value) => !value)}
+              data-ga-click="integration_hub_click_mobile_menu_toggle"
+              data-ga-page="integration_hub"
+              data-ga-section="navbar"
+              data-ga-label="Menu mobile"
             >
               {mobileMenuOpen ? (
                 <X className="h-6 w-6" />
@@ -1524,6 +1708,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <a
                   href="#recursos"
                   onClick={() => setMobileMenuOpen(false)}
+                  data-ga-click="integration_hub_click_mobile_nav_recursos"
+                  data-ga-page="integration_hub"
+                  data-ga-section="navbar"
+                  data-ga-label={page.nav.features}
                   className="ih-nav-link"
                 >
                   {page.nav.features}
@@ -1531,6 +1719,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <a
                   href="#diferenciais"
                   onClick={() => setMobileMenuOpen(false)}
+                  data-ga-click="integration_hub_click_mobile_nav_diferenciais"
+                  data-ga-page="integration_hub"
+                  data-ga-section="navbar"
+                  data-ga-label={page.nav.differentiators}
                   className="ih-nav-link"
                 >
                   {page.nav.differentiators}
@@ -1538,6 +1730,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <a
                   href="#seguranca"
                   onClick={() => setMobileMenuOpen(false)}
+                  data-ga-click="integration_hub_click_mobile_nav_seguranca"
+                  data-ga-page="integration_hub"
+                  data-ga-section="navbar"
+                  data-ga-label={page.nav.security}
                   className="ih-nav-link"
                 >
                   {page.nav.security}
@@ -1545,6 +1741,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <a
                   href="#contato"
                   onClick={() => setMobileMenuOpen(false)}
+                  data-ga-click="integration_hub_click_mobile_nav_contato"
+                  data-ga-page="integration_hub"
+                  data-ga-section="navbar"
+                  data-ga-label={page.nav.contact}
                   className="ih-nav-link"
                 >
                   {page.nav.contact}
@@ -1554,11 +1754,23 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                     type="button"
                     onClick={() => window.location.assign(switchPath)}
                     aria-label={page.langSwitchAria}
+                    data-ga-click="integration_hub_click_mobile_mudar_idioma"
+                    data-ga-page="integration_hub"
+                    data-ga-section="navbar"
+                    data-ga-label={page.langSwitchLabel}
                     className="rounded-full border border-border bg-white/80 px-4 py-2 text-xs font-semibold tracking-[0.18em] transition-colors hover:border-primary/35 hover:text-primary"
                   >
                     {page.langSwitchLabel}
                   </button>
-                  <Button variant="hero" className="flex-1" asChild>
+                  <Button
+                    variant="hero"
+                    className="flex-1"
+                    asChild
+                    data-ga-click="integration_hub_click_mobile_cta"
+                    data-ga-page="integration_hub"
+                    data-ga-section="navbar"
+                    data-ga-label={page.nav.cta}
+                  >
                     <a href="#contato" onClick={() => setMobileMenuOpen(false)}>
                       {page.nav.cta}
                       <ArrowRight className="h-4 w-4" />
@@ -1571,7 +1783,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </header>
 
-      <section className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28">
+      <section
+        id="hero"
+        className="relative overflow-hidden pt-28 pb-20 sm:pt-32 sm:pb-24 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28"
+      >
         <div className="ih-bg-gradient-glow absolute inset-0" />
         <div className="ih-grid-pattern absolute opacity-70" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
@@ -1597,13 +1812,29 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               className="ih-animate-slide-up mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row"
               style={{ animationDelay: "0.2s" }}
             >
-              <Button variant="hero" size="xl" asChild>
+              <Button
+                variant="hero"
+                size="xl"
+                asChild
+                data-ga-click="integration_hub_click_hero_contato"
+                data-ga-page="integration_hub"
+                data-ga-section="hero"
+                data-ga-label={page.hero.primaryCta}
+              >
                 <a href="#contato">
                   {page.hero.primaryCta}
                   <ArrowRight className="h-5 w-5" />
                 </a>
               </Button>
-              <Button variant="heroOutline" size="xl" asChild>
+              <Button
+                variant="heroOutline"
+                size="xl"
+                asChild
+                data-ga-click="integration_hub_click_hero_recursos"
+                data-ga-page="integration_hub"
+                data-ga-section="hero"
+                data-ga-label={page.hero.secondaryCta}
+              >
                 <a href="#recursos">{page.hero.secondaryCta}</a>
               </Button>
             </div>
@@ -1635,7 +1866,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section className="relative overflow-hidden py-24">
+      <section id="problema" className="relative overflow-hidden py-24">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-destructive/[0.03] to-background" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
@@ -1675,7 +1906,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-secondary/30 py-24">
+      <section
+        id="solucao"
+        className="relative overflow-hidden bg-secondary/30 py-24"
+      >
         <div className="ih-bg-gradient-glow absolute inset-0 opacity-40" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
@@ -1722,7 +1956,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
 
       {contactSection}
 
-      <section className="py-24">
+      <section id="publicos" className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <h2 className="ih-section-title mb-4">{page.audiences.title}</h2>
@@ -1763,6 +1997,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             <EmblaCarousel
               items={audienceExamples}
               slidesPerView="basis-[85%] sm:basis-[60%] md:basis-1/2 xl:basis-1/3"
+              prevClickEvent="integration_hub_click_publicos_carrossel_anterior"
+              nextClickEvent="integration_hub_click_publicos_carrossel_proximo"
               renderItem={(item) => (
                 <div className="ih-shell-soft ih-card-hover group h-full min-w-0 rounded-[24px] border border-border p-6">
                   <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
@@ -1779,7 +2015,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section className="bg-secondary/30 py-24">
+      <section id="integracao-unica" className="bg-secondary/30 py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/5 px-3 py-1">
@@ -1903,7 +2139,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section className="py-24">
+      <section id="historico-precos" className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="grid items-center gap-12 xl:grid-cols-2">
             <div>
@@ -2023,7 +2259,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-secondary/30 py-24">
+      <section
+        id="precificacao"
+        className="relative overflow-hidden bg-secondary/30 py-24"
+      >
         <div className="ih-bg-gradient-glow absolute inset-0 opacity-30" />
         <div className="container relative z-10 mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
@@ -2138,6 +2377,8 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
           <EmblaCarousel
             items={featureItems}
             slidesPerView="basis-[85%] sm:basis-[60%] md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+            prevClickEvent="integration_hub_click_recursos_carrossel_anterior"
+            nextClickEvent="integration_hub_click_recursos_carrossel_proximo"
             renderItem={(item) => (
               <div className="ih-shell-soft ih-card-hover group h-full min-w-0 rounded-[24px] border border-border p-6">
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
@@ -2182,7 +2423,7 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         </div>
       </section>
 
-      <section className="py-24">
+      <section id="beneficios-negocio" className="py-24">
         <div className="container mx-auto px-4 sm:px-6">
           <div className="mb-16 text-center">
             <h2 className="ih-section-title mb-4">
@@ -2254,9 +2495,9 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 <div className="mb-4 flex items-center gap-3">
                   <div className="rounded-2xl border border-white/60 bg-white/80 p-2">
                     <img
-                      src="/seo-share.png"
-                      alt="Integration Hub"
-                      className="h-10 w-10 rounded-xl object-cover"
+                      src={integrationHubLogo}
+                      alt="Incenti Tech"
+                      className="h-12 w-12 rounded-xl object-contain"
                     />
                   </div>
                   <div className="min-w-0 leading-tight">
@@ -2281,17 +2522,38 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 </h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li>
-                    <a href="#recursos" className="ih-footer-link">
+                    <a
+                      href="#recursos"
+                      data-ga-click="integration_hub_click_footer_recursos"
+                      data-ga-page="integration_hub"
+                      data-ga-section="footer"
+                      data-ga-label={page.nav.features}
+                      className="ih-footer-link"
+                    >
                       {page.nav.features}
                     </a>
                   </li>
                   <li>
-                    <a href="#diferenciais" className="ih-footer-link">
+                    <a
+                      href="#diferenciais"
+                      data-ga-click="integration_hub_click_footer_diferenciais"
+                      data-ga-page="integration_hub"
+                      data-ga-section="footer"
+                      data-ga-label={page.nav.differentiators}
+                      className="ih-footer-link"
+                    >
                       {page.nav.differentiators}
                     </a>
                   </li>
                   <li>
-                    <a href="#seguranca" className="ih-footer-link">
+                    <a
+                      href="#seguranca"
+                      data-ga-click="integration_hub_click_footer_seguranca"
+                      data-ga-page="integration_hub"
+                      data-ga-section="footer"
+                      data-ga-label={page.nav.security}
+                      className="ih-footer-link"
+                    >
                       {page.nav.security}
                     </a>
                   </li>
@@ -2303,13 +2565,24 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                 </h4>
                 <ul className="space-y-3 text-muted-foreground">
                   <li>
-                    <a href="#contato" className="ih-footer-link">
+                    <a
+                      href="#contato"
+                      data-ga-click="integration_hub_click_footer_contato"
+                      data-ga-page="integration_hub"
+                      data-ga-section="footer"
+                      data-ga-label={page.nav.contact}
+                      className="ih-footer-link"
+                    >
                       {page.nav.contact}
                     </a>
                   </li>
                   <li>
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
+                      data-ga-click="integration_hub_click_footer_email"
+                      data-ga-page="integration_hub"
+                      data-ga-section="footer"
+                      data-ga-label={CONTACT_EMAIL}
                       className="ih-footer-link block break-all sm:break-normal"
                     >
                       {CONTACT_EMAIL}
@@ -2320,6 +2593,10 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                       href={CONTACT_WHATSAPP_URL}
                       target="_blank"
                       rel="noreferrer"
+                      data-ga-click="integration_hub_click_footer_whatsapp"
+                      data-ga-page="integration_hub"
+                      data-ga-section="footer"
+                      data-ga-label={CONTACT_PHONE_DISPLAY}
                       className="ih-footer-link"
                     >
                       {CONTACT_PHONE_DISPLAY}

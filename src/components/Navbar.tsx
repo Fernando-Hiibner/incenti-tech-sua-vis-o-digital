@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-incenti-tech-branco.svg";
 import {
   localePaths,
   localeSwitchLabel,
@@ -17,6 +17,13 @@ const Navbar = ({ locale }: NavbarProps) => {
   const content = siteContent[locale].nav;
   const switchHref = locale === "pt-BR" ? localePaths.en : localePaths["pt-BR"];
   const navItems = content.items;
+  const navClickEvents: Record<string, string> = {
+    "#servicos": "home_click_nav_servicos",
+    "#vantagens": "home_click_nav_vantagens",
+    "#projetos": "home_click_nav_projetos",
+    "#tecnologias": "home_click_nav_tecnologias",
+    "#contato": "home_click_nav_contato",
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -38,18 +45,20 @@ const Navbar = ({ locale }: NavbarProps) => {
           <a
             href="#inicio"
             className="flex items-center gap-3"
+            data-ga-click="home_click_nav_logo"
+            data-ga-page="home"
+            data-ga-section="navbar"
+            data-ga-label="Logo"
             onClick={(event) => {
               event.preventDefault();
               handleClick("#inicio");
             }}
           >
-            <div
-              className={`rounded-2xl border border-white/10 bg-white/5 transition-all duration-300 ${scrolled ? "p-1.5" : "p-2"}`}
-            >
+            <div className="-my-3 transition-all duration-300">
               <img
                 src={logo}
                 alt="Incenti Tech"
-                className={`rounded-xl object-contain transition-all duration-300 ${scrolled ? "h-8 w-8" : "h-10 w-10"}`}
+                className={`object-contain transition-all duration-300 ${scrolled ? "h-20 w-20" : "h-28 w-28"}`}
               />
             </div>
             <div className="leading-tight">
@@ -64,6 +73,10 @@ const Navbar = ({ locale }: NavbarProps) => {
               <a
                 key={item.href}
                 href={item.href}
+                data-ga-click={navClickEvents[item.href]}
+                data-ga-page="home"
+                data-ga-section="navbar"
+                data-ga-label={item.label}
                 onClick={(event) => {
                   event.preventDefault();
                   handleClick(item.href);
@@ -79,6 +92,10 @@ const Navbar = ({ locale }: NavbarProps) => {
             <button
               type="button"
               onClick={() => window.location.assign(switchHref)}
+              data-ga-click="home_click_nav_mudar_idioma"
+              data-ga-page="home"
+              data-ga-section="navbar"
+              data-ga-label={localeSwitchLabel[locale]}
               className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold tracking-[0.18em] text-white transition-colors hover:border-primary/40 hover:text-primary md:px-4"
               aria-label={content.languageButtonAriaLabel}
             >
@@ -87,6 +104,10 @@ const Navbar = ({ locale }: NavbarProps) => {
             <button
               type="button"
               onClick={() => handleClick("#contato")}
+              data-ga-click="home_click_nav_cta_contato"
+              data-ga-page="home"
+              data-ga-section="navbar"
+              data-ga-label={content.contactButton}
               className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_24px_40px_-24px_rgba(207,63,71,0.9)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:px-5"
             >
               <span className="hidden sm:inline">{content.contactButton}</span>

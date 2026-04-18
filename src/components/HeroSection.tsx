@@ -45,6 +45,10 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#contato"
+              data-ga-click="home_click_hero_contato"
+              data-ga-page="home"
+              data-ga-section="hero"
+              data-ga-label={content.primaryCta}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_32px_48px_-28px_rgba(207,63,71,0.92)] transition-all hover:-translate-y-0.5 hover:bg-primary/90"
             >
               {content.primaryCta}
@@ -52,6 +56,10 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
             </a>
             <a
               href="#servicos"
+              data-ga-click="home_click_hero_servicos"
+              data-ga-page="home"
+              data-ga-section="hero"
+              data-ga-label={content.secondaryCta}
               className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-medium text-white transition-colors hover:bg-white/10"
             >
               {content.secondaryCta}

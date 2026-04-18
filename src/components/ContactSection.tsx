@@ -15,6 +15,7 @@ import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_WHATSAPP_URL,
 } from "@/lib/contact";
+import { trackAnalyticsEvent } from "@/lib/analytics";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
@@ -27,10 +28,24 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [messageLength, setMessageLength] = useState(0);
+  const hasTrackedFormStartRef = useRef(false);
   const lastSubmitRef = useRef(0);
   const maxMessageLength = 3000;
   const content = siteContent[locale].contact;
   const valueProps = content.valueProps;
+
+  const trackFormStart = () => {
+    if (hasTrackedFormStartRef.current) {
+      return;
+    }
+
+    hasTrackedFormStartRef.current = true;
+    trackAnalyticsEvent("home_form_inicio_preenchimento", {
+      page: "home",
+      section: "contato",
+      label: "Formulario Home",
+    });
+  };
 
   const validate = (data: Record<string, string>) => {
     const nextErrors: Record<string, string> = {};
@@ -68,6 +83,11 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
       return;
     }
     lastSubmitRef.current = now;
+    trackAnalyticsEvent("home_form_fim_preenchimento", {
+      page: "home",
+      section: "contato",
+      label: "Formulario Home",
+    });
 
     setStatus("loading");
     setErrors({});
@@ -174,6 +194,10 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 <button
                   type="button"
                   onClick={() => setStatus("idle")}
+                  data-ga-click="home_click_form_enviar_novamente"
+                  data-ga-page="home"
+                  data-ga-section="contato"
+                  data-ga-label={content.sendAnother}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
                 >
                   {content.sendAnother}
@@ -181,7 +205,11 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="relative space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                onFocusCapture={trackFormStart}
+                className="relative space-y-5"
+              >
                 <div className="grid gap-5 lg:grid-cols-2">
                   <div>
                     <label className="home-form-label">
@@ -298,6 +326,10 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 <button
                   type="submit"
                   disabled={status === "loading"}
+                  data-ga-click="home_click_form_enviar"
+                  data-ga-page="home"
+                  data-ga-section="contato"
+                  data-ga-label={content.submitIdle}
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-[0_32px_48px_-28px_rgba(207,63,71,0.92)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {status === "loading" ? (
@@ -321,6 +353,10 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
           <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
+              data-ga-click="home_click_contato_email"
+              data-ga-page="home"
+              data-ga-section="contato"
+              data-ga-label={CONTACT_EMAIL}
               className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
             >
               <Mail className="h-4 w-4 text-primary" />
@@ -330,6 +366,10 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               href={CONTACT_WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
+              data-ga-click="home_click_contato_whatsapp"
+              data-ga-page="home"
+              data-ga-section="contato"
+              data-ga-label={CONTACT_PHONE_DISPLAY}
               className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
               aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
             >

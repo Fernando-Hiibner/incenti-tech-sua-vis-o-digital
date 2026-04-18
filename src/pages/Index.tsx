@@ -8,6 +8,10 @@ import TechSection from "@/components/TechSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import SeoHead from "@/components/SeoHead";
+import {
+  registerAnalyticsClickTracking,
+  registerSectionViewTracking,
+} from "@/lib/analytics";
 import { getHomeStructuredData, homeSeo } from "@/lib/seo";
 import type { Locale } from "@/lib/siteContent";
 
@@ -21,6 +25,53 @@ const Index = ({ locale }: IndexProps) => {
   useEffect(() => {
     document.documentElement.lang = locale;
   }, [locale]);
+
+  useEffect(() => {
+    const removeClickTracking = registerAnalyticsClickTracking();
+    const removeSectionTracking = registerSectionViewTracking([
+      {
+        id: "inicio",
+        eventName: "home_scroll_inicio",
+        label: "Inicio",
+        page: "home",
+      },
+      {
+        id: "servicos",
+        eventName: "home_scroll_servicos",
+        label: "Servicos",
+        page: "home",
+      },
+      {
+        id: "vantagens",
+        eventName: "home_scroll_vantagens",
+        label: "Vantagens",
+        page: "home",
+      },
+      {
+        id: "projetos",
+        eventName: "home_scroll_projetos",
+        label: "Projetos",
+        page: "home",
+      },
+      {
+        id: "tecnologias",
+        eventName: "home_scroll_tecnologias",
+        label: "Tecnologias",
+        page: "home",
+      },
+      {
+        id: "contato",
+        eventName: "home_scroll_contato",
+        label: "Contato",
+        page: "home",
+      },
+    ]);
+
+    return () => {
+      removeClickTracking();
+      removeSectionTracking();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen">

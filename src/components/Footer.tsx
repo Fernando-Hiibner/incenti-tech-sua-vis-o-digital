@@ -1,4 +1,4 @@
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-incenti-tech-branco.svg";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -13,6 +13,13 @@ type FooterProps = {
 const Footer = ({ locale }: FooterProps) => {
   const content = siteContent[locale].footer;
   const links = content.links;
+  const footerClickEvents: Record<string, string> = {
+    "#servicos": "home_click_footer_servicos",
+    "#vantagens": "home_click_footer_vantagens",
+    "#projetos": "home_click_footer_projetos",
+    "#tecnologias": "home_click_footer_tecnologias",
+    "#contato": "home_click_footer_contato",
+  };
 
   return (
     <footer className="border-t border-white/8 bg-[#040713] px-4 py-14 sm:px-6">
@@ -24,7 +31,7 @@ const Footer = ({ locale }: FooterProps) => {
                 <img
                   src={logo}
                   alt="Incenti Tech"
-                  className="h-10 w-10 rounded-xl object-contain"
+                  className="h-12 w-12 rounded-xl object-contain"
                 />
               </div>
               <div className="min-w-0">
@@ -48,6 +55,10 @@ const Footer = ({ locale }: FooterProps) => {
                   <a
                     key={link.href}
                     href={link.href}
+                    data-ga-click={footerClickEvents[link.href]}
+                    data-ga-page="home"
+                    data-ga-section="footer"
+                    data-ga-label={link.label}
                     className="home-footer-link"
                   >
                     {link.label}
@@ -63,6 +74,10 @@ const Footer = ({ locale }: FooterProps) => {
                 <p>63.404.846/0001-07</p>
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
+                  data-ga-click="home_click_footer_email"
+                  data-ga-page="home"
+                  data-ga-section="footer"
+                  data-ga-label={CONTACT_EMAIL}
                   className="home-footer-link break-all sm:break-normal"
                 >
                   {CONTACT_EMAIL}
@@ -71,6 +86,10 @@ const Footer = ({ locale }: FooterProps) => {
                   href={CONTACT_WHATSAPP_URL}
                   target="_blank"
                   rel="noreferrer"
+                  data-ga-click="home_click_footer_whatsapp"
+                  data-ga-page="home"
+                  data-ga-section="footer"
+                  data-ga-label={CONTACT_PHONE_DISPLAY}
                   className="home-footer-link"
                 >
                   {CONTACT_PHONE_DISPLAY}
