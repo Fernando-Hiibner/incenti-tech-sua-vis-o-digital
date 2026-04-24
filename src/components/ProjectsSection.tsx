@@ -15,7 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { caseStudies, type CaseStudy } from "@/lib/cases";
+import { caseStudiesByLocale, type CaseStudy } from "@/lib/cases";
 import { siteContent, type Locale } from "@/lib/siteContent";
 import { cn } from "@/lib/utils";
 
@@ -23,10 +23,15 @@ type ProjectsSectionProps = {
   locale: Locale;
 };
 
-const caseStats = [
-  "+ DE 100 ENTREGAS",
-  "+ DE 6 ANOS DE EXPERIÊNCIA",
-] as const;
+const caseStats: Record<Locale, string[]> = {
+  "pt-BR": ["+ DE 100 ENTREGAS", "+ DE 6 ANOS DE EXPERIÊNCIA"],
+  en: ["+100 DELIVERIES", "+6 YEARS OF EXPERIENCE"],
+};
+
+const caseLabels: Record<Locale, { viewMore: string }> = {
+  "pt-BR": { viewMore: "Ver mais" },
+  en: { viewMore: "Learn more" },
+};
 
 const renderInlineMarkdown = (text: string) =>
   text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((part, index) => {
@@ -102,7 +107,13 @@ const renderCaseText = (text: string) => {
   });
 };
 
-const CaseCard = ({ caseStudy }: { caseStudy: CaseStudy }) => (
+const CaseCard = ({
+  caseStudy,
+  viewMoreLabel,
+}: {
+  caseStudy: CaseStudy;
+  viewMoreLabel: string;
+}) => (
   <Dialog>
     <article
       className={cn(
@@ -146,7 +157,7 @@ const CaseCard = ({ caseStudy }: { caseStudy: CaseStudy }) => (
           type="button"
           className="mt-8 inline-flex w-fit items-center justify-center gap-2 rounded-full bg-[hsl(var(--brand-red))] px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_18px_38px_-28px_rgba(176,7,20,0.7)] transition-all hover:-translate-y-0.5 hover:bg-[hsl(var(--brand-red)/0.9)]"
         >
-          Ver mais
+          {viewMoreLabel}
           <ArrowRight className="h-4 w-4" />
         </button>
       </DialogTrigger>
@@ -209,6 +220,8 @@ const StatCard = ({ label }: { label: string }) => (
 
 const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
   const content = siteContent[locale].projects;
+  const caseStudies = caseStudiesByLocale[locale];
+  const labels = caseLabels[locale];
 
   return (
     <section id="projetos" className="section-padding">
@@ -239,10 +252,13 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                   key={caseStudy.slug}
                   className="pl-5 md:basis-1/2 xl:basis-1/3"
                 >
-                  <CaseCard caseStudy={caseStudy} />
+                  <CaseCard
+                    caseStudy={caseStudy}
+                    viewMoreLabel={labels.viewMore}
+                  />
                 </CarouselItem>
               ))}
-              {caseStats.map((stat) => (
+              {caseStats[locale].map((stat) => (
                 <CarouselItem
                   key={stat}
                   className="pl-5 md:basis-1/2 xl:basis-1/3"

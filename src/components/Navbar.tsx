@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import LanguageSwitchButton from "@/components/LanguageSwitchButton";
 import logo from "@/assets/logo-incenti-tech.svg";
 import {
   localePaths,
@@ -91,18 +92,15 @@ const Navbar = ({ locale }: NavbarProps) => {
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              type="button"
+            <LanguageSwitchButton
+              currentLocale={locale}
               onClick={() => window.location.assign(switchHref)}
               data-ga-click="home_click_nav_mudar_idioma"
               data-ga-page="home"
               data-ga-section="navbar"
               data-ga-label={localeSwitchLabel[locale]}
-              className="rounded-full border border-border bg-secondary/70 px-3 py-2 text-[11px] font-semibold tracking-normal text-foreground transition-colors hover:border-primary/40 hover:text-primary md:px-4"
               aria-label={content.languageButtonAriaLabel}
-            >
-              {localeSwitchLabel[locale]}
-            </button>
+            />
             <button
               type="button"
               onClick={() => handleClick("#contato")}

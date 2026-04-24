@@ -94,7 +94,7 @@ const Index = ({ locale }: IndexProps) => {
       <TechSection locale={locale} />
       <ContactSection locale={locale} />
       <Footer locale={locale} />
-      <FloatingWhatsAppButton />
+      <FloatingWhatsAppButton locale={locale} />
     </div>
   );
 };

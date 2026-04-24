@@ -7,7 +7,7 @@ export const localePaths: Record<Locale, string> = {
 
 export const localeSwitchLabel: Record<Locale, string> = {
   "pt-BR": "EN",
-  en: "PT-BR",
+  en: "BR",
 };
 
 export const siteContent = {

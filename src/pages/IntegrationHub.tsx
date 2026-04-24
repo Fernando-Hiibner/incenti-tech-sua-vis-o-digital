@@ -45,6 +45,7 @@ import {
   Zap,
 } from "lucide-react";
 import integrationHubLogo from "@/assets/logo-incenti-tech.svg";
+import LanguageSwitchButton from "@/components/LanguageSwitchButton";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
 import {
@@ -504,7 +505,7 @@ const content = {
         "integration hub, marketplace integration, incentive programs, retailers, incentitech, product catalog, enterprise integration",
       ogLocale: "en_US",
     },
-    langSwitchLabel: "PT-BR",
+    langSwitchLabel: "BR",
     langSwitchAria: "Switch language to Portuguese",
     nav: {
       features: "Features",
@@ -1476,7 +1477,11 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
               data-ga-section="contato"
               data-ga-label={CONTACT_PHONE_DISPLAY}
               className="ih-contact-link ih-shell-soft flex flex-1 items-center justify-center gap-3 rounded-[24px] border border-border px-5 py-4 text-center transition-colors hover:text-foreground"
-              aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
+              aria-label={
+                locale === "pt-BR"
+                  ? `Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`
+                  : `Talk to Incenti Tech on WhatsApp at ${CONTACT_PHONE_DISPLAY}`
+              }
             >
               <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
               <span>{CONTACT_PHONE_DISPLAY}</span>
@@ -1665,18 +1670,16 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
             </nav>
 
             <div className="hidden items-center gap-3 lg:flex">
-              <button
-                type="button"
+              <LanguageSwitchButton
+                currentLocale={locale}
                 onClick={() => window.location.assign(switchPath)}
                 aria-label={page.langSwitchAria}
                 data-ga-click="integration_hub_click_nav_mudar_idioma"
                 data-ga-page="integration_hub"
                 data-ga-section="navbar"
                 data-ga-label={page.langSwitchLabel}
-                className="rounded-full border border-border bg-white/80 px-4 py-2 text-xs font-semibold tracking-[0.18em] transition-colors hover:border-primary/35 hover:text-primary"
-              >
-                {page.langSwitchLabel}
-              </button>
+                className="bg-white/80 px-4 text-xs hover:border-primary/35 hover:text-primary"
+              />
               <Button
                 variant="hero"
                 size="sm"
@@ -1758,18 +1761,16 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
                   {page.nav.contact}
                 </a>
                 <div className="mt-2 flex items-center gap-3">
-                  <button
-                    type="button"
+                  <LanguageSwitchButton
+                    currentLocale={locale}
                     onClick={() => window.location.assign(switchPath)}
                     aria-label={page.langSwitchAria}
                     data-ga-click="integration_hub_click_mobile_mudar_idioma"
                     data-ga-page="integration_hub"
                     data-ga-section="navbar"
                     data-ga-label={page.langSwitchLabel}
-                    className="rounded-full border border-border bg-white/80 px-4 py-2 text-xs font-semibold tracking-[0.18em] transition-colors hover:border-primary/35 hover:text-primary"
-                  >
-                    {page.langSwitchLabel}
-                  </button>
+                    className="bg-white/80 px-4 text-xs hover:border-primary/35 hover:text-primary"
+                  />
                   <Button
                     variant="hero"
                     className="flex-1"
