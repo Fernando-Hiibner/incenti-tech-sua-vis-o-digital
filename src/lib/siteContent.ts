@@ -44,41 +44,79 @@ export const siteContent = {
         },
       ],
     },
-    services: {
-      eyebrow: "Serviços",
-      title: "O que fazemos de melhor",
+    pain: {
+      eyebrow: "Desafios operacionais",
+      title: "Quando o produto cresce, a operação não pode ficar no escuro",
       description:
-        "Soluções completas de software para empresas que precisam de tecnologia confiável e resultados concretos.",
+        "Muitas empresas chegam em um ponto em que o software funciona, mas já não entrega clareza, velocidade ou segurança para evoluir. É nesse momento que problemas técnicos começam a virar custo operacional.",
+      items: [
+        {
+          title: "Baixa visibilidade operacional",
+          description:
+            "Indicadores espalhados, processos sem rastreio e dificuldade para entender gargalos reais do produto.",
+        },
+        {
+          title: "Débito técnico acumulado",
+          description:
+            "Código difícil de evoluir, dependências antigas e mudanças simples que passam a exigir esforço desproporcional.",
+        },
+        {
+          title: "Integrações instáveis",
+          description:
+            "APIs, ERPs, pagamentos e marketplaces falhando em pontos críticos da jornada e gerando retrabalho.",
+        },
+        {
+          title: "Operação dependente de esforço manual",
+          description:
+            "Times compensando limitações do sistema com planilhas, conferências manuais e processos paralelos.",
+        },
+        {
+          title: "Crescimento travado por legado",
+          description:
+            "Sistemas importantes para o faturamento que precisam continuar vivos, mas impedem novas entregas.",
+        },
+        {
+          title: "Risco técnico sem dono claro",
+          description:
+            "Falhas recorrentes, correções urgentes e decisões técnicas tomadas sem uma visão estruturada de continuidade.",
+        },
+      ],
+    },
+    services: {
+      eyebrow: "Soluções",
+      title: "Como resolvemos esses problemas",
+      description:
+        "Entramos para dar estrutura técnica ao produto, reduzir riscos da operação e criar caminhos reais para evolução contínua.",
       supportItems: [
-        "Arquitetura sob medida",
-        "Integração e legado",
-        "Sustentação com continuidade",
+        "Mais visibilidade para decisão",
+        "Menos fricção técnica",
+        "Integrações com continuidade",
       ],
       items: [
         {
-          title: "Desenvolvimento Web sob Medida",
+          title: "Produto sob medida para a operação",
           description:
-            "Criamos sistemas web completos, pensados para as necessidades específicas do seu negócio. Do planejamento à entrega, cada linha de código é feita para resolver o seu problema.",
+            "Criamos sistemas web alinhados ao fluxo real do negócio, com telas, regras e automações que reduzem trabalho manual e aumentam a visibilidade da operação.",
         },
         {
-          title: "Manutenção de Sistemas",
+          title: "Estabilização e manutenção contínua",
           description:
-            "Mantemos seus sistemas funcionando com estabilidade, segurança e performance. Atualizações, correções e melhorias contínuas para garantir operação sem interrupções.",
+            "Organizamos correções, atualizações, monitoramento e melhorias para reduzir falhas recorrentes e manter sistemas críticos funcionando com previsibilidade.",
         },
         {
-          title: "Integrações entre Plataformas",
+          title: "Integrações confiáveis entre plataformas",
           description:
-            "Conectamos seus sistemas a meios de pagamento, marketplaces, ERPs e APIs de terceiros. Integrações robustas que automatizam processos e eliminam retrabalho.",
+            "Conectamos pagamentos, marketplaces, ERPs e APIs com tratamento de erros, sincronização consistente e automações que eliminam retrabalho entre áreas.",
         },
         {
-          title: "Modernização de Software Legado",
+          title: "Modernização gradual do legado",
           description:
-            "Transformamos sistemas antigos em soluções modernas, sem perder dados ou funcionalidades. Migração segura para tecnologias atuais com ganho real de performance.",
+            "Evoluímos sistemas antigos por etapas, preservando dados e regras críticas enquanto removemos gargalos técnicos que impedem novas entregas.",
         },
         {
-          title: "Sustentação de Software Legado",
+          title: "Sustentação técnica com visão de produto",
           description:
-            "Mantemos sistemas legados críticos em pleno funcionamento. Monitoramento, correções e evoluções contínuas para garantir a continuidade de operações de alto faturamento.",
+            "Assumimos a continuidade de sistemas legados de alto impacto, priorizando riscos, performance e evolução sem interromper a operação que já gera receita.",
         },
       ],
     },
@@ -279,41 +317,79 @@ export const siteContent = {
         },
       ],
     },
-    services: {
-      eyebrow: "Services",
-      title: "What we do best",
+    pain: {
+      eyebrow: "Operational challenges",
+      title: "As the product grows, operations cannot stay in the dark",
       description:
-        "Complete software solutions for companies that need reliable technology and measurable results.",
+        "Many companies reach a point where the software still works, but no longer provides clarity, speed, or confidence to evolve. That is when technical issues start becoming operational cost.",
+      items: [
+        {
+          title: "Low operational visibility",
+          description:
+            "Scattered metrics, untracked processes, and limited clarity around the real bottlenecks in the product.",
+        },
+        {
+          title: "Accumulated technical debt",
+          description:
+            "Code that is hard to evolve, outdated dependencies, and simple changes that start requiring disproportionate effort.",
+        },
+        {
+          title: "Unstable integrations",
+          description:
+            "APIs, ERPs, payments, and marketplaces failing at critical points in the journey and creating rework.",
+        },
+        {
+          title: "Operations dependent on manual effort",
+          description:
+            "Teams compensating for system limitations with spreadsheets, manual checks, and parallel processes.",
+        },
+        {
+          title: "Growth blocked by legacy systems",
+          description:
+            "Revenue-critical systems that must remain active but make new delivery slower and riskier.",
+        },
+        {
+          title: "Technical risk without clear ownership",
+          description:
+            "Recurring failures, urgent fixes, and technical decisions made without a structured continuity view.",
+        },
+      ],
+    },
+    services: {
+      eyebrow: "Solutions",
+      title: "How we solve these problems",
+      description:
+        "We bring technical structure to the product, reduce operational risk, and create practical paths for continuous evolution.",
       supportItems: [
-        "Tailored architecture",
-        "Integration and legacy",
-        "Continuity and support",
+        "More visibility for decisions",
+        "Less technical friction",
+        "Integrations with continuity",
       ],
       items: [
         {
-          title: "Custom Web Development",
+          title: "Product built around the operation",
           description:
-            "We build complete web systems designed around your business needs. From planning to delivery, every line of code is made to solve your specific problem.",
+            "We build web systems aligned with the real business flow, with screens, rules, and automations that reduce manual work and improve operational visibility.",
         },
         {
-          title: "System Maintenance",
+          title: "Stabilization and ongoing maintenance",
           description:
-            "We keep your systems running with stability, security, and performance. Updates, fixes, and continuous improvements ensure uninterrupted operation.",
+            "We organize fixes, updates, monitoring, and improvements to reduce recurring failures and keep critical systems running predictably.",
         },
         {
-          title: "Platform Integrations",
+          title: "Reliable platform integrations",
           description:
-            "We connect your systems to payment providers, marketplaces, ERPs, and third-party APIs. Solid integrations that automate processes and eliminate rework.",
+            "We connect payments, marketplaces, ERPs, and APIs with error handling, consistent synchronization, and automations that eliminate cross-team rework.",
         },
         {
-          title: "Legacy Software Modernization",
+          title: "Gradual legacy modernization",
           description:
-            "We transform outdated systems into modern solutions without losing data or functionality. Safe migrations to current technologies with real performance gains.",
+            "We evolve older systems in stages, preserving critical data and business rules while removing technical bottlenecks that block new delivery.",
         },
         {
-          title: "Legacy Software Support",
+          title: "Technical support with product perspective",
           description:
-            "We keep mission-critical legacy systems fully operational. Monitoring, fixes, and continuous improvements protect revenue-generating operations.",
+            "We take care of high-impact legacy systems by prioritizing risk, performance, and evolution without interrupting the operation that already generates revenue.",
         },
       ],
     },

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
+import PainSection from "@/components/PainSection";
 import ServicesSection from "@/components/ServicesSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import TechSection from "@/components/TechSection";
@@ -33,6 +34,12 @@ const Index = ({ locale }: IndexProps) => {
         id: "inicio",
         eventName: "home_scroll_inicio",
         label: "Inicio",
+        page: "home",
+      },
+      {
+        id: "desafios",
+        eventName: "home_scroll_desafios",
+        label: "Desafios",
         page: "home",
       },
       {
@@ -81,6 +88,7 @@ const Index = ({ locale }: IndexProps) => {
       />
       <Navbar locale={locale} />
       <HeroSection locale={locale} />
+      <PainSection locale={locale} />
       <ServicesSection locale={locale} />
       <ProjectsSection locale={locale} />
       <TechSection locale={locale} />
