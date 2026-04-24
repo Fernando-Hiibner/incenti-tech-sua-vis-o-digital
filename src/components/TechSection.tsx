@@ -5,62 +5,104 @@ type TechSectionProps = {
   locale: Locale;
 };
 
+const techIconSlugs: Record<string, string> = {
+  "C#": "dotnet",
+  ".NET 10": "dotnet",
+  "ASP.NET": "dotnet",
+  PHP: "php",
+  Python: "python",
+  "REST APIs": "openapiinitiative",
+  "SOAP/WSDL": "semanticweb",
+  Blazor: "blazor",
+  JavaScript: "javascript",
+  React: "react",
+  Vue: "vuedotjs",
+  jQuery: "jquery",
+  "ASP.NET Web Forms": "dotnet",
+  "SQL e NoSQL": "postgresql",
+  "SQL and NoSQL": "postgresql",
+  Redis: "redis",
+  Docker: "docker",
+  AWS: "amazonwebservices",
+  Azure: "microsoftazure",
+};
+
+const getInitials = (name: string) =>
+  name
+    .replace(/[.#]/g, "")
+    .split(/[\s/-]+/)
+    .filter(Boolean)
+    .map((part) => part[0])
+    .join("")
+    .slice(0, 4)
+    .toUpperCase();
+
+const getIconUrl = (name: string) => {
+  const slug = techIconSlugs[name];
+  if (!slug) return null;
+  return `https://cdn.simpleicons.org/${slug}/141A2A`;
+};
+
 const TechSection = ({ locale }: TechSectionProps) => {
   const content = siteContent[locale].tech;
-  const groupedItems = content.items.reduce<Record<string, string[]>>(
-    (acc, item) => {
-      if (!acc[item.category]) acc[item.category] = [];
-      acc[item.category].push(item.name);
-      return acc;
-    },
-    {},
-  );
+  const carouselItems = [...content.items, ...content.items];
 
   return (
-    <section id="tecnologias" className="section-padding bg-secondary/20">
+    <section
+      id="tecnologias"
+      className="bg-secondary/20 px-4 py-6 sm:px-6 md:py-8 lg:px-8"
+    >
       <div className="container mx-auto">
-        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            className="lg:pr-8 xl:pr-10"
-          >
-            <p className="home-kicker">{content.eyebrow}</p>
-            <h2 className="home-section-title">{content.title}</h2>
-            <p className="home-section-copy">{content.description}</p>
-          </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          className="mx-auto text-center"
+        >
+          <p className="home-kicker">{content.eyebrow}</p>
+          <h2 className="sr-only">
+            {content.title}
+          </h2>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            className="home-shell p-7 md:p-8"
-          >
-            <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {Object.entries(groupedItems).map(([category, items]) => (
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          className="tech-carousel mt-4"
+          aria-label={content.title}
+        >
+          <div className="tech-carousel-track">
+            {carouselItems.map((item, index) => {
+              const iconUrl = getIconUrl(item.name);
+
+              return (
                 <div
-                  key={category}
-                  className="min-w-0 rounded-[18px] border border-border bg-secondary/45 p-5"
+                  key={`${item.name}-${index}`}
+                  className="tech-carousel-item"
+                  aria-hidden={index >= content.items.length}
+                  title={item.name}
+                  aria-label={item.name}
                 >
-                  <p className="min-w-0 break-words text-[0.72rem] font-semibold uppercase tracking-normal text-primary">
-                    {category}
-                  </p>
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {items.map((name) => (
-                      <span
-                        key={name}
-                        className="home-chip max-w-full break-words px-4 py-2 text-center text-[0.92rem] text-foreground"
-                      >
-                        {name}
-                      </span>
-                    ))}
+                  <div className="tech-carousel-icon">
+                    <span>{getInitials(item.name)}</span>
+                    {iconUrl && (
+                      <img
+                        src={iconUrl}
+                        alt=""
+                        loading="lazy"
+                        className="h-8 w-8 object-contain"
+                        onError={(event) => {
+                          event.currentTarget.style.display = "none";
+                        }}
+                      />
+                    )}
                   </div>
                 </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+              );
+            })}
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -16,8 +16,8 @@ export const siteContent = {
       items: [
         { href: "#servicos", label: "Serviços" },
         { href: "#projetos", label: "Projetos" },
-        { href: "#contato", label: "Contato" },
         { href: "#tecnologias", label: "Stack" },
+        { href: "#contato", label: "Contato" },
       ],
       contactButton: "Fale com um especialista",
       contactButtonCompact: "Especialista",
@@ -248,8 +248,8 @@ export const siteContent = {
       items: [
         { href: "#servicos", label: "Services" },
         { href: "#projetos", label: "Projects" },
-        { href: "#contato", label: "Contact" },
         { href: "#tecnologias", label: "Stack" },
+        { href: "#contato", label: "Contact" },
       ],
       contactButton: "Talk to a specialist",
       contactButtonCompact: "Specialist",

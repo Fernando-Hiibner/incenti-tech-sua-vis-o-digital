@@ -13,7 +13,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 22% 14%;
 
-    --primary: 215 18% 34%;
+    --primary: 224 35% 12%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 18% 92%;
@@ -22,7 +22,7 @@
     --muted: 220 16% 90%;
     --muted-foreground: 216 12% 43%;
 
-    --accent: 215 18% 34%;
+    --accent: 224 35% 12%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 48%;
@@ -30,7 +30,7 @@
 
     --border: 220 14% 84%;
     --input: 220 14% 84%;
-    --ring: 215 18% 34%;
+    --ring: 224 35% 12%;
 
     --radius: 0.5rem;
 
@@ -45,17 +45,17 @@
       hsl(0, 0%, 100%) 0%,
       hsl(220, 20%, 98%) 100%
     );
-    --glow-primary: 0 18px 54px hsl(215, 18%, 34%, 0.12);
-    --glow-accent: 0 20px 64px hsl(215, 18%, 34%, 0.08);
+    --glow-primary: 0 18px 54px hsl(224, 35%, 12%, 0.12);
+    --glow-accent: 0 20px 64px hsl(224, 35%, 12%, 0.08);
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 22% 14%;
-    --sidebar-primary: 215 18% 34%;
+    --sidebar-primary: 224 35% 12%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 18% 92%;
     --sidebar-accent-foreground: 222 22% 14%;
     --sidebar-border: 220 14% 84%;
-    --sidebar-ring: 215 18% 34%;
+    --sidebar-ring: 224 35% 12%;
   }
 }
 
@@ -87,7 +87,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-slate-600;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-slate-800;
   }
 
   .section-padding {
@@ -262,6 +262,76 @@
     background: hsl(0 0% 100%);
   }
 
+  .tech-carousel {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    padding-block: 0.25rem;
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
+
+  .tech-carousel-track {
+    display: flex;
+    width: max-content;
+    gap: 0.875rem;
+    animation: tech-carousel-scroll 52s linear infinite;
+    will-change: transform;
+  }
+
+  .tech-carousel:hover .tech-carousel-track {
+    animation-play-state: paused;
+  }
+
+  .tech-carousel-item {
+    display: flex;
+    width: 4.75rem;
+    min-width: 4.75rem;
+    height: 4.75rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1.125rem;
+    background: linear-gradient(
+      180deg,
+      hsl(0 0% 100%) 0%,
+      hsl(220 20% 98%) 100%
+    );
+    box-shadow: 0 14px 36px -32px rgba(20, 26, 42, 0.28);
+    padding: 0.625rem;
+    text-align: center;
+  }
+
+  .tech-carousel-icon {
+    position: relative;
+    display: grid;
+    width: 3rem;
+    height: 3rem;
+    place-items: center;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1rem;
+    background: hsl(var(--secondary) / 0.72);
+    color: hsl(var(--primary));
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .tech-carousel-icon img {
+    position: absolute;
+  }
+
   .home-floating-orb {
     position: absolute;
     border-radius: 999px;
@@ -275,7 +345,7 @@
     top: 7rem;
     width: 20rem;
     height: 20rem;
-    background: rgba(214, 67, 74, 0.36);
+    background: rgba(20, 26, 42, 0.24);
   }
 
   .home-floating-orb.orb-b {
@@ -305,5 +375,28 @@
 
   50% {
     transform: translate3d(0, -16px, 0) scale(1.03);
+  }
+}
+
+@keyframes tech-carousel-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(calc(-50% - 0.5rem), 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-carousel-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: auto;
+    justify-content: center;
+  }
+
+  .tech-carousel [aria-hidden="true"] {
+    display: none;
   }
 }
