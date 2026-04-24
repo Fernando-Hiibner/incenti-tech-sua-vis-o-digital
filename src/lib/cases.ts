@@ -18,7 +18,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "confidencial",
     company: "Empresa Confidencial",
-    product: "Produto Confidencial",
+    product: "Catálogo de Prêmios",
     technologies: ["C#", "ASP.NET Web Forms"],
     duration: "2021 – atual",
     featured: true,
@@ -26,7 +26,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Atuação contínua em desenvolvimento, evolução, integrações críticas e sustentação de um marketplace de incentivo altamente customizável.",
     fullText: `Empresa Confidencial
-Produto Confidencial (2021 – atual)
+Catálogo de Prêmios (2021 – atual)
 Tecnologias C# ASP.NET Web Forms
 
 Desde 2021, atuamos de forma contínua no desenvolvimento, evolução e sustentação de um produto no modelo marketplace de incentivo (catálogo de prêmios) para uma empresa cujo nome não pode ser divulgado por questões contratuais. Ao longo desse período, nossa atuação foi estratégica e abrangente, envolvendo desde a implementação de novas funcionalidades até melhorias estruturais profundas na plataforma.

@@ -227,12 +227,6 @@ export const siteContent = {
       title: "Vamos entender sua necessidade e preparar um orçamento",
       description:
         "Preencha o formulário abaixo com o contexto do projeto. Nossa equipe entrará em contato em até 24 horas para entender cenário, prioridades e próximos passos para uma proposta.",
-      estimateHighlight: {
-        eyebrow: "Primeiro passo para o orçamento",
-        title: "Entendimento antes de preço",
-        description:
-          "Usamos esse contato para levantar necessidade, riscos, integrações e escopo inicial. Com isso, conseguimos formular um orçamento mais aderente ao que precisa ser criado, evoluído ou estabilizado.",
-      },
       successTitle: "Informações recebidas!",
       successDescription:
         "Vamos analisar o contexto e retornar com os próximos passos para entendimento e orçamento.",
@@ -512,12 +506,6 @@ export const siteContent = {
       title: "Let's understand your need and prepare an estimate",
       description:
         "Fill out the form below with your project context. Our team will get in touch within 24 hours to understand the scenario, priorities, and next steps for a proposal.",
-      estimateHighlight: {
-        eyebrow: "First step toward an estimate",
-        title: "Understanding before pricing",
-        description:
-          "We use this contact to map needs, risks, integrations, and the initial scope. That helps us prepare an estimate that fits what needs to be created, evolved, or stabilized.",
-      },
       successTitle: "Information received!",
       successDescription:
         "We will review the context and get back with the next steps for discovery and estimate.",

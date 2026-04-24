@@ -23,6 +23,11 @@ type ProjectsSectionProps = {
   locale: Locale;
 };
 
+const caseStats = [
+  "+ DE 100 ENTREGAS",
+  "+ DE 6 ANOS DE EXPERIÊNCIA",
+] as const;
+
 const renderInlineMarkdown = (text: string) =>
   text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((part, index) => {
     if (part.startsWith("**") && part.endsWith("**")) {
@@ -124,7 +129,7 @@ const CaseCard = ({ caseStudy }: { caseStudy: CaseStudy }) => (
       <div className="mt-6 grid gap-3 text-sm text-muted-foreground">
         <div className="flex items-center gap-2">
           <Code2 className="h-4 w-4 text-primary" />
-          <span>{caseStudy.technologies.join(" · ")}</span>
+          <span>{caseStudy.technologies.join(" / ")}</span>
         </div>
         <div className="flex items-center gap-2">
           <CalendarDays className="h-4 w-4 text-primary" />
@@ -151,10 +156,10 @@ const CaseCard = ({ caseStudy }: { caseStudy: CaseStudy }) => (
       <div className="border-b border-border bg-muted/30 px-6 py-6 md:px-8">
         <DialogHeader>
           <DialogTitle className="font-heading text-2xl leading-tight text-foreground md:text-3xl">
-            {caseStudy.company} · {caseStudy.product}
+            {caseStudy.company} / {caseStudy.product}
           </DialogTitle>
           <DialogDescription className="text-base">
-            {caseStudy.duration} · {caseStudy.technologies.join(" · ")}
+            {caseStudy.duration} / {caseStudy.technologies.join(" / ")}
           </DialogDescription>
         </DialogHeader>
       </div>
@@ -191,6 +196,17 @@ const CaseCard = ({ caseStudy }: { caseStudy: CaseStudy }) => (
   </Dialog>
 );
 
+const StatCard = ({ label }: { label: string }) => (
+  <article
+    aria-disabled="true"
+    className="glass-card flex min-h-[31rem] select-none items-center justify-center border-dashed border-border/90 bg-muted/35 p-8 text-center opacity-75 grayscale"
+  >
+    <p className="max-w-xs break-words font-heading text-[2.3rem] font-semibold uppercase leading-none tracking-normal text-primary/70 md:text-[2.75rem]">
+      {label}
+    </p>
+  </article>
+);
+
 const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
   const content = siteContent[locale].projects;
 
@@ -224,6 +240,14 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                   className="pl-5 md:basis-1/2 xl:basis-1/3"
                 >
                   <CaseCard caseStudy={caseStudy} />
+                </CarouselItem>
+              ))}
+              {caseStats.map((stat) => (
+                <CarouselItem
+                  key={stat}
+                  className="pl-5 md:basis-1/2 xl:basis-1/3"
+                >
+                  <StatCard label={stat} />
                 </CarouselItem>
               ))}
             </CarouselContent>

@@ -172,18 +172,6 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
             viewport={{ once: true, amount: 0.2 }}
             className="home-shell mt-10 p-7 md:p-9"
           >
-            <div className="mb-7 border-l-2 border-[hsl(var(--brand-red)/0.55)] pl-5">
-              <p className="text-sm font-semibold uppercase tracking-normal text-[hsl(var(--brand-red))]">
-                {content.estimateHighlight.eyebrow}
-              </p>
-              <h3 className="mt-2 font-heading text-xl font-semibold text-foreground">
-                {content.estimateHighlight.title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                {content.estimateHighlight.description}
-              </p>
-            </div>
-
             {status === "success" ? (
               <div className="py-10 text-center">
                 <CheckCircle className="mx-auto mb-4 h-14 w-14 text-primary" />
