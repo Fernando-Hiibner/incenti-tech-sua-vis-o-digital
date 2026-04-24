@@ -5,10 +5,8 @@ import {
   ArrowRight,
   CheckCircle,
   Loader2,
-  Mail,
   Send,
 } from "lucide-react";
-import { CONTACT_EMAIL } from "@/lib/contact";
 import {
   trackAnalyticsEvent,
   trackGoogleAdsConversion,
@@ -174,6 +172,18 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
             viewport={{ once: true, amount: 0.2 }}
             className="home-shell mt-10 p-7 md:p-9"
           >
+            <div className="mb-7 border-l-2 border-[hsl(var(--brand-red)/0.55)] pl-5">
+              <p className="text-sm font-semibold uppercase tracking-normal text-[hsl(var(--brand-red))]">
+                {content.estimateHighlight.eyebrow}
+              </p>
+              <h3 className="mt-2 font-heading text-xl font-semibold text-foreground">
+                {content.estimateHighlight.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                {content.estimateHighlight.description}
+              </p>
+            </div>
+
             {status === "success" ? (
               <div className="py-10 text-center">
                 <CheckCircle className="mx-auto mb-4 h-14 w-14 text-primary" />
@@ -339,20 +349,6 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               </form>
             )}
           </motion.div>
-
-          <div className="mt-8 flex justify-center">
-            <a
-              href={`mailto:${CONTACT_EMAIL}`}
-              data-ga-click="home_click_contato_email"
-              data-ga-page="home"
-              data-ga-section="contato"
-              data-ga-label={CONTACT_EMAIL}
-              className="home-contact-link home-shell-soft flex w-full max-w-xl items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-primary"
-            >
-              <Mail className="h-4 w-4 text-primary" />
-              <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
-            </a>
-          </div>
         </div>
       </div>
     </section>

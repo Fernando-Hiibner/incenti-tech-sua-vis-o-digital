@@ -1,26 +1,195 @@
 import { motion } from "framer-motion";
+import { ArrowRight, BadgeCheck, CalendarDays, Code2 } from "lucide-react";
 import {
-  CreditCard,
-  Globe,
-  MessageCircle,
-  Phone,
-  Server,
-  ShoppingBag,
-} from "lucide-react";
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { caseStudies, type CaseStudy } from "@/lib/cases";
 import { siteContent, type Locale } from "@/lib/siteContent";
-
-const projectIcons = [
-  CreditCard,
-  ShoppingBag,
-  Phone,
-  MessageCircle,
-  Server,
-  Globe,
-];
+import { cn } from "@/lib/utils";
 
 type ProjectsSectionProps = {
   locale: Locale;
 };
+
+const renderInlineMarkdown = (text: string) =>
+  text.split(/(\*\*[^*]+\*\*|\*[^*]+\*)/g).map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index}>{part.slice(2, -2)}</strong>;
+    }
+
+    if (part.startsWith("*") && part.endsWith("*")) {
+      return <em key={index}>{part.slice(1, -1)}</em>;
+    }
+
+    return part;
+  });
+
+const isBulletLine = (line: string) =>
+  line.startsWith("* ") || Boolean(line.match(/^\s+\S/));
+
+const renderCaseText = (text: string) => {
+  const blocks = text.split(/\n\s*\n/g);
+
+  return blocks.map((block, blockIndex) => {
+    const lines = block.split("\n").filter((line) => line.length > 0);
+
+    if (blockIndex === 0) {
+      return (
+        <div key={blockIndex} className="space-y-1">
+          {lines[0] && (
+            <h3 className="font-heading text-2xl font-semibold text-foreground">
+              {renderInlineMarkdown(lines[0])}
+            </h3>
+          )}
+          {lines.slice(1).map((line) => (
+            <p key={line} className="text-base italic text-muted-foreground">
+              {renderInlineMarkdown(line)}
+            </p>
+          ))}
+        </div>
+      );
+    }
+
+    if (lines.every(isBulletLine)) {
+      return (
+        <ul
+          key={blockIndex}
+          className="space-y-2 border-l-2 border-[hsl(var(--brand-red)/0.28)] pl-5"
+        >
+          {lines.map((line) => (
+            <li key={line} className="leading-7 text-muted-foreground">
+              {renderInlineMarkdown(line.replace(/^\*\s+/, "").trim())}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+
+    if (lines.length === 1 && !/[.!?]$/.test(lines[0])) {
+      return (
+        <p key={blockIndex} className="font-semibold text-foreground">
+          {renderInlineMarkdown(lines[0])}
+        </p>
+      );
+    }
+
+    return (
+      <div key={blockIndex} className="space-y-4">
+        {lines.map((line) => (
+          <p key={line} className="leading-8 text-muted-foreground">
+            {renderInlineMarkdown(line)}
+          </p>
+        ))}
+      </div>
+    );
+  });
+};
+
+const CaseCard = ({ caseStudy }: { caseStudy: CaseStudy }) => (
+  <Dialog>
+    <article
+      className={cn(
+        "glass-card flex min-h-[31rem] flex-col p-7 md:p-8",
+        caseStudy.featured &&
+          "border-[hsl(var(--brand-red)/0.36)] shadow-[0_30px_70px_-48px_rgba(176,7,20,0.55)]",
+      )}
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="home-kicker">{caseStudy.company}</p>
+          <h3 className="mt-4 font-heading text-[1.75rem] font-semibold leading-[1.04] tracking-normal text-foreground">
+            {caseStudy.product}
+          </h3>
+        </div>
+        {caseStudy.featured && (
+          <span className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[hsl(var(--brand-red)/0.09)] px-3 py-1.5 text-xs font-semibold text-[hsl(var(--brand-red))]">
+            <BadgeCheck className="h-3.5 w-3.5" />
+            {caseStudy.featuredLabel}
+          </span>
+        )}
+      </div>
+
+      <div className="mt-6 grid gap-3 text-sm text-muted-foreground">
+        <div className="flex items-center gap-2">
+          <Code2 className="h-4 w-4 text-primary" />
+          <span>{caseStudy.technologies.join(" · ")}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <CalendarDays className="h-4 w-4 text-primary" />
+          <span>{caseStudy.duration}</span>
+        </div>
+      </div>
+
+      <p className="mt-6 flex-1 text-[0.98rem] leading-7 text-muted-foreground">
+        {caseStudy.summary}
+      </p>
+
+      <DialogTrigger asChild>
+        <button
+          type="button"
+          className="mt-8 inline-flex w-fit items-center justify-center gap-2 rounded-full bg-[hsl(var(--brand-red))] px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_18px_38px_-28px_rgba(176,7,20,0.7)] transition-all hover:-translate-y-0.5 hover:bg-[hsl(var(--brand-red)/0.9)]"
+        >
+          Ver mais
+          <ArrowRight className="h-4 w-4" />
+        </button>
+      </DialogTrigger>
+    </article>
+
+    <DialogContent className="max-h-[88vh] max-w-5xl overflow-y-auto rounded-[1.75rem] p-0">
+      <div className="border-b border-border bg-muted/30 px-6 py-6 md:px-8">
+        <DialogHeader>
+          <DialogTitle className="font-heading text-2xl leading-tight text-foreground md:text-3xl">
+            {caseStudy.company} · {caseStudy.product}
+          </DialogTitle>
+          <DialogDescription className="text-base">
+            {caseStudy.duration} · {caseStudy.technologies.join(" · ")}
+          </DialogDescription>
+        </DialogHeader>
+      </div>
+
+      <div className="space-y-8 px-6 py-7 md:px-8">
+        {caseStudy.images && caseStudy.images.length > 0 && (
+          <div className="grid gap-4">
+            <img
+              src={caseStudy.images[0].src}
+              alt={caseStudy.images[0].alt}
+              className="aspect-video w-full rounded-2xl border border-border object-cover"
+            />
+            {caseStudy.images.length > 1 && (
+              <div className="grid gap-4 sm:grid-cols-2">
+                {caseStudy.images.slice(1).map((image) => (
+                  <img
+                    key={image.src}
+                    src={image.src}
+                    alt={image.alt}
+                    className="aspect-video w-full rounded-2xl border border-border object-cover"
+                    loading="lazy"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="space-y-6 text-base">
+          {renderCaseText(caseStudy.fullText)}
+        </div>
+      </div>
+    </DialogContent>
+  </Dialog>
+);
 
 const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
   const content = siteContent[locale].projects;
@@ -32,46 +201,36 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.25 }}
-          className="mb-14 max-w-3xl"
+          className="mb-12 max-w-3xl"
         >
           <p className="home-kicker">{content.eyebrow}</p>
           <h2 className="home-section-title max-w-3xl">{content.title}</h2>
           <p className="home-section-copy max-w-2xl">{content.description}</p>
         </motion.div>
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {content.items.map((item, index) => {
-            const Icon = projectIcons[index];
-            const isFeatured = index === 0 || index === 2 || index === 4;
-
-            return (
-              <motion.article
-                key={item.title}
-                initial={{ opacity: 0, y: 26 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ delay: index * 0.06 }}
-                className={`glass-card min-w-0 p-7 md:col-span-2 md:p-8 ${isFeatured ? "xl:col-span-2" : "xl:col-span-1"}`}
-              >
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                </div>
-                <h3
-                  className={`mt-6 break-words font-heading font-semibold leading-[1.02] tracking-normal text-foreground ${isFeatured ? "text-[1.95rem] md:text-[2.25rem]" : "text-[1.45rem] md:text-[1.7rem]"}`}
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            className="mx-auto max-w-[calc(100vw-2rem)]"
+          >
+            <CarouselContent className="-ml-5">
+              {caseStudies.map((caseStudy) => (
+                <CarouselItem
+                  key={caseStudy.slug}
+                  className="pl-5 md:basis-1/2 xl:basis-1/3"
                 >
-                  {item.title}
-                </h3>
-                <p
-                  className={`mt-4 break-words leading-7 text-muted-foreground ${isFeatured ? "max-w-2xl text-[0.98rem] md:text-[1.05rem]" : "text-[0.95rem] md:text-base"}`}
-                >
-                  {item.description}
-                </p>
-              </motion.article>
-            );
-          })}
-        </div>
+                  <CaseCard caseStudy={caseStudy} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-0 top-[calc(100%+1.25rem)] border-border bg-white text-primary hover:bg-muted md:-left-4 md:top-1/2" />
+            <CarouselNext className="left-12 top-[calc(100%+1.25rem)] border-border bg-white text-primary hover:bg-muted md:-right-4 md:left-auto md:top-1/2" />
+          </Carousel>
+        </motion.div>
       </div>
     </section>
   );

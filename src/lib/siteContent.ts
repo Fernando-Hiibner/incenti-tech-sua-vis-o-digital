@@ -92,6 +92,11 @@ export const siteContent = {
         "Menos fricção técnica",
         "Integrações com continuidade",
       ],
+      creationHighlight: {
+        title: "Criamos do zero, evoluímos o que já existe",
+        description:
+          "Atuamos desde a concepção de novos produtos digitais até a modernização e sustentação de sistemas críticos. A ideia não é só manter o software vivo, é transformar tecnologia em uma base melhor para crescer.",
+      },
       items: [
         {
           title: "Produto sob medida para a operação",
@@ -155,9 +160,9 @@ export const siteContent = {
     },
     projects: {
       eyebrow: "Experiência Comprovada",
-      title: "Projetos que já realizamos",
+      title: "Cases reais de produto e operação",
       description:
-        "Ao longo dos anos, entregamos soluções complexas para empresas de diversos segmentos. Confira algumas das nossas áreas de atuação.",
+        "Alguns projetos em que atuamos criando, evoluindo e sustentando produtos digitais com impacto direto na operação dos clientes.",
       items: [
         {
           title: "Integração com Sistemas de Pagamento",
@@ -219,11 +224,18 @@ export const siteContent = {
     },
     contact: {
       eyebrow: "Contato",
-      title: "Vamos conversar sobre o seu projeto",
+      title: "Vamos entender sua necessidade e preparar um orçamento",
       description:
-        "Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas, para entender suas necessidades.",
-      successTitle: "Mensagem enviada!",
-      successDescription: "Retornaremos o mais breve possível.",
+        "Preencha o formulário abaixo com o contexto do projeto. Nossa equipe entrará em contato em até 24 horas para entender cenário, prioridades e próximos passos para uma proposta.",
+      estimateHighlight: {
+        eyebrow: "Primeiro passo para o orçamento",
+        title: "Entendimento antes de preço",
+        description:
+          "Usamos esse contato para levantar necessidade, riscos, integrações e escopo inicial. Com isso, conseguimos formular um orçamento mais aderente ao que precisa ser criado, evoluído ou estabilizado.",
+      },
+      successTitle: "Informações recebidas!",
+      successDescription:
+        "Vamos analisar o contexto e retornar com os próximos passos para entendimento e orçamento.",
       sendAnother: "Enviar outra mensagem",
       valueProps: [
         "Resposta inicial em até 24 horas úteis.",
@@ -243,7 +255,7 @@ export const siteContent = {
         messagePlaceholder: "Conte-nos sobre seu projeto...",
         honeypotLabel: "Site",
       },
-      submitIdle: "Enviar mensagem",
+      submitIdle: "Solicite orçamento gratuito",
       submitLoading: "Enviando...",
       genericSubmitError: "Erro ao enviar. Tente novamente.",
       validation: {
@@ -365,6 +377,11 @@ export const siteContent = {
         "Less technical friction",
         "Integrations with continuity",
       ],
+      creationHighlight: {
+        title: "We create from scratch and evolve what already exists",
+        description:
+          "We work from the conception of new digital products to the modernization and support of critical systems. The point is not just keeping software alive, but turning technology into a stronger base for growth.",
+      },
       items: [
         {
           title: "Product built around the operation",
@@ -428,9 +445,9 @@ export const siteContent = {
     },
     projects: {
       eyebrow: "Proven Experience",
-      title: "Projects we have delivered",
+      title: "Real product and operations cases",
       description:
-        "Over the years, we have delivered complex solutions for companies across different industries. Here are some of our areas of expertise.",
+        "Selected projects where we created, evolved, and supported digital products with direct impact on client operations.",
       items: [
         {
           title: "Payment System Integration",
@@ -492,11 +509,18 @@ export const siteContent = {
     },
     contact: {
       eyebrow: "Contact",
-      title: "Let's talk about your project",
+      title: "Let's understand your need and prepare an estimate",
       description:
-        "Fill out the form below and our team will get in touch within 24 hours to understand your needs.",
-      successTitle: "Message sent!",
-      successDescription: "We will get back to you as soon as possible.",
+        "Fill out the form below with your project context. Our team will get in touch within 24 hours to understand the scenario, priorities, and next steps for a proposal.",
+      estimateHighlight: {
+        eyebrow: "First step toward an estimate",
+        title: "Understanding before pricing",
+        description:
+          "We use this contact to map needs, risks, integrations, and the initial scope. That helps us prepare an estimate that fits what needs to be created, evolved, or stabilized.",
+      },
+      successTitle: "Information received!",
+      successDescription:
+        "We will review the context and get back with the next steps for discovery and estimate.",
       sendAnother: "Send another message",
       valueProps: [
         "Initial response within 24 business hours.",
@@ -516,7 +540,7 @@ export const siteContent = {
         messagePlaceholder: "Tell us about your project...",
         honeypotLabel: "Website",
       },
-      submitIdle: "Send message",
+      submitIdle: "Request a free estimate",
       submitLoading: "Sending...",
       genericSubmitError: "Unable to send. Please try again.",
       validation: {

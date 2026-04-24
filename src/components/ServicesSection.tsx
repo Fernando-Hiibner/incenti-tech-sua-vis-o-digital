@@ -3,6 +3,7 @@ import {
   Code2,
   Link2,
   RefreshCw,
+  Rocket,
   ShieldCheck,
   Wrench,
 } from "lucide-react";
@@ -40,6 +41,18 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                   {item}
                 </span>
               ))}
+            </div>
+
+            <div className="home-shell-soft mt-8 border-[hsl(var(--brand-red)/0.22)] p-6">
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[hsl(var(--brand-red)/0.09)] text-[hsl(var(--brand-red))]">
+                <Rocket className="h-5 w-5" />
+              </div>
+              <h3 className="home-card-title mt-5 text-[1.15rem]">
+                {content.creationHighlight.title}
+              </h3>
+              <p className="home-card-copy mt-3 text-[0.95rem]">
+                {content.creationHighlight.description}
+              </p>
             </div>
           </motion.div>
 
