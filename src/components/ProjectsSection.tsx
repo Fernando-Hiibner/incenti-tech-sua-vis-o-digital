@@ -59,7 +59,7 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
                   </div>
                 </div>
                 <h3
-                  className={`mt-6 break-words font-heading font-semibold leading-[1.02] tracking-[-0.045em] text-white ${isFeatured ? "text-[1.95rem] md:text-[2.25rem]" : "text-[1.45rem] md:text-[1.7rem]"}`}
+                  className={`mt-6 break-words font-heading font-semibold leading-[1.02] tracking-normal text-foreground ${isFeatured ? "text-[1.95rem] md:text-[2.25rem]" : "text-[1.45rem] md:text-[1.7rem]"}`}
                 >
                   {item.title}
                 </h3>

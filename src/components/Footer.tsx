@@ -1,4 +1,4 @@
-import logo from "@/assets/logo-incenti-tech-branco.svg";
+import logo from "@/assets/logo-incenti-tech.svg";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE_DISPLAY,
@@ -22,7 +22,7 @@ const Footer = ({ locale }: FooterProps) => {
   };
 
   return (
-    <footer className="border-t border-white/8 bg-[#040713] px-4 py-14 sm:px-6">
+    <footer className="border-t border-border bg-secondary/45 px-4 py-14 sm:px-6">
       <div className="container mx-auto">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="min-w-0">
@@ -35,7 +35,7 @@ const Footer = ({ locale }: FooterProps) => {
                 />
               </div>
               <div className="min-w-0">
-                <p className="break-words font-heading text-2xl font-semibold tracking-[-0.04em] text-white">
+                <p className="break-words font-heading text-2xl font-semibold tracking-normal text-foreground">
                   <span className="text-primary">Incenti</span> Tech
                 </p>
               </div>
@@ -47,7 +47,7 @@ const Footer = ({ locale }: FooterProps) => {
 
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="min-w-0">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-normal text-muted-foreground">
                 {content.navigationLabel}
               </p>
               <div className="space-y-3">
@@ -67,7 +67,7 @@ const Footer = ({ locale }: FooterProps) => {
               </div>
             </div>
             <div className="min-w-0">
-              <p className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/40">
+              <p className="mb-4 text-[11px] font-semibold uppercase tracking-normal text-muted-foreground">
                 Incenti Tech
               </p>
               <div className="space-y-3 text-sm text-muted-foreground">
@@ -99,7 +99,7 @@ const Footer = ({ locale }: FooterProps) => {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col gap-3 border-t border-white/8 pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p>
             &copy; {new Date().getFullYear()} Incenti Tech. {content.rights}
           </p>

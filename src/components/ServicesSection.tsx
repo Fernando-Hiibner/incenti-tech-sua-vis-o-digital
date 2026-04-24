@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import {
-  Bot,
   Code2,
   Link2,
   RefreshCw,
@@ -9,7 +8,7 @@ import {
 } from "lucide-react";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
-const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck, Bot];
+const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck];
 
 type ServicesSectionProps = {
   locale: Locale;
@@ -56,7 +55,7 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
               return (
                 <article
                   key={service.title}
-                  className={`grid min-w-0 gap-5 border-white/8 py-7 lg:grid-cols-[auto_220px_minmax(0,1fr)] lg:gap-6 ${index !== 0 ? "border-t" : ""} ${index === 0 ? "pt-0" : ""} ${index === content.items.length - 1 ? "pb-0" : ""}`}
+                  className={`grid min-w-0 gap-5 border-border py-7 lg:grid-cols-[auto_220px_minmax(0,1fr)] lg:gap-6 ${index !== 0 ? "border-t" : ""} ${index === 0 ? "pt-0" : ""} ${index === content.items.length - 1 ? "pb-0" : ""}`}
                 >
                   <div className="flex items-center">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/12 text-primary">

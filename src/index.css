@@ -4,58 +4,58 @@
 
 @layer base {
   :root {
-    --background: 228 96% 4%;
-    --foreground: 210 40% 96%;
+    --background: 220 20% 97%;
+    --foreground: 222 22% 14%;
 
-    --card: 228 80% 6%;
-    --card-foreground: 210 40% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 22% 14%;
 
-    --popover: 228 80% 6%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 22% 14%;
 
-    --primary: 0 73% 40%;
+    --primary: 215 18% 34%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 228 60% 12%;
-    --secondary-foreground: 210 40% 96%;
+    --secondary: 220 18% 92%;
+    --secondary-foreground: 222 22% 14%;
 
-    --muted: 228 40% 14%;
-    --muted-foreground: 215 20% 60%;
+    --muted: 220 16% 90%;
+    --muted-foreground: 216 12% 43%;
 
-    --accent: 0 73% 40%;
+    --accent: 215 18% 34%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 228 30% 16%;
-    --input: 228 30% 16%;
-    --ring: 0 73% 40%;
+    --border: 220 14% 84%;
+    --input: 220 14% 84%;
+    --ring: 215 18% 34%;
 
     --radius: 0.5rem;
 
     --hero-gradient: linear-gradient(
-      135deg,
-      hsl(228, 96%, 4%) 0%,
-      hsl(228, 60%, 8%) 50%,
-      hsl(0, 73%, 12%) 100%
+      180deg,
+      hsl(220, 24%, 98%) 0%,
+      hsl(220, 20%, 96%) 56%,
+      hsl(220, 18%, 93%) 100%
     );
     --card-gradient: linear-gradient(
       180deg,
-      hsl(228, 60%, 8%) 0%,
-      hsl(228, 80%, 6%) 100%
+      hsl(0, 0%, 100%) 0%,
+      hsl(220, 20%, 98%) 100%
     );
-    --glow-primary: 0 0 60px hsl(0, 73%, 40%, 0.15);
-    --glow-accent: 0 0 80px hsl(0, 73%, 40%, 0.1);
+    --glow-primary: 0 18px 54px hsl(215, 18%, 34%, 0.12);
+    --glow-accent: 0 20px 64px hsl(215, 18%, 34%, 0.08);
 
-    --sidebar-background: 228 80% 6%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 0 73% 40%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 22% 14%;
+    --sidebar-primary: 215 18% 34%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 228 60% 12%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 228 30% 16%;
-    --sidebar-ring: 0 73% 40%;
+    --sidebar-accent: 220 18% 92%;
+    --sidebar-accent-foreground: 222 22% 14%;
+    --sidebar-border: 220 14% 84%;
+    --sidebar-ring: 215 18% 34%;
   }
 }
 
@@ -87,7 +87,7 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-red-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-slate-600;
   }
 
   .section-padding {
@@ -95,24 +95,24 @@
   }
 
   .glass-card {
-    border: 1px solid hsl(0 0% 100% / 0.08);
-    border-radius: 1.75rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1.25rem;
     min-width: 0;
     background: linear-gradient(
       180deg,
-      rgba(13, 18, 35, 0.92) 0%,
-      rgba(7, 11, 22, 0.95) 100%
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(248, 250, 252, 0.98) 100%
     );
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 40px 90px -72px rgba(0, 0, 0, 0.9);
+      inset 0 1px 0 rgba(255, 255, 255, 0.85),
+      0 24px 60px -44px rgba(15, 23, 42, 0.22);
   }
 
   .home-grid {
     inset: -42%;
     background-image:
-      linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+      linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
     background-size: 58px 58px;
     transform: rotate(45deg) scale(1.02);
     transform-origin: center;
@@ -124,66 +124,56 @@
     color: hsl(var(--primary));
     font-size: 0.72rem;
     font-weight: 600;
-    letter-spacing: 0.18em;
+    letter-spacing: 0;
     text-transform: uppercase;
   }
 
   .home-nav-shell {
-    border: 1px solid hsl(0 0% 100% / 0.1);
+    border: 1px solid hsl(var(--border));
     background: linear-gradient(
       180deg,
-      rgba(10, 14, 26, 0.9) 0%,
-      rgba(6, 9, 18, 0.86) 100%
+      rgba(255, 255, 255, 0.94) 0%,
+      rgba(248, 250, 252, 0.9) 100%
     );
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 24px 60px -40px rgba(0, 0, 0, 0.78);
+      inset 0 1px 0 rgba(255, 255, 255, 0.86),
+      0 18px 48px -34px rgba(15, 23, 42, 0.26);
     backdrop-filter: blur(18px);
   }
 
   .home-shell {
-    border: 1px solid hsl(0 0% 100% / 0.08);
-    border-radius: 2rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1.25rem;
     min-width: 0;
-    background:
-      radial-gradient(
-        circle at top right,
-        rgba(214, 67, 74, 0.18),
-        transparent 18rem
-      ),
-      linear-gradient(
-        180deg,
-        rgba(13, 18, 35, 0.98) 0%,
-        rgba(7, 11, 22, 0.98) 100%
-      );
+    background: var(--card-gradient);
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.05),
-      0 48px 120px -76px rgba(0, 0, 0, 0.9);
+      inset 0 1px 0 rgba(255, 255, 255, 0.88),
+      0 28px 72px -50px rgba(15, 23, 42, 0.26);
   }
 
   .home-shell-soft {
-    border: 1px solid hsl(0 0% 100% / 0.08);
-    border-radius: 1.75rem;
+    border: 1px solid hsl(var(--border));
+    border-radius: 1.25rem;
     min-width: 0;
     background: linear-gradient(
       180deg,
-      rgba(11, 16, 30, 0.94) 0%,
-      rgba(7, 11, 22, 0.94) 100%
+      rgba(255, 255, 255, 0.96) 0%,
+      rgba(248, 250, 252, 0.96) 100%
     );
     box-shadow:
-      inset 0 1px 0 rgba(255, 255, 255, 0.04),
-      0 32px 80px -64px rgba(0, 0, 0, 0.82);
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 20px 56px -42px rgba(15, 23, 42, 0.22);
   }
 
   .home-chip {
-    border: 1px solid hsl(0 0% 100% / 0.1);
+    border: 1px solid hsl(var(--border));
     border-radius: 999px;
     display: inline-flex;
     max-width: 100%;
     min-width: 0;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 255, 255, 0.04);
+    background: hsl(var(--secondary) / 0.72);
     color: hsl(var(--muted-foreground));
     text-align: center;
     text-transform: none;
@@ -211,7 +201,7 @@
   }
 
   .home-hero-title {
-    @apply mt-7 max-w-4xl font-heading text-[2.85rem] font-semibold leading-[0.92] tracking-[-0.065em] text-white sm:text-[4rem] md:text-[5rem] xl:text-[5.85rem];
+    @apply mt-7 max-w-4xl font-heading text-[2.85rem] font-semibold leading-[0.92] tracking-normal text-foreground sm:text-[4rem] md:text-[5rem] xl:text-[5.85rem];
   }
 
   .home-hero-copy {
@@ -219,7 +209,7 @@
   }
 
   .home-section-title {
-    @apply mt-5 max-w-lg font-heading text-[2rem] font-semibold leading-[1.02] tracking-[-0.055em] text-white sm:text-[2.5rem] lg:text-[3.1rem];
+    @apply mt-5 max-w-lg font-heading text-[2rem] font-semibold leading-[1.02] tracking-normal text-foreground sm:text-[2.5rem] lg:text-[3.1rem];
   }
 
   .home-section-copy {
@@ -227,7 +217,7 @@
   }
 
   .home-card-title {
-    @apply break-words font-heading text-[1.32rem] font-semibold leading-[1.06] tracking-[-0.04em] text-white md:text-[1.5rem];
+    @apply break-words font-heading text-[1.32rem] font-semibold leading-[1.06] tracking-normal text-foreground md:text-[1.5rem];
   }
 
   .home-card-copy {
@@ -235,25 +225,25 @@
   }
 
   .home-nav-link {
-    @apply rounded-full px-4 py-2 text-[0.95rem] font-medium tracking-[0.01em] text-white/70 transition-colors hover:bg-white/5 hover:text-white;
+    @apply rounded-full px-4 py-2 text-[0.95rem] font-medium tracking-normal text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground;
   }
 
   .home-footer-link {
-    @apply block text-[0.95rem] font-medium tracking-[0.01em] text-muted-foreground transition-colors hover:text-white;
+    @apply block text-[0.95rem] font-medium tracking-normal text-muted-foreground transition-colors hover:text-primary;
   }
 
   .home-contact-link {
-    @apply text-[0.95rem] font-medium tracking-[0.01em];
+    @apply text-[0.95rem] font-medium tracking-normal;
   }
 
   .home-form-label {
-    @apply mb-2 block text-[0.82rem] font-semibold tracking-[0.01em] text-white;
+    @apply mb-2 block text-[0.82rem] font-semibold tracking-normal text-foreground;
   }
 
   .home-input {
-    border: 1px solid hsl(0 0% 100% / 0.08);
-    border-radius: 1.25rem;
-    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid hsl(var(--input));
+    border-radius: 0.875rem;
+    background: hsl(0 0% 100%);
     color: hsl(var(--foreground));
     transition:
       border-color 180ms ease,
@@ -269,7 +259,7 @@
     outline: none;
     border-color: hsl(var(--primary) / 0.55);
     box-shadow: 0 0 0 3px hsl(var(--primary) / 0.12);
-    background: rgba(255, 255, 255, 0.06);
+    background: hsl(0 0% 100%);
   }
 
   .home-floating-orb {

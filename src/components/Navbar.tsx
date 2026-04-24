@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import logo from "@/assets/logo-incenti-tech-branco.svg";
+import logo from "@/assets/logo-incenti-tech.svg";
 import {
   localePaths,
   localeSwitchLabel,
@@ -63,7 +63,7 @@ const Navbar = ({ locale }: NavbarProps) => {
             </div>
             <div className="leading-tight">
               <p
-                className={`font-heading font-semibold tracking-[-0.04em] text-white transition-all duration-300 ${scrolled ? "text-lg md:text-xl" : "text-base md:text-lg"}`}
+                className={`font-heading font-semibold tracking-normal text-foreground transition-all duration-300 ${scrolled ? "text-lg md:text-xl" : "text-base md:text-lg"}`}
               >
                 <span className="text-primary">Incenti</span> Tech
               </p>
@@ -98,7 +98,7 @@ const Navbar = ({ locale }: NavbarProps) => {
               data-ga-page="home"
               data-ga-section="navbar"
               data-ga-label={localeSwitchLabel[locale]}
-              className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] font-semibold tracking-[0.18em] text-white transition-colors hover:border-primary/40 hover:text-primary md:px-4"
+              className="rounded-full border border-border bg-secondary/70 px-3 py-2 text-[11px] font-semibold tracking-normal text-foreground transition-colors hover:border-primary/40 hover:text-primary md:px-4"
               aria-label={content.languageButtonAriaLabel}
             >
               {localeSwitchLabel[locale]}
@@ -110,7 +110,7 @@ const Navbar = ({ locale }: NavbarProps) => {
               data-ga-page="home"
               data-ga-section="navbar"
               data-ga-label={content.contactButton}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground shadow-[0_24px_40px_-24px_rgba(207,63,71,0.9)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 md:px-5"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-[0_20px_38px_-28px_rgba(15,23,42,0.65)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 sm:text-sm md:px-5"
             >
               <span className="hidden sm:inline">{content.contactButton}</span>
               <span className="sm:hidden">{content.contactButtonCompact}</span>

@@ -9,12 +9,7 @@ import {
   Send,
   ShieldCheck,
 } from "lucide-react";
-import WhatsAppIcon from "@/components/WhatsAppIcon";
-import {
-  CONTACT_EMAIL,
-  CONTACT_PHONE_DISPLAY,
-  CONTACT_WHATSAPP_URL,
-} from "@/lib/contact";
+import { CONTACT_EMAIL } from "@/lib/contact";
 import {
   trackAnalyticsEvent,
   trackGoogleAdsConversion,
@@ -195,7 +190,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
             {status === "success" ? (
               <div className="py-10 text-center">
                 <CheckCircle className="mx-auto mb-4 h-14 w-14 text-primary" />
-                <h3 className="font-heading text-2xl font-semibold text-white">
+                <h3 className="font-heading text-2xl font-semibold text-foreground">
                   {content.successTitle}
                 </h3>
                 <p className="mt-3 text-muted-foreground">
@@ -340,7 +335,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                   data-ga-page="home"
                   data-ga-section="contato"
                   data-ga-label={content.submitIdle}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-[0_32px_48px_-28px_rgba(207,63,71,0.92)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-primary px-6 py-4 text-base font-semibold text-primary-foreground shadow-[0_24px_48px_-30px_rgba(15,23,42,0.68)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {status === "loading" ? (
                     <>
@@ -360,31 +355,17 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
         </div>
 
         <div className="mt-8 flex justify-center">
-          <div className="flex w-full max-w-3xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
+          <div className="flex w-full max-w-xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               data-ga-click="home_click_contato_email"
               data-ga-page="home"
               data-ga-section="contato"
               data-ga-label={CONTACT_EMAIL}
-              className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
+              className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-primary"
             >
               <Mail className="h-4 w-4 text-primary" />
               <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
-            </a>
-            <a
-              href={CONTACT_WHATSAPP_URL}
-              target="_blank"
-              rel="noreferrer"
-              data-ga-click="home_click_contato_whatsapp"
-              data-ga-page="home"
-              data-ga-section="contato"
-              data-ga-label={CONTACT_PHONE_DISPLAY}
-              className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-white"
-              aria-label={`Conversar no WhatsApp com a Incenti Tech pelo número ${CONTACT_PHONE_DISPLAY}`}
-            >
-              <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-              <span>{CONTACT_PHONE_DISPLAY}</span>
             </a>
           </div>
         </div>

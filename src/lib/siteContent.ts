@@ -16,11 +16,11 @@ export const siteContent = {
       items: [
         { href: "#servicos", label: "Serviços" },
         { href: "#projetos", label: "Projetos" },
-        { href: "#tecnologias", label: "Stack" },
         { href: "#contato", label: "Contato" },
+        { href: "#tecnologias", label: "Stack" },
       ],
-      contactButton: "Fale conosco",
-      contactButtonCompact: "Contato",
+      contactButton: "Fale com um especialista",
+      contactButtonCompact: "Especialista",
       languageButtonAriaLabel: "Mudar idioma para inglês",
     },
     hero: {
@@ -30,7 +30,7 @@ export const siteContent = {
       titleEnd: "que impulsionam negócios",
       description:
         "Somos especialistas em criar sistemas web robustos, integrações complexas e softwares personalizados que resolvem problemas reais da sua empresa.",
-      primaryCta: "Fale conosco",
+      primaryCta: "Fale com um especialista",
       secondaryCta: "Conheça nossos serviços",
       proofItems: [
         { value: "sob medida", label: "arquitetura orientada ao negócio" },
@@ -79,11 +79,6 @@ export const siteContent = {
           title: "Sustentação de Software Legado",
           description:
             "Mantemos sistemas legados críticos em pleno funcionamento. Monitoramento, correções e evoluções contínuas para garantir a continuidade de operações de alto faturamento.",
-        },
-        {
-          title: "Revisão e Manutenção de Software Gerado por IA",
-          description:
-            "Revisamos, otimizamos e damos manutenção a sistemas desenvolvidos com auxílio de inteligência artificial. Garantimos qualidade de código, segurança e escalabilidade para projetos que nasceram de prototipagem assistida por IA.",
         },
       ],
     },
@@ -253,11 +248,11 @@ export const siteContent = {
       items: [
         { href: "#servicos", label: "Services" },
         { href: "#projetos", label: "Projects" },
-        { href: "#tecnologias", label: "Stack" },
         { href: "#contato", label: "Contact" },
+        { href: "#tecnologias", label: "Stack" },
       ],
-      contactButton: "Contact us",
-      contactButtonCompact: "Contact",
+      contactButton: "Talk to a specialist",
+      contactButtonCompact: "Specialist",
       languageButtonAriaLabel: "Switch language to Portuguese",
     },
     hero: {
@@ -267,7 +262,7 @@ export const siteContent = {
       titleEnd: "that drive business growth",
       description:
         "We specialize in building robust web systems, complex integrations, and custom software that solves real problems for your company.",
-      primaryCta: "Contact us",
+      primaryCta: "Talk to a specialist",
       secondaryCta: "Explore our services",
       proofItems: [
         {
@@ -319,11 +314,6 @@ export const siteContent = {
           title: "Legacy Software Support",
           description:
             "We keep mission-critical legacy systems fully operational. Monitoring, fixes, and continuous improvements protect revenue-generating operations.",
-        },
-        {
-          title: "AI-Generated Software Review & Maintenance",
-          description:
-            "We review, optimize, and maintain systems built with AI-assisted development tools. We ensure code quality, security, and scalability for projects that started as AI-generated prototypes.",
         },
       ],
     },

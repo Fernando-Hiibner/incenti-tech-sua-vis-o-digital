@@ -15,10 +15,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
       className="relative overflow-hidden pt-28 pb-16 sm:pt-32 sm:pb-20 md:pt-36 md:pb-24 lg:pt-40 lg:pb-28"
       style={{ background: "var(--hero-gradient)" }}
     >
-      <div className="home-grid absolute opacity-40" />
-      <div className="home-floating-orb orb-a" />
-      <div className="home-floating-orb orb-b" />
-      <div className="home-floating-orb orb-c" />
+      <div className="home-grid absolute opacity-70" />
 
       <div className="container relative z-10 mx-auto px-4">
         <motion.div
@@ -49,7 +46,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
               data-ga-page="home"
               data-ga-section="hero"
               data-ga-label={content.primaryCta}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_32px_48px_-28px_rgba(207,63,71,0.92)] transition-all hover:-translate-y-0.5 hover:bg-primary/90"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_24px_48px_-30px_rgba(15,23,42,0.68)] transition-all hover:-translate-y-0.5 hover:bg-primary/90"
             >
               {content.primaryCta}
               <ArrowRight className="h-4 w-4" />
@@ -60,7 +57,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
               data-ga-page="home"
               data-ga-section="hero"
               data-ga-label={content.secondaryCta}
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-8 py-4 text-base font-medium text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center justify-center rounded-full border border-border bg-white px-8 py-4 text-base font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary"
             >
               {content.secondaryCta}
             </a>

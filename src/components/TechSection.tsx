@@ -41,16 +41,16 @@ const TechSection = ({ locale }: TechSectionProps) => {
               {Object.entries(groupedItems).map(([category, items]) => (
                 <div
                   key={category}
-                  className="min-w-0 rounded-[24px] border border-white/8 bg-white/[0.03] p-5"
+                  className="min-w-0 rounded-[18px] border border-border bg-secondary/45 p-5"
                 >
-                  <p className="min-w-0 break-words text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-primary">
+                  <p className="min-w-0 break-words text-[0.72rem] font-semibold uppercase tracking-normal text-primary">
                     {category}
                   </p>
                   <div className="mt-5 flex flex-wrap gap-3">
                     {items.map((name) => (
                       <span
                         key={name}
-                        className="home-chip max-w-full break-words px-4 py-2 text-center text-[0.92rem] text-white"
+                        className="home-chip max-w-full break-words px-4 py-2 text-center text-[0.92rem] text-foreground"
                       >
                         {name}
                       </span>

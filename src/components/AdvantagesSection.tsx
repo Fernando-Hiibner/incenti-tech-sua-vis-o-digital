@@ -42,7 +42,7 @@ const AdvantagesSection = ({ locale }: AdvantagesSectionProps) => {
                 return (
                   <article
                     key={item.title}
-                    className={`flex min-w-0 flex-col gap-4 rounded-[24px] border border-white/8 bg-white/[0.03] p-5 xl:flex-row ${isLastOddItem ? "md:col-span-2 md:mx-auto md:w-full md:max-w-[calc(50%-0.625rem)]" : ""}`}
+                    className={`flex min-w-0 flex-col gap-4 rounded-[18px] border border-border bg-secondary/45 p-5 xl:flex-row ${isLastOddItem ? "md:col-span-2 md:mx-auto md:w-full md:max-w-[calc(50%-0.625rem)]" : ""}`}
                   >
                     <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/12 text-primary">
                       <Icon className="h-5 w-5" />

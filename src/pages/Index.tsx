@@ -7,6 +7,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import TechSection from "@/components/TechSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import SeoHead from "@/components/SeoHead";
 import {
   registerAnalyticsClickTracking,
@@ -54,15 +55,15 @@ const Index = ({ locale }: IndexProps) => {
         page: "home",
       },
       {
-        id: "tecnologias",
-        eventName: "home_scroll_tecnologias",
-        label: "Tecnologias",
-        page: "home",
-      },
-      {
         id: "contato",
         eventName: "home_scroll_contato",
         label: "Contato",
+        page: "home",
+      },
+      {
+        id: "tecnologias",
+        eventName: "home_scroll_tecnologias",
+        label: "Tecnologias",
         page: "home",
       },
     ]);
@@ -90,9 +91,10 @@ const Index = ({ locale }: IndexProps) => {
       <ServicesSection locale={locale} />
       <AdvantagesSection locale={locale} />
       <ProjectsSection locale={locale} />
-      <TechSection locale={locale} />
       <ContactSection locale={locale} />
+      <TechSection locale={locale} />
       <Footer locale={locale} />
+      <FloatingWhatsAppButton />
     </div>
   );
 };
