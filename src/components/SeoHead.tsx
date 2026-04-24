@@ -97,7 +97,7 @@ const SeoHead = ({
 
     upsertLink("link[rel='canonical']", { rel: "canonical", href: canonical });
 
-    document.head.querySelectorAll<HTMLLinkElement>(`link[rel='alternate']${GENERATED_SELECTOR}`).forEach((element) => element.remove());
+    document.head.querySelectorAll<HTMLLinkElement>("link[rel='alternate'][hreflang]").forEach((element) => element.remove());
     alternates.forEach(({ hrefLang, href }) => {
       const link = document.createElement("link");
       link.rel = "alternate";

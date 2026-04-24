@@ -155,6 +155,10 @@ const CaseCard = ({
       <DialogTrigger asChild>
         <button
           type="button"
+          data-ga-click="home_click_case_ver_mais"
+          data-ga-page="home"
+          data-ga-section="projetos"
+          data-ga-label={`${caseStudy.company} / ${caseStudy.product}`}
           className="mt-8 inline-flex w-fit items-center justify-center gap-2 rounded-full bg-[hsl(var(--brand-red))] px-5 py-3 text-sm font-semibold text-primary-foreground shadow-[0_18px_38px_-28px_rgba(176,7,20,0.7)] transition-all hover:-translate-y-0.5 hover:bg-[hsl(var(--brand-red)/0.9)]"
         >
           {viewMoreLabel}
