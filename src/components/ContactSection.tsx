@@ -148,8 +148,10 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
     `home-input w-full px-4 py-3.5 text-base ${errors[field] ? "border-destructive" : ""}`;
 
   return (
-    <section id="contato" className="section-padding">
-      <div className="container mx-auto">
+    <section id="contato" className="section-padding relative overflow-hidden">
+      <div className="home-grid absolute opacity-70" />
+
+      <div className="container relative z-10 mx-auto">
         <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}

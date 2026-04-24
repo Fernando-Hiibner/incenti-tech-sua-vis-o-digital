@@ -117,8 +117,12 @@
   .home-grid {
     inset: -42%;
     background-image:
-      linear-gradient(rgba(15, 23, 42, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
+      linear-gradient(hsl(var(--primary) / 0.12) 1.35px, transparent 1.35px),
+      linear-gradient(
+        90deg,
+        hsl(var(--primary) / 0.12) 1.35px,
+        transparent 1.35px
+      );
     background-size: 58px 58px;
     transform: rotate(45deg) scale(1.02);
     transform-origin: center;
