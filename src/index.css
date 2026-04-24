@@ -22,8 +22,9 @@
     --muted: 220 16% 90%;
     --muted-foreground: 216 12% 43%;
 
-    --accent: 224 35% 12%;
+    --accent: 355 92% 36%;
     --accent-foreground: 0 0% 100%;
+    --brand-red: 355 92% 36%;
 
     --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 100%;
@@ -46,7 +47,7 @@
       hsl(220, 20%, 98%) 100%
     );
     --glow-primary: 0 18px 54px hsl(224, 35%, 12%, 0.12);
-    --glow-accent: 0 20px 64px hsl(224, 35%, 12%, 0.08);
+    --glow-accent: 0 20px 64px hsl(355, 92%, 36%, 0.08);
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 222 22% 14%;
@@ -87,7 +88,12 @@
 
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-slate-800;
+    background-image: linear-gradient(
+      90deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--brand-red)) 100%
+    );
+    @apply bg-clip-text text-transparent;
   }
 
   .section-padding {
@@ -121,7 +127,7 @@
   }
 
   .home-kicker {
-    color: hsl(var(--primary));
+    color: hsl(var(--brand-red));
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0;
@@ -195,7 +201,7 @@
     height: 1px;
     background: linear-gradient(
       90deg,
-      hsl(var(--primary)) 0%,
+      hsl(var(--brand-red)) 0%,
       transparent 100%
     );
   }
@@ -297,21 +303,18 @@
 
   .tech-carousel-item {
     display: flex;
-    width: 4.75rem;
-    min-width: 4.75rem;
+    width: 5.15rem;
+    min-width: 5.15rem;
     height: 4.75rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid hsl(var(--border));
-    border-radius: 1.125rem;
-    background: linear-gradient(
-      180deg,
-      hsl(0 0% 100%) 0%,
-      hsl(220 20% 98%) 100%
-    );
-    box-shadow: 0 14px 36px -32px rgba(20, 26, 42, 0.28);
-    padding: 0.625rem;
+    padding: 0.35rem;
     text-align: center;
+  }
+
+  .tech-carousel-item.label-item {
+    width: 6.4rem;
+    min-width: 6.4rem;
   }
 
   .tech-carousel-icon {
@@ -320,16 +323,43 @@
     width: 3rem;
     height: 3rem;
     place-items: center;
-    border: 1px solid hsl(var(--border));
-    border-radius: 1rem;
-    background: hsl(var(--secondary) / 0.72);
     color: hsl(var(--primary));
     font-size: 0.72rem;
     font-weight: 700;
   }
 
+  .tech-carousel-icon.has-label {
+    width: 5rem;
+    color: hsl(var(--primary));
+    font-size: 0.58rem;
+    line-height: 1.05;
+    padding: 0.25rem;
+    overflow-wrap: anywhere;
+  }
+
   .tech-carousel-icon img {
     position: absolute;
+  }
+
+  .tech-carousel-icon.has-logo span {
+    display: none;
+  }
+
+  .tech-carousel-icon.logo-error {
+    width: 5rem;
+    color: hsl(var(--primary));
+    font-size: 0.58rem;
+    line-height: 1.05;
+    padding: 0.25rem;
+    overflow-wrap: anywhere;
+  }
+
+  .tech-carousel-icon.logo-error span {
+    display: block;
+  }
+
+  .tech-carousel-icon.logo-error img {
+    display: none;
   }
 
   .home-floating-orb {

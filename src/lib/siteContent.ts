@@ -183,7 +183,7 @@ export const siteContent = {
       eyebrow: "Contato",
       title: "Vamos conversar sobre o seu projeto",
       description:
-        "Preencha o formulário abaixo e nossa equipe entrará em contato para entender suas necessidades.",
+        "Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas, para entender suas necessidades.",
       successTitle: "Mensagem enviada!",
       successDescription: "Retornaremos o mais breve possível.",
       sendAnother: "Enviar outra mensagem",
@@ -418,7 +418,7 @@ export const siteContent = {
       eyebrow: "Contact",
       title: "Let's talk about your project",
       description:
-        "Fill out the form below and our team will get in touch to understand your needs.",
+        "Fill out the form below and our team will get in touch within 24 hours to understand your needs.",
       successTitle: "Message sent!",
       successDescription: "We will get back to you as soon as possible.",
       sendAnother: "Send another message",

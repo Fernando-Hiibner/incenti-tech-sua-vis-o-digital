@@ -65,7 +65,7 @@ const Navbar = ({ locale }: NavbarProps) => {
               <p
                 className={`font-heading font-semibold tracking-normal text-foreground transition-all duration-300 ${scrolled ? "text-lg md:text-xl" : "text-base md:text-lg"}`}
               >
-                <span className="text-primary">Incenti</span> Tech
+                <span className="text-[hsl(var(--brand-red))]">Incenti</span> Tech
               </p>
             </div>
           </a>
@@ -110,7 +110,7 @@ const Navbar = ({ locale }: NavbarProps) => {
               data-ga-page="home"
               data-ga-section="navbar"
               data-ga-label={content.contactButton}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-[0_20px_38px_-28px_rgba(15,23,42,0.65)] transition-all hover:-translate-y-0.5 hover:bg-primary/90 sm:text-sm md:px-5"
+              className="inline-flex items-center gap-2 rounded-full bg-[hsl(var(--brand-red))] px-4 py-2.5 text-xs font-semibold text-primary-foreground shadow-[0_20px_38px_-28px_rgba(176,7,20,0.65)] transition-all hover:-translate-y-0.5 hover:bg-[hsl(var(--brand-red)/0.9)] sm:text-sm md:px-5"
             >
               <span className="hidden sm:inline">{content.contactButton}</span>
               <span className="sm:hidden">{content.contactButtonCompact}</span>

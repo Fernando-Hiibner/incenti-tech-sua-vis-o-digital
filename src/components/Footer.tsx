@@ -36,7 +36,7 @@ const Footer = ({ locale }: FooterProps) => {
               </div>
               <div className="min-w-0">
                 <p className="break-words font-heading text-2xl font-semibold tracking-normal text-foreground">
-                  <span className="text-primary">Incenti</span> Tech
+                  <span className="text-[hsl(var(--brand-red))]">Incenti</span> Tech
                 </p>
               </div>
             </div>

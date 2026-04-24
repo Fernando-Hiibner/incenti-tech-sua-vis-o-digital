@@ -7,7 +7,6 @@ import {
   Loader2,
   Mail,
   Send,
-  ShieldCheck,
 } from "lucide-react";
 import { CONTACT_EMAIL } from "@/lib/contact";
 import {
@@ -30,7 +29,6 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   const lastSubmitRef = useRef(0);
   const maxMessageLength = 3000;
   const content = siteContent[locale].contact;
-  const valueProps = content.valueProps;
 
   const trackFormStart = () => {
     if (hasTrackedFormStartRef.current) {
@@ -154,38 +152,27 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
   return (
     <section id="contato" className="section-padding">
       <div className="container mx-auto">
-        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+        <div className="mx-auto max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.25 }}
+            className="text-center"
           >
             <p className="home-kicker">{content.eyebrow}</p>
-            <h2 className="home-section-title">{content.title}</h2>
-            <p className="home-section-copy">{content.description}</p>
-
-            <div className="mt-8 space-y-4">
-              {valueProps.map((item) => (
-                <div
-                  key={item}
-                  className="glass-card grid min-w-0 grid-cols-[2.25rem_minmax(0,1fr)] items-center gap-3.5 p-4"
-                >
-                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-primary/12 text-primary">
-                    <ShieldCheck className="h-4 w-4" />
-                  </div>
-                  <p className="min-w-0 break-words text-[0.95rem] leading-6 text-muted-foreground">
-                    {item}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <h2 className="home-section-title mx-auto max-w-3xl">
+              {content.title}
+            </h2>
+            <p className="home-section-copy mx-auto max-w-2xl">
+              {content.description}
+            </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="home-shell p-7 md:p-9"
+            className="home-shell mt-10 p-7 md:p-9"
           >
             {status === "success" ? (
               <div className="py-10 text-center">
@@ -215,7 +202,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 onFocusCapture={trackFormStart}
                 className="relative space-y-5"
               >
-                <div className="grid gap-5 lg:grid-cols-2">
+                <div className="grid gap-5">
                   <div>
                     <label className="home-form-label">
                       {content.fields.name}
@@ -245,7 +232,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                   </div>
                 </div>
 
-                <div className="grid gap-5 lg:grid-cols-2">
+                <div className="grid gap-5">
                   <div>
                     <label className="home-form-label">
                       {content.fields.email}
@@ -352,10 +339,8 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               </form>
             )}
           </motion.div>
-        </div>
 
-        <div className="mt-8 flex justify-center">
-          <div className="flex w-full max-w-xl flex-col gap-4 text-sm text-muted-foreground md:flex-row">
+          <div className="mt-8 flex justify-center">
             <a
               href={`mailto:${CONTACT_EMAIL}`}
               data-ga-click="home_click_contato_email"

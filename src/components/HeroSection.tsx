@@ -24,9 +24,9 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
           transition={{ duration: 0.7, ease: "easeOut" }}
           className="mx-auto flex max-w-5xl flex-col items-center text-center"
         >
-          <div className="inline-flex items-center gap-3 rounded-full border border-primary/20 bg-primary/10 px-4 py-2">
-            <Sparkles className="h-4 w-4 text-primary" />
-            <span className="text-sm font-medium text-primary">
+          <div className="inline-flex items-center gap-3 rounded-full border border-[hsl(var(--brand-red)/0.22)] bg-[hsl(var(--brand-red)/0.08)] px-4 py-2">
+            <Sparkles className="h-4 w-4 text-[hsl(var(--brand-red))]" />
+            <span className="text-sm font-medium text-[hsl(var(--brand-red))]">
               {content.badge}
             </span>
           </div>
@@ -46,7 +46,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
               data-ga-page="home"
               data-ga-section="hero"
               data-ga-label={content.primaryCta}
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_24px_48px_-30px_rgba(15,23,42,0.68)] transition-all hover:-translate-y-0.5 hover:bg-primary/90"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[hsl(var(--brand-red))] px-8 py-4 text-base font-semibold text-primary-foreground shadow-[0_24px_48px_-30px_rgba(176,7,20,0.68)] transition-all hover:-translate-y-0.5 hover:bg-[hsl(var(--brand-red)/0.9)]"
             >
               {content.primaryCta}
               <ArrowRight className="h-4 w-4" />
