@@ -202,7 +202,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 onFocusCapture={trackFormStart}
                 className="relative space-y-5"
               >
-                <div className="grid gap-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <div>
                     <label className="home-form-label">
                       {content.fields.name}
@@ -232,7 +232,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                   </div>
                 </div>
 
-                <div className="grid gap-5">
+                <div className="grid gap-5 md:grid-cols-2">
                   <div>
                     <label className="home-form-label">
                       {content.fields.email}
@@ -347,7 +347,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               data-ga-page="home"
               data-ga-section="contato"
               data-ga-label={CONTACT_EMAIL}
-              className="home-contact-link home-shell-soft flex flex-1 items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-primary"
+              className="home-contact-link home-shell-soft flex w-full max-w-xl items-center justify-center gap-3 px-5 py-4 text-center transition-colors hover:text-primary"
             >
               <Mail className="h-4 w-4 text-primary" />
               <span className="break-all sm:break-normal">{CONTACT_EMAIL}</span>
