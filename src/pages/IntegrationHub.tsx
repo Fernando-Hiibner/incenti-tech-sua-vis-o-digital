@@ -1338,6 +1338,8 @@ const EmblaCarousel = <T,>({
 const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [navHidden, setNavHidden] = useState(false);
+  const lastScrollYRef = useRef(0);
   const page = content[locale];
   const seo = integrationHubSeo[locale];
   const switchLocale: Locale = locale === "pt-BR" ? "en" : "pt-BR";
@@ -1493,11 +1495,28 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
   );
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      const lastScrollY = lastScrollYRef.current;
+      const delta = currentScrollY - lastScrollY;
+
+      setScrolled(currentScrollY > 8);
+
+      if (mobileMenuOpen || currentScrollY < 80) {
+        setNavHidden(false);
+      } else if (delta > 8) {
+        setNavHidden(true);
+      } else if (delta < -8) {
+        setNavHidden(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -1599,7 +1618,9 @@ const IntegrationHub = ({ locale }: IntegrationHubPageProps) => {
         structuredData={getIntegrationHubStructuredData(locale)}
       />
 
-      <header className="fixed left-0 right-0 top-4 z-50">
+      <header
+        className={`fixed left-0 right-0 top-4 z-50 transition-all duration-300 ease-out ${navHidden ? "pointer-events-none -translate-y-[140%] opacity-0" : "translate-y-0 opacity-100"}`}
+      >
         <div className="container mx-auto px-4 sm:px-6">
           <div
             className={`ih-nav-shell flex items-center justify-between rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "gap-4 py-2" : "gap-3 py-0.5"}`}

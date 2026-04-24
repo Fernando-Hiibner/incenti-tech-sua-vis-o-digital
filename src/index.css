@@ -455,7 +455,8 @@
   }
 
   .whatsapp-floating-motion {
-    animation: whatsapp-subtle-float 4.8s ease-in-out infinite;
+    animation: whatsapp-attention-shake 1.9s ease-in-out infinite;
+    transform-origin: 50% 50%;
   }
 }
 
@@ -480,18 +481,30 @@
   }
 }
 
-@keyframes whatsapp-subtle-float {
+@keyframes whatsapp-attention-shake {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
 
-  35% {
-    transform: translate3d(0, -5px, 0);
+  8% {
+    transform: translate3d(-2px, 0, 0) rotate(-5deg) scale(1.03);
   }
 
-  70% {
-    transform: translate3d(-3px, 0, 0);
+  16% {
+    transform: translate3d(3px, 0, 0) rotate(5deg) scale(1.05);
+  }
+
+  24% {
+    transform: translate3d(-3px, 0, 0) rotate(-5deg) scale(1.05);
+  }
+
+  32% {
+    transform: translate3d(2px, 0, 0) rotate(4deg) scale(1.03);
+  }
+
+  42% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
   }
 }
 

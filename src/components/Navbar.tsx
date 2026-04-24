@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import LanguageSwitchButton from "@/components/LanguageSwitchButton";
 import logo from "@/assets/logo-incenti-tech.svg";
@@ -15,6 +15,8 @@ type NavbarProps = {
 
 const Navbar = ({ locale }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollYRef = useRef(0);
   const content = siteContent[locale].nav;
   const switchHref = locale === "pt-BR" ? localePaths.en : localePaths["pt-BR"];
   const navItems = content.items;
@@ -27,8 +29,26 @@ const Navbar = ({ locale }: NavbarProps) => {
   };
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => {
+      const currentScrollY = window.scrollY;
+      const lastScrollY = lastScrollYRef.current;
+      const delta = currentScrollY - lastScrollY;
+
+      setScrolled(currentScrollY > 24);
+
+      if (currentScrollY < 80) {
+        setHidden(false);
+      } else if (delta > 8) {
+        setHidden(true);
+      } else if (delta < -8) {
+        setHidden(false);
+      }
+
+      lastScrollYRef.current = currentScrollY;
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -38,7 +58,9 @@ const Navbar = ({ locale }: NavbarProps) => {
   };
 
   return (
-    <nav className="fixed inset-x-0 top-4 z-50">
+    <nav
+      className={`fixed inset-x-0 top-4 z-50 transition-all duration-300 ease-out ${hidden ? "pointer-events-none -translate-y-[140%] opacity-0" : "translate-y-0 opacity-100"}`}
+    >
       <div className="container mx-auto px-4 sm:px-6">
         <div
           className={`home-nav-shell flex items-center justify-between rounded-full px-4 transition-all duration-300 md:px-5 ${scrolled ? "gap-4 py-2" : "gap-3 py-0.5"}`}
