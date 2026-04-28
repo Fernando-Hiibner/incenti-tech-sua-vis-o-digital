@@ -1,14 +1,12 @@
 import { ArrowRight, Sparkles } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { HomeHeroContent } from "@/lib/homeContent";
 
 type HeroSectionProps = {
-  locale: Locale;
+  content: HomeHeroContent;
 };
 
-const HeroSection = ({ locale }: HeroSectionProps) => {
-  const content = siteContent[locale].hero;
-
+const HeroSection = ({ content }: HeroSectionProps) => {
   return (
     <section
       id="inicio"

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import SeoHead from "@/components/SeoHead";
-import { getLocaleFromPathname } from "@/lib/locale";
+import { getLocaleFromPathname, localePaths, type Locale } from "@/lib/locale";
 import { getNotFoundStructuredData, SITE_URL } from "@/lib/seo";
-import { localePaths, siteContent, type Locale } from "@/lib/siteContent";
+import { siteContent } from "@/lib/siteContent";
 
 const NotFound = () => {
   const pathname =

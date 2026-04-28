@@ -15,12 +15,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { caseStudiesByLocale, type CaseStudy } from "@/lib/cases";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { CaseStudy } from "@/lib/cases";
+import type { HomeProjectsContent } from "@/lib/homeContent";
+import type { Locale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 type ProjectsSectionProps = {
   locale: Locale;
+  content: HomeProjectsContent;
+  caseStudies: CaseStudy[];
 };
 
 const caseStats: Record<Locale, string[]> = {
@@ -222,9 +225,11 @@ const StatCard = ({ label }: { label: string }) => (
   </article>
 );
 
-const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
-  const content = siteContent[locale].projects;
-  const caseStudies = caseStudiesByLocale[locale];
+const ProjectsSection = ({
+  locale,
+  content,
+  caseStudies,
+}: ProjectsSectionProps) => {
   const labels = caseLabels[locale];
 
   return (

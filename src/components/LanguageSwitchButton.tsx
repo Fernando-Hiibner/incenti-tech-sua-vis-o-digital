@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from "react";
-import { localeSwitchLabel, type Locale } from "@/lib/siteContent";
+import { localeSwitchLabel, type Locale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 type LanguageSwitchButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {

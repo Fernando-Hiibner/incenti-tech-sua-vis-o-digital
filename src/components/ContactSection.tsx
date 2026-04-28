@@ -11,22 +11,21 @@ import {
   trackAnalyticsEvent,
   trackGoogleAdsConversion,
 } from "@/lib/analytics";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { HomeContactContent } from "@/lib/homeContent";
 
 type FormStatus = "idle" | "loading" | "success" | "error";
 
 type ContactSectionProps = {
-  locale: Locale;
+  content: HomeContactContent;
 };
 
-const ContactSection = ({ locale }: ContactSectionProps) => {
+const ContactSection = ({ content }: ContactSectionProps) => {
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [messageLength, setMessageLength] = useState(0);
   const hasTrackedFormStartRef = useRef(false);
   const lastSubmitRef = useRef(0);
   const maxMessageLength = 3000;
-  const content = siteContent[locale].contact;
 
   const trackFormStart = () => {
     if (hasTrackedFormStartRef.current) {

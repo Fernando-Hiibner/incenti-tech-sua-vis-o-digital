@@ -7,17 +7,15 @@ import {
   TimerReset,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { HomePainContent } from "@/lib/homeContent";
 
 const painIcons = [EyeOff, Layers, PlugZap, TimerReset, GitBranch, AlertTriangle];
 
 type PainSectionProps = {
-  locale: Locale;
+  content: HomePainContent;
 };
 
-const PainSection = ({ locale }: PainSectionProps) => {
-  const content = siteContent[locale].pain;
-
+const PainSection = ({ content }: PainSectionProps) => {
   return (
     <section id="desafios" className="section-padding bg-white">
       <div className="container mx-auto">

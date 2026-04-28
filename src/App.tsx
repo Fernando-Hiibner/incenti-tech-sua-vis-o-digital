@@ -1,10 +1,9 @@
 import { Suspense, lazy, useEffect } from "react";
 import { getIntegrationHubPath } from "@/lib/integrationHubRoutes";
-import { getPreferredLocale } from "@/lib/locale";
-import { localePaths } from "@/lib/siteContent";
-import type { Locale } from "@/lib/siteContent";
+import { getPreferredLocale, localePaths, type Locale } from "@/lib/locale";
 
-const IndexPage = lazy(() => import("./pages/Index.tsx"));
+const IndexPtBrPage = lazy(() => import("./pages/IndexPtBr.tsx"));
+const IndexEnPage = lazy(() => import("./pages/IndexEn.tsx"));
 const IntegrationHubPage = lazy(() => import("./pages/IntegrationHub.tsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFound.tsx"));
 
@@ -12,7 +11,7 @@ const RouteFallback = () => <div className="min-h-screen bg-background" />;
 
 const renderIndex = (locale: Locale) => (
   <Suspense fallback={<RouteFallback />}>
-    <IndexPage locale={locale} />
+    {locale === "pt-BR" ? <IndexPtBrPage /> : <IndexEnPage />}
   </Suspense>
 );
 

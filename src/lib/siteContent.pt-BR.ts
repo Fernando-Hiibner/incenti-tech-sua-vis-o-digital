@@ -1,0 +1,280 @@
+const siteContentPtBr = {
+
+    nav: {
+      items: [
+        { href: "#servicos", label: "Serviços" },
+        { href: "#projetos", label: "Projetos" },
+        { href: "#tecnologias", label: "Stack" },
+        { href: "#contato", label: "Contato" },
+      ],
+      contactButton: "Fale com um especialista",
+      contactButtonCompact: "Especialista",
+      languageButtonAriaLabel: "Mudar idioma para inglês",
+    },
+    hero: {
+      badge: "Desenvolvimento de Software sob Medida",
+      titleStart: "Transformamos ideias em",
+      titleHighlight: "soluções digitais",
+      titleEnd: "que impulsionam negócios",
+      description:
+        "Somos especialistas em criar sistemas web robustos, integrações complexas e softwares personalizados que resolvem problemas reais da sua empresa.",
+      primaryCta: "Fale com um especialista",
+      secondaryCta: "Conheça nossos serviços",
+      proofItems: [
+        { value: "sob medida", label: "arquitetura orientada ao negócio" },
+        {
+          value: "integração",
+          label: "marketplaces, APIs, pagamentos e legado",
+        },
+        {
+          value: "continuidade",
+          label: "evolução, sustentação e entrega real",
+        },
+      ],
+    },
+    pain: {
+      eyebrow: "Desafios operacionais",
+      title: "Quando o produto cresce, a operação não pode ficar no escuro",
+      description:
+        "Muitas empresas chegam em um ponto em que o software funciona, mas já não entrega clareza, velocidade ou segurança para evoluir. É nesse momento que problemas técnicos começam a virar custo operacional.",
+      items: [
+        {
+          title: "Baixa visibilidade operacional",
+          description:
+            "Indicadores espalhados, processos sem rastreio e dificuldade para entender gargalos reais do produto.",
+        },
+        {
+          title: "Débito técnico acumulado",
+          description:
+            "Código difícil de evoluir, dependências antigas e mudanças simples que passam a exigir esforço desproporcional.",
+        },
+        {
+          title: "Integrações instáveis",
+          description:
+            "APIs, ERPs, pagamentos e marketplaces falhando em pontos críticos da jornada e gerando retrabalho.",
+        },
+        {
+          title: "Operação dependente de esforço manual",
+          description:
+            "Times compensando limitações do sistema com planilhas, conferências manuais e processos paralelos.",
+        },
+        {
+          title: "Crescimento travado por legado",
+          description:
+            "Sistemas importantes para o faturamento que precisam continuar vivos, mas impedem novas entregas.",
+        },
+        {
+          title: "Risco técnico sem dono claro",
+          description:
+            "Falhas recorrentes, correções urgentes e decisões técnicas tomadas sem uma visão estruturada de continuidade.",
+        },
+      ],
+    },
+    services: {
+      eyebrow: "Soluções",
+      title: "Como resolvemos esses problemas",
+      description:
+        "Entramos para dar estrutura técnica ao produto, reduzir riscos da operação e criar caminhos reais para evolução contínua.",
+      supportItems: [
+        "Mais visibilidade para decisão",
+        "Menos fricção técnica",
+        "Integrações com continuidade",
+      ],
+      creationHighlight: {
+        title: "Criamos do zero, evoluímos o que já existe",
+        description:
+          "Atuamos desde a concepção de novos produtos digitais até a modernização e sustentação de sistemas críticos. A ideia não é só manter o software vivo, é transformar tecnologia em uma base melhor para crescer.",
+      },
+      items: [
+        {
+          title: "Produto sob medida para a operação",
+          description:
+            "Criamos sistemas web alinhados ao fluxo real do negócio, com telas, regras e automações que reduzem trabalho manual e aumentam a visibilidade da operação.",
+        },
+        {
+          title: "Estabilização e manutenção contínua",
+          description:
+            "Organizamos correções, atualizações, monitoramento e melhorias para reduzir falhas recorrentes e manter sistemas críticos funcionando com previsibilidade.",
+        },
+        {
+          title: "Integrações confiáveis entre plataformas",
+          description:
+            "Conectamos pagamentos, marketplaces, ERPs e APIs com tratamento de erros, sincronização consistente e automações que eliminam retrabalho entre áreas.",
+        },
+        {
+          title: "Modernização gradual do legado",
+          description:
+            "Evoluímos sistemas antigos por etapas, preservando dados e regras críticas enquanto removemos gargalos técnicos que impedem novas entregas.",
+        },
+        {
+          title: "Sustentação técnica com visão de produto",
+          description:
+            "Assumimos a continuidade de sistemas legados de alto impacto, priorizando riscos, performance e evolução sem interromper a operação que já gera receita.",
+        },
+      ],
+    },
+    advantages: {
+      eyebrow: "Vantagens",
+      title: "Por que escolher a Incenti Tech?",
+      description:
+        "Combinamos expertise técnica, visão de negócio e compromisso com resultados.",
+      items: [
+        {
+          title: "Soluções Personalizadas",
+          description:
+            "Cada projeto é único. Desenvolvemos software que se adapta ao seu fluxo de trabalho, não o contrário.",
+        },
+        {
+          title: "Foco em Performance",
+          description:
+            "Sistemas rápidos, eficientes e escaláveis. Otimizamos cada detalhe para garantir a melhor experiência.",
+        },
+        {
+          title: "Experiência Real de Mercado",
+          description:
+            "Anos atuando com clientes de diversos segmentos, resolvendo problemas complexos com soluções práticas.",
+        },
+        {
+          title: "Integrações Complexas",
+          description:
+            "Conectamos seu sistema a gateways de pagamento, marketplaces e APIs com segurança e confiabilidade.",
+        },
+        {
+          title: "Suporte Próximo",
+          description:
+            "Comunicação direta, ágil e transparente. Estamos ao seu lado em cada etapa do projeto.",
+        },
+      ],
+    },
+    projects: {
+      eyebrow: "Experiência Comprovada",
+      title: "Cases reais de produto e operação",
+      description:
+        "Alguns projetos em que atuamos criando, evoluindo e sustentando produtos digitais com impacto direto na operação dos clientes.",
+      items: [
+        {
+          title: "Integração com Sistemas de Pagamento",
+          description:
+            "Implementação completa de Pix, boleto bancário e outros meios de pagamento, garantindo segurança e confiabilidade nas transações.",
+        },
+        {
+          title: "Integração com Marketplaces",
+          description:
+            "Conexão automatizada com os principais marketplaces do Brasil, sincronizando produtos, pedidos e estoque em tempo real.",
+        },
+        {
+          title: "Integração com Twilio",
+          description:
+            "Automação de comunicações via SMS, chamadas e verificações utilizando a plataforma Twilio para fluxos empresariais.",
+        },
+        {
+          title: "Integração com API de WhatsApp",
+          description:
+            "Sistemas conectados ao WhatsApp Business API para atendimento automatizado, notificações e comunicação direta com clientes.",
+        },
+        {
+          title: "Sustentação de Software Legado",
+          description:
+            "Manutenção e evolução de sistemas legados com faturamento multimilionário, garantindo estabilidade, performance e continuidade do negócio.",
+        },
+        {
+          title: "Desenvolvimento de Aplicações Web",
+          description:
+            "Criação de diversos sistemas web sob medida para diferentes segmentos, desde portais corporativos até plataformas SaaS completas.",
+        },
+      ],
+    },
+    tech: {
+      eyebrow: "Tecnologias",
+      title: "Stack tecnológica robusta",
+      description:
+        "Trabalhamos com as tecnologias certas para cada projeto, garantindo performance, segurança e escalabilidade.",
+      items: [
+        { name: "C#", category: "Backend e APIs" },
+        { name: ".NET 10", category: "Backend e APIs" },
+        { name: "ASP.NET", category: "Backend e APIs" },
+        { name: "PHP", category: "Backend e APIs" },
+        { name: "Python", category: "Backend e APIs" },
+        { name: "REST APIs", category: "Backend e APIs" },
+        { name: "SOAP/WSDL", category: "Backend e APIs" },
+        { name: "Blazor", category: "Frontend e UI" },
+        { name: "JavaScript", category: "Frontend e UI" },
+        { name: "React", category: "Frontend e UI" },
+        { name: "Vue", category: "Frontend e UI" },
+        { name: "jQuery", category: "Frontend e UI" },
+        { name: "ASP.NET Web Forms", category: "Frontend e UI" },
+        { name: "SQL e NoSQL", category: "Dados e Persistencia" },
+        { name: "Redis", category: "Dados e Persistencia" },
+        { name: "Docker", category: "Infra" },
+        { name: "AWS", category: "Infra" },
+        { name: "Azure", category: "Infra" },
+      ],
+    },
+    contact: {
+      eyebrow: "Contato",
+      title: "Vamos entender sua necessidade e preparar um orçamento",
+      description:
+        "Preencha o formulário abaixo com o contexto do projeto. Nossa equipe entrará em contato em até 24 horas para entender cenário, prioridades e próximos passos para uma proposta.",
+      successTitle: "Informações recebidas!",
+      successDescription:
+        "Vamos analisar o contexto e retornar com os próximos passos para entendimento e orçamento.",
+      sendAnother: "Enviar outra mensagem",
+      valueProps: [
+        "Resposta inicial em até 24 horas úteis.",
+        "Conversa técnica focada em contexto, risco e viabilidade.",
+        "Escopo pensado para entrega real, não para discurso vazio.",
+      ],
+      fields: {
+        name: "Nome *",
+        namePlaceholder: "Seu nome",
+        company: "Empresa",
+        companyPlaceholder: "Empresa",
+        email: "E-mail *",
+        emailPlaceholder: "seu@email.com",
+        phone: "Telefone",
+        phonePlaceholder: "(00) 00000-0000",
+        message: "Mensagem *",
+        messagePlaceholder: "Conte-nos sobre seu projeto...",
+        honeypotLabel: "Site",
+      },
+      submitIdle: "Solicite orçamento gratuito",
+      submitLoading: "Enviando...",
+      genericSubmitError: "Erro ao enviar. Tente novamente.",
+      validation: {
+        requiredName: "Nome é obrigatório",
+        requiredEmail: "E-mail é obrigatório",
+        invalidEmail: "E-mail inválido",
+        requiredMessage: "Mensagem é obrigatória",
+        messageTooLong: "Mensagem não pode ultrapassar 3.000 caracteres",
+        honeypot: "Falha ao enviar formulário.",
+        rateLimit: "Aguarde alguns segundos antes de enviar novamente.",
+        invalidData: "Dados inválidos.",
+        tooManyAttempts:
+          "Muitas tentativas. Aguarde um pouco e tente novamente.",
+        submitError: "Erro ao enviar formulário.",
+        connectionError: "Não foi possível conectar ao servidor.",
+      },
+    },
+    footer: {
+      description:
+        "Software sob medida, integrações complexas e sustentação para operações que precisam de clareza técnica e continuidade.",
+      navigationLabel: "Navegação",
+      links: [
+        { href: "#servicos", label: "Serviços" },
+        { href: "#projetos", label: "Projetos" },
+        { href: "#contato", label: "Contato" },
+      ],
+      closingStatement: "Tecnologia com presença, estrutura e continuidade.",
+      rights: "Todos os direitos reservados.",
+    },
+    notFound: {
+      eyebrow: "Erro 404",
+      message: "Ops! Página não encontrada",
+      description:
+        "O endereço solicitado não existe ou foi movido. Use o atalho abaixo para continuar navegando.",
+      action: "Voltar para a página inicial",
+    },
+  
+} as const;
+
+export default siteContentPtBr;

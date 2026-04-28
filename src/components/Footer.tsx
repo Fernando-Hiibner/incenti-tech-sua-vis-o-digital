@@ -4,14 +4,13 @@ import {
   CONTACT_PHONE_DISPLAY,
   CONTACT_WHATSAPP_URL,
 } from "@/lib/contact";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { HomeFooterContent } from "@/lib/homeContent";
 
 type FooterProps = {
-  locale: Locale;
+  content: HomeFooterContent;
 };
 
-const Footer = ({ locale }: FooterProps) => {
-  const content = siteContent[locale].footer;
+const Footer = ({ content }: FooterProps) => {
   const links = content.links;
   const footerClickEvents: Record<string, string> = {
     "#servicos": "home_click_footer_servicos",

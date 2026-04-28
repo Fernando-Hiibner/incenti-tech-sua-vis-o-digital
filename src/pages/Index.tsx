@@ -4,12 +4,14 @@ import HeroSection from "@/components/HeroSection";
 import PainSection from "@/components/PainSection";
 import ServicesSection from "@/components/ServicesSection";
 import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
-import SeoHead from "@/components/SeoHead";
-import { getHomeStructuredData, homeSeo } from "@/lib/seo";
-import type { Locale } from "@/lib/siteContent";
+import type { CaseStudy } from "@/lib/cases";
+import type { HomeContent } from "@/lib/homeContent";
+import type { Locale } from "@/lib/locale";
 
 type IndexProps = {
   locale: Locale;
+  content: HomeContent;
+  caseStudies: CaseStudy[];
 };
 
 type AnalyticsModule = typeof import("@/lib/analytics");
@@ -150,20 +152,23 @@ const DeferredHomeFallback = () => (
   </>
 );
 
-const DeferredHomeSections = ({ locale }: IndexProps) => (
+const DeferredHomeSections = ({ locale, content, caseStudies }: IndexProps) => (
   <Suspense fallback={<DeferredHomeFallback />}>
-    <ProjectsSection locale={locale} />
-    <TechSection locale={locale} />
-    <ContactSection locale={locale} />
-    <Footer locale={locale} />
+    <ProjectsSection
+      locale={locale}
+      content={content.projects}
+      caseStudies={caseStudies}
+    />
+    <TechSection content={content.tech} />
+    <ContactSection content={content.contact} />
+    <Footer content={content.footer} />
   </Suspense>
 );
 
-const Index = ({ locale }: IndexProps) => {
+const Index = ({ locale, content, caseStudies }: IndexProps) => {
   const [analyticsModule, setAnalyticsModule] = useState<AnalyticsModule | null>(
     null,
   );
-  const seo = homeSeo[locale];
 
   useEffect(() => {
     document.documentElement.lang = locale;
@@ -235,21 +240,15 @@ const Index = ({ locale }: IndexProps) => {
 
   return (
     <div className="min-h-screen">
-      <SeoHead
-        title={seo.title}
-        description={seo.description}
-        canonical={seo.canonical}
-        lang={seo.lang}
-        ogLocale={seo.ogLocale}
-        keywords={seo.keywords}
-        alternates={seo.alternates}
-        structuredData={getHomeStructuredData(locale)}
+      <Navbar locale={locale} content={content.nav} />
+      <HeroSection content={content.hero} />
+      <PainSection content={content.pain} />
+      <ServicesSection content={content.services} />
+      <DeferredHomeSections
+        locale={locale}
+        content={content}
+        caseStudies={caseStudies}
       />
-      <Navbar locale={locale} />
-      <HeroSection locale={locale} />
-      <PainSection locale={locale} />
-      <ServicesSection locale={locale} />
-      <DeferredHomeSections locale={locale} />
       <FloatingWhatsAppButton locale={locale} />
     </div>
   );

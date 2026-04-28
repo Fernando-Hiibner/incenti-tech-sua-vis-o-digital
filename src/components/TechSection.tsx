@@ -12,10 +12,10 @@ import {
   type SimpleIcon,
 } from "simple-icons";
 import Reveal from "@/components/Reveal";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { HomeTechContent } from "@/lib/homeContent";
 
 type TechSectionProps = {
-  locale: Locale;
+  content: HomeTechContent;
 };
 
 const techIcons: Record<string, SimpleIcon> = {
@@ -31,8 +31,7 @@ const techIcons: Record<string, SimpleIcon> = {
   Docker: siDocker,
 };
 
-const TechSection = ({ locale }: TechSectionProps) => {
-  const content = siteContent[locale].tech;
+const TechSection = ({ content }: TechSectionProps) => {
   const carouselItems = [...content.items, ...content.items];
 
   return (

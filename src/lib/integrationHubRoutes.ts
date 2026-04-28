@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/siteContent";
+import type { Locale } from "@/lib/locale";
 
 export const integrationHubRootPath = "/integration-hub";
 

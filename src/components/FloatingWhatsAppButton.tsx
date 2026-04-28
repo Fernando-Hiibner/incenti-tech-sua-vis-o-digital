@@ -1,6 +1,6 @@
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { CONTACT_PHONE_DISPLAY, CONTACT_WHATSAPP_URL } from "@/lib/contact";
-import type { Locale } from "@/lib/siteContent";
+import type { Locale } from "@/lib/locale";
 
 type FloatingWhatsAppButtonProps = {
   locale: Locale;

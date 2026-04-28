@@ -1,5 +1,5 @@
 import { integrationHubPaths } from "@/lib/integrationHubRoutes";
-import { localePaths, type Locale } from "@/lib/siteContent";
+import { localePaths, type Locale } from "@/lib/locale";
 
 export type AlternateLink = {
   href: string;

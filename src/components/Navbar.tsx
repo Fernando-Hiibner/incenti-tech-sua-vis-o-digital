@@ -5,20 +5,20 @@ import logo from "@/assets/logo-incenti-tech.svg";
 import {
   localePaths,
   localeSwitchLabel,
-  siteContent,
   type Locale,
-} from "@/lib/siteContent";
+} from "@/lib/locale";
+import type { HomeNavContent } from "@/lib/homeContent";
 
 type NavbarProps = {
   locale: Locale;
+  content: HomeNavContent;
 };
 
-const Navbar = ({ locale }: NavbarProps) => {
+const Navbar = ({ locale, content }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScrollYRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
-  const content = siteContent[locale].nav;
   const switchHref = locale === "pt-BR" ? localePaths.en : localePaths["pt-BR"];
   const navItems = content.items;
   const navClickEvents: Record<string, string> = {

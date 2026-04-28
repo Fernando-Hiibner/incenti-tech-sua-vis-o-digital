@@ -7,16 +7,15 @@ import {
   Wrench,
 } from "lucide-react";
 import Reveal from "@/components/Reveal";
-import { siteContent, type Locale } from "@/lib/siteContent";
+import type { HomeServicesContent } from "@/lib/homeContent";
 
 const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck];
 
 type ServicesSectionProps = {
-  locale: Locale;
+  content: HomeServicesContent;
 };
 
-const ServicesSection = ({ locale }: ServicesSectionProps) => {
-  const content = siteContent[locale].services;
+const ServicesSection = ({ content }: ServicesSectionProps) => {
   const supportItems = content.supportItems;
 
   return (
