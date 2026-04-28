@@ -1,5 +1,4 @@
 import { Suspense, lazy, useEffect } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { getIntegrationHubPath } from "@/lib/integrationHubRoutes";
 import { getPreferredLocale } from "@/lib/locale";
 import { localePaths } from "@/lib/siteContent";
@@ -35,61 +34,38 @@ const LocaleRedirect = ({
   return null;
 };
 
-const App = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <LocaleRedirect resolvePath={(locale) => localePaths[locale]} />
-        }
-      />
-      <Route path="/pt-br" element={renderIndex("pt-BR")} />
-      <Route path="/pt-br/" element={renderIndex("pt-BR")} />
-      <Route path="/en" element={renderIndex("en")} />
-      <Route path="/en/" element={renderIndex("en")} />
-      <Route
-        path="/integration-hub"
-        element={<LocaleRedirect resolvePath={getIntegrationHubPath} />}
-      />
-      <Route
-        path="/integration-hub/"
-        element={<LocaleRedirect resolvePath={getIntegrationHubPath} />}
-      />
-      <Route
-        path="/pt-BR/integration-hub"
-        element={renderIntegrationHub("pt-BR")}
-      />
-      <Route
-        path="/pt-BR/integration-hub/"
-        element={renderIntegrationHub("pt-BR")}
-      />
-      <Route
-        path="/pt-br/integration-hub"
-        element={renderIntegrationHub("pt-BR")}
-      />
-      <Route
-        path="/pt-br/integration-hub/"
-        element={renderIntegrationHub("pt-BR")}
-      />
-      <Route
-        path="/en/integration-hub"
-        element={renderIntegrationHub("en")}
-      />
-      <Route
-        path="/en/integration-hub/"
-        element={renderIntegrationHub("en")}
-      />
-      <Route
-        path="*"
-        element={
-          <Suspense fallback={<RouteFallback />}>
-            <NotFoundPage />
-          </Suspense>
-        }
-      />
-    </Routes>
-  </BrowserRouter>
+const normalizePath = (pathname: string) =>
+  pathname.length > 1 ? pathname.replace(/\/+$/, "") : pathname;
+
+const renderNotFound = () => (
+  <Suspense fallback={<RouteFallback />}>
+    <NotFoundPage />
+  </Suspense>
 );
+
+const App = () => {
+  const pathname =
+    typeof window === "undefined" ? "/" : normalizePath(window.location.pathname);
+
+  switch (pathname) {
+    case "/":
+    case "/index.html":
+      return <LocaleRedirect resolvePath={(locale) => localePaths[locale]} />;
+    case "/pt-br":
+    case "/pt-BR":
+      return renderIndex("pt-BR");
+    case "/en":
+      return renderIndex("en");
+    case "/integration-hub":
+      return <LocaleRedirect resolvePath={getIntegrationHubPath} />;
+    case "/pt-BR/integration-hub":
+    case "/pt-br/integration-hub":
+      return renderIntegrationHub("pt-BR");
+    case "/en/integration-hub":
+      return renderIntegrationHub("en");
+    default:
+      return renderNotFound();
+  }
+};
 
 export default App;

@@ -1,13 +1,8 @@
-import { useEffect } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PainSection from "@/components/PainSection";
 import ServicesSection from "@/components/ServicesSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import TechSection from "@/components/TechSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import SeoHead from "@/components/SeoHead";
 import {
   registerAnalyticsClickTracking,
@@ -18,6 +13,96 @@ import type { Locale } from "@/lib/siteContent";
 
 type IndexProps = {
   locale: Locale;
+};
+
+const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
+const TechSection = lazy(() => import("@/components/TechSection"));
+const ContactSection = lazy(() => import("@/components/ContactSection"));
+const Footer = lazy(() => import("@/components/Footer"));
+const FloatingWhatsAppButton = lazy(
+  () => import("@/components/FloatingWhatsAppButton"),
+);
+
+const scheduleIdleWork = (callback: () => void) => {
+  if (typeof window === "undefined") {
+    return () => undefined;
+  }
+
+  let cancelled = false;
+  let idleId = 0;
+  let timeoutId = 0;
+
+  const run = () => {
+    if (!cancelled) {
+      callback();
+    }
+  };
+
+  const schedule = () => {
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(run, { timeout: 1400 });
+      return;
+    }
+
+    timeoutId = window.setTimeout(run, 800);
+  };
+
+  if (document.readyState === "complete") {
+    schedule();
+  } else {
+    window.addEventListener("load", schedule, { once: true });
+  }
+
+  return () => {
+    cancelled = true;
+    window.removeEventListener("load", schedule);
+
+    if (idleId && "cancelIdleCallback" in window) {
+      window.cancelIdleCallback(idleId);
+    }
+
+    if (timeoutId) {
+      window.clearTimeout(timeoutId);
+    }
+  };
+};
+
+const DeferredHomeSections = ({ locale }: IndexProps) => {
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    const reveal = () => setShouldRender(true);
+    const cleanupIdleWork = scheduleIdleWork(reveal);
+
+    window.addEventListener("pointerdown", reveal, { once: true, passive: true });
+    window.addEventListener("keydown", reveal, { once: true });
+
+    return () => {
+      cleanupIdleWork();
+      window.removeEventListener("pointerdown", reveal);
+      window.removeEventListener("keydown", reveal);
+    };
+  }, []);
+
+  if (!shouldRender) {
+    return (
+      <>
+        <div id="projetos" aria-hidden="true" />
+        <div id="tecnologias" aria-hidden="true" />
+        <div id="contato" aria-hidden="true" />
+      </>
+    );
+  }
+
+  return (
+    <Suspense fallback={null}>
+      <ProjectsSection locale={locale} />
+      <TechSection locale={locale} />
+      <ContactSection locale={locale} />
+      <Footer locale={locale} />
+      <FloatingWhatsAppButton locale={locale} />
+    </Suspense>
+  );
 };
 
 const Index = ({ locale }: IndexProps) => {
@@ -90,11 +175,7 @@ const Index = ({ locale }: IndexProps) => {
       <HeroSection locale={locale} />
       <PainSection locale={locale} />
       <ServicesSection locale={locale} />
-      <ProjectsSection locale={locale} />
-      <TechSection locale={locale} />
-      <ContactSection locale={locale} />
-      <Footer locale={locale} />
-      <FloatingWhatsAppButton locale={locale} />
+      <DeferredHomeSections locale={locale} />
     </div>
   );
 };

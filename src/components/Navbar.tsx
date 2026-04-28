@@ -17,6 +17,7 @@ const Navbar = ({ locale }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [hidden, setHidden] = useState(false);
   const lastScrollYRef = useRef(0);
+  const animationFrameRef = useRef<number | null>(null);
   const content = siteContent[locale].nav;
   const switchHref = locale === "pt-BR" ? localePaths.en : localePaths["pt-BR"];
   const navItems = content.items;
@@ -29,7 +30,8 @@ const Navbar = ({ locale }: NavbarProps) => {
   };
 
   useEffect(() => {
-    const onScroll = () => {
+    const updateScrollState = () => {
+      animationFrameRef.current = null;
       const currentScrollY = window.scrollY;
       const lastScrollY = lastScrollYRef.current;
       const delta = currentScrollY - lastScrollY;
@@ -47,9 +49,23 @@ const Navbar = ({ locale }: NavbarProps) => {
       lastScrollYRef.current = currentScrollY;
     };
 
-    onScroll();
+    const onScroll = () => {
+      if (animationFrameRef.current !== null) {
+        return;
+      }
+
+      animationFrameRef.current = window.requestAnimationFrame(updateScrollState);
+    };
+
+    updateScrollState();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+
+      if (animationFrameRef.current !== null) {
+        window.cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
   }, []);
 
   const handleClick = (href: string) => {

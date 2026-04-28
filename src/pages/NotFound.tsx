@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import SeoHead from "@/components/SeoHead";
 import { getLocaleFromPathname } from "@/lib/locale";
@@ -6,23 +5,24 @@ import { getNotFoundStructuredData, SITE_URL } from "@/lib/seo";
 import { localePaths, siteContent, type Locale } from "@/lib/siteContent";
 
 const NotFound = () => {
-  const location = useLocation();
-  const locale: Locale = getLocaleFromPathname(location.pathname);
+  const pathname =
+    typeof window === "undefined" ? "/" : window.location.pathname;
+  const locale: Locale = getLocaleFromPathname(pathname);
   const content = siteContent[locale].notFound;
 
   useEffect(() => {
     console.error(
       "404 Error: User attempted to access non-existent route:",
-      location.pathname,
+      pathname,
     );
-  }, [location.pathname]);
+  }, [pathname]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
       <SeoHead
         title={`404 | Incenti Tech`}
         description={content.message}
-        canonical={`${SITE_URL}${location.pathname}`}
+        canonical={`${SITE_URL}${pathname}`}
         lang={locale}
         ogLocale={locale === "pt-BR" ? "pt_BR" : "en_US"}
         robots="noindex, follow"
