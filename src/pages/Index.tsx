@@ -1,19 +1,17 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PainSection from "@/components/PainSection";
 import ServicesSection from "@/components/ServicesSection";
 import SeoHead from "@/components/SeoHead";
-import {
-  registerAnalyticsClickTracking,
-  registerSectionViewTracking,
-} from "@/lib/analytics";
 import { getHomeStructuredData, homeSeo } from "@/lib/seo";
 import type { Locale } from "@/lib/siteContent";
 
 type IndexProps = {
   locale: Locale;
 };
+
+type AnalyticsModule = typeof import("@/lib/analytics");
 
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
 const TechSection = lazy(() => import("@/components/TechSection"));
@@ -67,27 +65,41 @@ const scheduleIdleWork = (callback: () => void) => {
   };
 };
 
-const DeferredHomeSections = ({ locale }: IndexProps) => {
-  const [shouldRender, setShouldRender] = useState(false);
+const DeferredHomeSections = ({
+  isReady,
+  locale,
+  onReveal,
+}: IndexProps & {
+  isReady: boolean;
+  onReveal: () => void;
+}) => {
+  const triggerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const reveal = () => setShouldRender(true);
-    const cleanupIdleWork = scheduleIdleWork(reveal);
+    if (isReady || typeof window === "undefined") {
+      return;
+    }
 
-    window.addEventListener("pointerdown", reveal, { once: true, passive: true });
-    window.addEventListener("keydown", reveal, { once: true });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          onReveal();
+        }
+      },
+      { rootMargin: "900px 0px" },
+    );
 
-    return () => {
-      cleanupIdleWork();
-      window.removeEventListener("pointerdown", reveal);
-      window.removeEventListener("keydown", reveal);
-    };
-  }, []);
+    if (triggerRef.current) {
+      observer.observe(triggerRef.current);
+    }
 
-  if (!shouldRender) {
+    return () => observer.disconnect();
+  }, [isReady, onReveal]);
+
+  if (!isReady) {
     return (
       <>
-        <div id="projetos" aria-hidden="true" />
+        <div id="projetos" ref={triggerRef} aria-hidden="true" />
         <div id="tecnologias" aria-hidden="true" />
         <div id="contato" aria-hidden="true" />
       </>
@@ -106,6 +118,11 @@ const DeferredHomeSections = ({ locale }: IndexProps) => {
 };
 
 const Index = ({ locale }: IndexProps) => {
+  const [analyticsModule, setAnalyticsModule] = useState<AnalyticsModule | null>(
+    null,
+  );
+  const [shouldRenderDeferredSections, setShouldRenderDeferredSections] =
+    useState(false);
   const seo = homeSeo[locale];
 
   useEffect(() => {
@@ -113,8 +130,62 @@ const Index = ({ locale }: IndexProps) => {
   }, [locale]);
 
   useEffect(() => {
-    const removeClickTracking = registerAnalyticsClickTracking();
-    const removeSectionTracking = registerSectionViewTracking([
+    let cancelled = false;
+    let started = false;
+    let timeoutId = 0;
+
+    const loadAnalytics = async () => {
+      if (cancelled || started) {
+        return;
+      }
+
+      started = true;
+      const module = await import("@/lib/analytics");
+
+      if (!cancelled) {
+        setAnalyticsModule(module);
+      }
+    };
+
+    const scheduleLoad = () => {
+      timeoutId = window.setTimeout(loadAnalytics, 1200);
+    };
+
+    const cancelIdleWork = scheduleIdleWork(() => {
+      timeoutId = window.setTimeout(loadAnalytics, 4000);
+    });
+
+    window.addEventListener("scroll", scheduleLoad, { once: true, passive: true });
+    window.addEventListener("pointerdown", scheduleLoad, {
+      once: true,
+      passive: true,
+    });
+    window.addEventListener("keydown", scheduleLoad, { once: true });
+
+    return () => {
+      cancelled = true;
+      cancelIdleWork();
+      window.clearTimeout(timeoutId);
+      window.removeEventListener("scroll", scheduleLoad);
+      window.removeEventListener("pointerdown", scheduleLoad);
+      window.removeEventListener("keydown", scheduleLoad);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!analyticsModule) {
+      return;
+    }
+
+    return analyticsModule.registerAnalyticsClickTracking();
+  }, [analyticsModule]);
+
+  useEffect(() => {
+    if (!analyticsModule) {
+      return;
+    }
+
+    const trackedSections = [
       {
         id: "inicio",
         eventName: "home_scroll_inicio",
@@ -133,31 +204,44 @@ const Index = ({ locale }: IndexProps) => {
         label: "Servicos",
         page: "home",
       },
-      {
-        id: "projetos",
-        eventName: "home_scroll_projetos",
-        label: "Projetos",
-        page: "home",
-      },
-      {
-        id: "tecnologias",
-        eventName: "home_scroll_tecnologias",
-        label: "Tecnologias",
-        page: "home",
-      },
-      {
-        id: "contato",
-        eventName: "home_scroll_contato",
-        label: "Contato",
-        page: "home",
-      },
-    ]);
+      ...(shouldRenderDeferredSections
+        ? [
+            {
+              id: "projetos",
+              eventName: "home_scroll_projetos",
+              label: "Projetos",
+              page: "home",
+            },
+            {
+              id: "tecnologias",
+              eventName: "home_scroll_tecnologias",
+              label: "Tecnologias",
+              page: "home",
+            },
+            {
+              id: "contato",
+              eventName: "home_scroll_contato",
+              label: "Contato",
+              page: "home",
+            },
+          ]
+        : []),
+    ];
 
-    return () => {
-      removeClickTracking();
-      removeSectionTracking();
-    };
-  }, []);
+    return analyticsModule.registerSectionViewTracking(trackedSections);
+  }, [analyticsModule, shouldRenderDeferredSections]);
+
+  useEffect(() => {
+    if (shouldRenderDeferredSections) {
+      return;
+    }
+
+    const revealDeferredSections = () => setShouldRenderDeferredSections(true);
+
+    window.addEventListener("keydown", revealDeferredSections, { once: true });
+
+    return () => window.removeEventListener("keydown", revealDeferredSections);
+  }, [shouldRenderDeferredSections]);
 
   return (
     <div className="min-h-screen">
@@ -175,7 +259,11 @@ const Index = ({ locale }: IndexProps) => {
       <HeroSection locale={locale} />
       <PainSection locale={locale} />
       <ServicesSection locale={locale} />
-      <DeferredHomeSections locale={locale} />
+      <DeferredHomeSections
+        isReady={shouldRenderDeferredSections}
+        locale={locale}
+        onReveal={() => setShouldRenderDeferredSections(true)}
+      />
     </div>
   );
 };

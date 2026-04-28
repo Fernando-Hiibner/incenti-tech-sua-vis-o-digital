@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   siBlazor,
   siDocker,
@@ -43,13 +42,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
       <div className="container mx-auto">
         <h2 className="sr-only">{content.title}</h2>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          className="tech-carousel"
-          aria-label={content.title}
-        >
+        <div className="tech-carousel" aria-label={content.title}>
           <div className="tech-carousel-track">
             {carouselItems.map((item, index) => {
               const icon = techIcons[item.name];
@@ -84,7 +77,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
               );
             })}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

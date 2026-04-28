@@ -108,27 +108,9 @@ const SeoHead = ({
     });
 
     syncStructuredData(structuredData);
-
-    if (typeof window !== "undefined" && "gtag" in window && typeof window.gtag === "function") {
-      window.gtag("config", "G-TXJ7J2404S", {
-        page_path: window.location.pathname,
-        page_title: title,
-      });
-
-      window.gtag("config", "AW-18088168150", {
-        page_path: window.location.pathname,
-        page_title: title,
-      });
-    }
   }, [alternates, canonical, description, image, keywords, lang, ogLocale, robots, structuredData, title, type]);
 
   return null;
 };
-
-declare global {
-  interface Window {
-    gtag?: (...args: unknown[]) => void;
-  }
-}
 
 export default SeoHead;

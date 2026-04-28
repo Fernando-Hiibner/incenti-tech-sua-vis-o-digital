@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   Code2,
   Link2,
@@ -23,12 +22,7 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
     <section id="servicos" className="section-padding">
       <div className="container mx-auto">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.25 }}
-            className="lg:pr-8 xl:pr-10"
-          >
+          <div className="lg:pr-8 xl:pr-10">
             <p className="home-kicker">{content.eyebrow}</p>
             <h2 className="home-section-title">{content.title}</h2>
             <p className="home-section-copy">{content.description}</p>
@@ -54,14 +48,9 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                 {content.creationHighlight.description}
               </p>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 26 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="home-shell overflow-hidden p-7 md:p-8"
-          >
+          <div className="home-shell overflow-hidden p-7 md:p-8">
             {content.items.map((service, index) => {
               const Icon = serviceIcons[index];
 
@@ -84,7 +73,7 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                 </article>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
