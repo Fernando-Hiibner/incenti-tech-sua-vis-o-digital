@@ -5,27 +5,6 @@ type TechSectionProps = {
   locale: Locale;
 };
 
-const techIconSlugs: Record<string, string> = {
-  ".NET 10": "dotnet",
-  PHP: "php",
-  Python: "python",
-  Blazor: "blazor",
-  JavaScript: "javascript",
-  React: "react",
-  Vue: "vuedotjs",
-  jQuery: "jquery",
-  Redis: "redis",
-  Docker: "docker",
-  AWS: "amazonwebservices",
-  Azure: "microsoftazure",
-};
-
-const getIconUrl = (name: string) => {
-  const slug = techIconSlugs[name];
-  if (!slug) return null;
-  return `https://cdn.simpleicons.org/${slug}/141A2A`;
-};
-
 const TechSection = ({ locale }: TechSectionProps) => {
   const content = siteContent[locale].tech;
   const carouselItems = [...content.items, ...content.items];
@@ -46,40 +25,19 @@ const TechSection = ({ locale }: TechSectionProps) => {
           aria-label={content.title}
         >
           <div className="tech-carousel-track">
-            {carouselItems.map((item, index) => {
-              const iconUrl = getIconUrl(item.name);
-
-              return (
-                <div
-                  key={`${item.name}-${index}`}
-                  className={`tech-carousel-item ${iconUrl ? "logo-item" : "label-item"}`}
-                  aria-hidden={index >= content.items.length}
-                  title={item.name}
-                  aria-label={index >= content.items.length ? undefined : item.name}
-                >
-                  <div className={`tech-carousel-icon ${iconUrl ? "has-logo" : "has-label"}`}>
-                    {iconUrl ? (
-                      <>
-                        <span>{item.name}</span>
-                        <img
-                          src={iconUrl}
-                          alt=""
-                          loading="lazy"
-                          className="h-8 w-8 object-contain"
-                          onError={(event) => {
-                            event.currentTarget.parentElement?.classList.add(
-                              "logo-error",
-                            );
-                          }}
-                        />
-                      </>
-                    ) : (
-                      <span>{item.name}</span>
-                    )}
-                  </div>
+            {carouselItems.map((item, index) => (
+              <div
+                key={`${item.name}-${index}`}
+                className="tech-carousel-item label-item"
+                aria-hidden={index >= content.items.length}
+                title={item.name}
+                aria-label={index >= content.items.length ? undefined : item.name}
+              >
+                <div className="tech-carousel-icon has-label">
+                  <span>{item.name}</span>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>

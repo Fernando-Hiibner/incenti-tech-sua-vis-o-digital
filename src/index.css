@@ -403,27 +403,6 @@
     position: absolute;
   }
 
-  .tech-carousel-icon.has-logo span {
-    display: none;
-  }
-
-  .tech-carousel-icon.logo-error {
-    width: 5rem;
-    color: hsl(var(--primary));
-    font-size: 0.58rem;
-    line-height: 1.05;
-    padding: 0.25rem;
-    overflow-wrap: anywhere;
-  }
-
-  .tech-carousel-icon.logo-error span {
-    display: block;
-  }
-
-  .tech-carousel-icon.logo-error img {
-    display: none;
-  }
-
   .home-floating-orb {
     position: absolute;
     border-radius: 999px;
