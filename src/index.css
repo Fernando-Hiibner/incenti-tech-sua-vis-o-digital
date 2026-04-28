@@ -403,6 +403,16 @@
     position: absolute;
   }
 
+  .tech-carousel-icon.has-logo {
+    width: 3rem;
+  }
+
+  .tech-carousel-icon.has-logo svg {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+  }
+
   .home-floating-orb {
     position: absolute;
     border-radius: 999px;
