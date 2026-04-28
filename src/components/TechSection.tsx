@@ -11,6 +11,7 @@ import {
   siVuedotjs,
   type SimpleIcon,
 } from "simple-icons";
+import Reveal from "@/components/Reveal";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type TechSectionProps = {
@@ -42,7 +43,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
       <div className="container mx-auto">
         <h2 className="sr-only">{content.title}</h2>
 
-        <div className="tech-carousel" aria-label={content.title}>
+        <Reveal className="tech-carousel" aria-label={content.title}>
           <div className="tech-carousel-track">
             {carouselItems.map((item, index) => {
               const icon = techIcons[item.name];
@@ -77,7 +78,7 @@ const TechSection = ({ locale }: TechSectionProps) => {
               );
             })}
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

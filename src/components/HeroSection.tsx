@@ -1,4 +1,5 @@
 import { ArrowRight, Sparkles } from "lucide-react";
+import Reveal from "@/components/Reveal";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 type HeroSectionProps = {
@@ -17,7 +18,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
       <div className="home-grid absolute opacity-70" />
 
       <div className="container relative z-10 mx-auto px-4">
-        <div className="mx-auto flex max-w-5xl flex-col items-center text-center">
+        <Reveal className="mx-auto flex max-w-5xl flex-col items-center text-center">
           <div className="inline-flex items-center gap-3 rounded-full border border-[hsl(var(--brand-red)/0.22)] bg-[hsl(var(--brand-red)/0.08)] px-4 py-2">
             <Sparkles className="h-4 w-4 text-[hsl(var(--brand-red))]" />
             <span className="text-sm font-medium text-[hsl(var(--brand-red))]">
@@ -56,7 +57,7 @@ const HeroSection = ({ locale }: HeroSectionProps) => {
               {content.secondaryCta}
             </a>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -6,6 +6,7 @@ import {
   ShieldCheck,
   Wrench,
 } from "lucide-react";
+import Reveal from "@/components/Reveal";
 import { siteContent, type Locale } from "@/lib/siteContent";
 
 const serviceIcons = [Code2, Wrench, Link2, RefreshCw, ShieldCheck];
@@ -22,7 +23,7 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
     <section id="servicos" className="section-padding">
       <div className="container mx-auto">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-start">
-          <div className="lg:pr-8 xl:pr-10">
+          <Reveal className="lg:pr-8 xl:pr-10">
             <p className="home-kicker">{content.eyebrow}</p>
             <h2 className="home-section-title">{content.title}</h2>
             <p className="home-section-copy">{content.description}</p>
@@ -48,9 +49,9 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                 {content.creationHighlight.description}
               </p>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="home-shell overflow-hidden p-7 md:p-8">
+          <Reveal className="home-shell overflow-hidden p-7 md:p-8" delay={80}>
             {content.items.map((service, index) => {
               const Icon = serviceIcons[index];
 
@@ -73,7 +74,7 @@ const ServicesSection = ({ locale }: ServicesSectionProps) => {
                 </article>
               );
             })}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

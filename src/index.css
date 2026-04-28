@@ -246,6 +246,21 @@
     @apply text-[0.95rem] font-medium tracking-normal;
   }
 
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+    transition:
+      opacity 560ms cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 560ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
   .language-flag {
     position: relative;
     display: inline-block;
@@ -502,6 +517,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
   .whatsapp-floating-motion {
     animation: none;
   }

@@ -1,4 +1,4 @@
-import{c as un,e as an,d as ln}from"./logo-incenti-tech-DtlGvvdC.js";import{r as D,j as Lt}from"./main-Dr7D8CqT.js";/**
+import{c as un,g as an,a as ln}from"./contact-BrMh17Ch.js";import{r as D,j as Lt}from"./main-BMpkfQ8X.js";/**
  * @license lucide-react v1.7.0 - ISC
  *
  * This source code is licensed under the ISC license.

@@ -1,4 +1,5 @@
 import { ArrowRight, BadgeCheck, CalendarDays, Code2 } from "lucide-react";
+import Reveal from "@/components/Reveal";
 import {
   Carousel,
   CarouselContent,
@@ -229,13 +230,13 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
   return (
     <section id="projetos" className="section-padding">
       <div className="container mx-auto">
-        <div className="mb-12 max-w-3xl">
+        <Reveal className="mb-12 max-w-3xl">
           <p className="home-kicker">{content.eyebrow}</p>
           <h2 className="home-section-title max-w-3xl">{content.title}</h2>
           <p className="home-section-copy max-w-2xl">{content.description}</p>
-        </div>
+        </Reveal>
 
-        <div>
+        <Reveal delay={80}>
           <Carousel
             opts={{ align: "start", loop: true }}
             className="mx-auto max-w-[calc(100vw-2rem)]"
@@ -264,7 +265,7 @@ const ProjectsSection = ({ locale }: ProjectsSectionProps) => {
             <CarouselPrevious className="left-0 top-[calc(100%+1.25rem)] border-border bg-white text-primary hover:bg-muted md:-left-4 md:top-1/2" />
             <CarouselNext className="left-12 top-[calc(100%+1.25rem)] border-border bg-white text-primary hover:bg-muted md:-right-4 md:left-auto md:top-1/2" />
           </Carousel>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

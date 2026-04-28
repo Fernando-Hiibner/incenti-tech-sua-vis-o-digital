@@ -6,6 +6,7 @@ import {
   Loader2,
   Send,
 } from "lucide-react";
+import Reveal from "@/components/Reveal";
 import {
   trackAnalyticsEvent,
   trackGoogleAdsConversion,
@@ -152,7 +153,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
 
       <div className="container relative z-10 mx-auto">
         <div className="mx-auto max-w-4xl">
-          <div className="text-center">
+          <Reveal className="text-center">
             <p className="home-kicker">{content.eyebrow}</p>
             <h2 className="home-section-title mx-auto max-w-3xl">
               {content.title}
@@ -160,9 +161,9 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
             <p className="home-section-copy mx-auto max-w-2xl">
               {content.description}
             </p>
-          </div>
+          </Reveal>
 
-          <div className="home-shell mt-10 p-7 md:p-9">
+          <Reveal className="home-shell mt-10 p-7 md:p-9" delay={80}>
             {status === "success" ? (
               <div className="py-10 text-center">
                 <CheckCircle className="mx-auto mb-4 h-14 w-14 text-primary" />
@@ -355,7 +356,7 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 </button>
               </form>
             )}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

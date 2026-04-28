@@ -1,8 +1,9 @@
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PainSection from "@/components/PainSection";
 import ServicesSection from "@/components/ServicesSection";
+import FloatingWhatsAppButton from "@/components/FloatingWhatsAppButton";
 import SeoHead from "@/components/SeoHead";
 import { getHomeStructuredData, homeSeo } from "@/lib/seo";
 import type { Locale } from "@/lib/siteContent";
@@ -13,13 +14,49 @@ type IndexProps = {
 
 type AnalyticsModule = typeof import("@/lib/analytics");
 
+const TRACKED_HOME_SECTIONS = [
+  {
+    id: "inicio",
+    eventName: "home_scroll_inicio",
+    label: "Inicio",
+    page: "home",
+  },
+  {
+    id: "desafios",
+    eventName: "home_scroll_desafios",
+    label: "Desafios",
+    page: "home",
+  },
+  {
+    id: "servicos",
+    eventName: "home_scroll_servicos",
+    label: "Servicos",
+    page: "home",
+  },
+  {
+    id: "projetos",
+    eventName: "home_scroll_projetos",
+    label: "Projetos",
+    page: "home",
+  },
+  {
+    id: "tecnologias",
+    eventName: "home_scroll_tecnologias",
+    label: "Tecnologias",
+    page: "home",
+  },
+  {
+    id: "contato",
+    eventName: "home_scroll_contato",
+    label: "Contato",
+    page: "home",
+  },
+] as const;
+
 const ProjectsSection = lazy(() => import("@/components/ProjectsSection"));
 const TechSection = lazy(() => import("@/components/TechSection"));
 const ContactSection = lazy(() => import("@/components/ContactSection"));
 const Footer = lazy(() => import("@/components/Footer"));
-const FloatingWhatsAppButton = lazy(
-  () => import("@/components/FloatingWhatsAppButton"),
-);
 
 const scheduleIdleWork = (callback: () => void) => {
   if (typeof window === "undefined") {
@@ -65,64 +102,67 @@ const scheduleIdleWork = (callback: () => void) => {
   };
 };
 
-const DeferredHomeSections = ({
-  isReady,
-  locale,
-  onReveal,
-}: IndexProps & {
-  isReady: boolean;
-  onReveal: () => void;
-}) => {
-  const triggerRef = useRef<HTMLDivElement | null>(null);
+const DeferredHomeFallback = () => (
+  <>
+    <section id="projetos" className="section-padding" aria-hidden="true">
+      <div className="container mx-auto">
+        <div className="mb-12 max-w-3xl">
+          <div className="h-4 w-28 rounded-full bg-secondary/70" />
+          <div className="mt-5 h-14 max-w-2xl rounded-[1.25rem] bg-secondary/80" />
+          <div className="mt-6 h-24 max-w-xl rounded-[1.25rem] bg-secondary/55" />
+        </div>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="glass-card min-h-[31rem] bg-secondary/35" />
+          <div className="glass-card min-h-[31rem] bg-secondary/35" />
+          <div className="glass-card min-h-[31rem] bg-secondary/35" />
+        </div>
+      </div>
+    </section>
 
-  useEffect(() => {
-    if (isReady || typeof window === "undefined") {
-      return;
-    }
+    <section
+      id="tecnologias"
+      className="bg-secondary/20 px-4 py-5 sm:px-6 md:py-6 lg:px-8"
+      aria-hidden="true"
+    >
+      <div className="container mx-auto">
+        <div className="h-[5rem] rounded-[1.25rem] bg-secondary/45" />
+      </div>
+    </section>
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          onReveal();
-        }
-      },
-      { rootMargin: "900px 0px" },
-    );
+    <section id="contato" className="section-padding" aria-hidden="true">
+      <div className="container mx-auto">
+        <div className="mx-auto max-w-4xl">
+          <div className="mx-auto h-14 max-w-2xl rounded-[1.25rem] bg-secondary/80" />
+          <div className="mx-auto mt-6 h-20 max-w-xl rounded-[1.25rem] bg-secondary/55" />
+          <div className="home-shell mt-10 min-h-[42rem] bg-secondary/25" />
+        </div>
+      </div>
+    </section>
 
-    if (triggerRef.current) {
-      observer.observe(triggerRef.current);
-    }
+    <footer
+      className="border-t border-border bg-secondary/45 px-4 py-14 sm:px-6"
+      aria-hidden="true"
+    >
+      <div className="container mx-auto">
+        <div className="h-40 rounded-[1.25rem] bg-secondary/40" />
+      </div>
+    </footer>
+  </>
+);
 
-    return () => observer.disconnect();
-  }, [isReady, onReveal]);
-
-  if (!isReady) {
-    return (
-      <>
-        <div id="projetos" ref={triggerRef} aria-hidden="true" />
-        <div id="tecnologias" aria-hidden="true" />
-        <div id="contato" aria-hidden="true" />
-      </>
-    );
-  }
-
-  return (
-    <Suspense fallback={null}>
-      <ProjectsSection locale={locale} />
-      <TechSection locale={locale} />
-      <ContactSection locale={locale} />
-      <Footer locale={locale} />
-      <FloatingWhatsAppButton locale={locale} />
-    </Suspense>
-  );
-};
+const DeferredHomeSections = ({ locale }: IndexProps) => (
+  <Suspense fallback={<DeferredHomeFallback />}>
+    <ProjectsSection locale={locale} />
+    <TechSection locale={locale} />
+    <ContactSection locale={locale} />
+    <Footer locale={locale} />
+  </Suspense>
+);
 
 const Index = ({ locale }: IndexProps) => {
   const [analyticsModule, setAnalyticsModule] = useState<AnalyticsModule | null>(
     null,
   );
-  const [shouldRenderDeferredSections, setShouldRenderDeferredSections] =
-    useState(false);
   const seo = homeSeo[locale];
 
   useEffect(() => {
@@ -155,7 +195,10 @@ const Index = ({ locale }: IndexProps) => {
       timeoutId = window.setTimeout(loadAnalytics, 4000);
     });
 
-    window.addEventListener("scroll", scheduleLoad, { once: true, passive: true });
+    window.addEventListener("scroll", scheduleLoad, {
+      once: true,
+      passive: true,
+    });
     window.addEventListener("pointerdown", scheduleLoad, {
       once: true,
       passive: true,
@@ -185,63 +228,10 @@ const Index = ({ locale }: IndexProps) => {
       return;
     }
 
-    const trackedSections = [
-      {
-        id: "inicio",
-        eventName: "home_scroll_inicio",
-        label: "Inicio",
-        page: "home",
-      },
-      {
-        id: "desafios",
-        eventName: "home_scroll_desafios",
-        label: "Desafios",
-        page: "home",
-      },
-      {
-        id: "servicos",
-        eventName: "home_scroll_servicos",
-        label: "Servicos",
-        page: "home",
-      },
-      ...(shouldRenderDeferredSections
-        ? [
-            {
-              id: "projetos",
-              eventName: "home_scroll_projetos",
-              label: "Projetos",
-              page: "home",
-            },
-            {
-              id: "tecnologias",
-              eventName: "home_scroll_tecnologias",
-              label: "Tecnologias",
-              page: "home",
-            },
-            {
-              id: "contato",
-              eventName: "home_scroll_contato",
-              label: "Contato",
-              page: "home",
-            },
-          ]
-        : []),
-    ];
-
-    return analyticsModule.registerSectionViewTracking(trackedSections);
-  }, [analyticsModule, shouldRenderDeferredSections]);
-
-  useEffect(() => {
-    if (shouldRenderDeferredSections) {
-      return;
-    }
-
-    const revealDeferredSections = () => setShouldRenderDeferredSections(true);
-
-    window.addEventListener("keydown", revealDeferredSections, { once: true });
-
-    return () => window.removeEventListener("keydown", revealDeferredSections);
-  }, [shouldRenderDeferredSections]);
+    return analyticsModule.registerSectionViewTracking([
+      ...TRACKED_HOME_SECTIONS,
+    ]);
+  }, [analyticsModule]);
 
   return (
     <div className="min-h-screen">
@@ -259,11 +249,8 @@ const Index = ({ locale }: IndexProps) => {
       <HeroSection locale={locale} />
       <PainSection locale={locale} />
       <ServicesSection locale={locale} />
-      <DeferredHomeSections
-        isReady={shouldRenderDeferredSections}
-        locale={locale}
-        onReveal={() => setShouldRenderDeferredSections(true)}
-      />
+      <DeferredHomeSections locale={locale} />
+      <FloatingWhatsAppButton locale={locale} />
     </div>
   );
 };
