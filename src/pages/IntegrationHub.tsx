@@ -1121,57 +1121,107 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
     >
       <div className="grid gap-5 lg:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-sm font-medium">
+          <label
+            htmlFor="integration-hub-name"
+            className="mb-1.5 block text-sm font-medium"
+          >
             {contact.form.name}
           </label>
           <input
+            id="integration-hub-name"
             name="nome"
             type="text"
+            autoComplete="name"
             placeholder={contact.form.namePlaceholder}
             className={inputClass("nome")}
+            required
+            aria-invalid={Boolean(errors.nome)}
+            aria-describedby={
+              errors.nome ? "integration-hub-name-error" : undefined
+            }
           />
           {errors.nome && (
-            <p className="mt-1 text-xs text-destructive">{errors.nome}</p>
+            <p
+              id="integration-hub-name-error"
+              className="mt-1 text-xs text-destructive"
+            >
+              {errors.nome}
+            </p>
           )}
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium">
+          <label
+            htmlFor="integration-hub-email"
+            className="mb-1.5 block text-sm font-medium"
+          >
             {contact.form.email}
           </label>
           <input
+            id="integration-hub-email"
             name="email"
             type="email"
+            autoComplete="email"
             placeholder={contact.form.emailPlaceholder}
             className={inputClass("email")}
+            required
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={
+              errors.email ? "integration-hub-email-error" : undefined
+            }
           />
           {errors.email && (
-            <p className="mt-1 text-xs text-destructive">{errors.email}</p>
+            <p
+              id="integration-hub-email-error"
+              className="mt-1 text-xs text-destructive"
+            >
+              {errors.email}
+            </p>
           )}
         </div>
       </div>
 
       <div className="grid gap-5 lg:grid-cols-2">
         <div>
-          <label className="mb-1.5 block text-sm font-medium">
+          <label
+            htmlFor="integration-hub-company"
+            className="mb-1.5 block text-sm font-medium"
+          >
             {contact.form.company}
           </label>
           <input
+            id="integration-hub-company"
             name="empresa"
             type="text"
+            autoComplete="organization"
             placeholder={contact.form.companyPlaceholder}
             className={inputClass("empresa")}
+            required
+            aria-invalid={Boolean(errors.empresa)}
+            aria-describedby={
+              errors.empresa ? "integration-hub-company-error" : undefined
+            }
           />
           {errors.empresa && (
-            <p className="mt-1 text-xs text-destructive">{errors.empresa}</p>
+            <p
+              id="integration-hub-company-error"
+              className="mt-1 text-xs text-destructive"
+            >
+              {errors.empresa}
+            </p>
           )}
         </div>
         <div>
-          <label className="mb-1.5 block text-sm font-medium">
+          <label
+            htmlFor="integration-hub-phone"
+            className="mb-1.5 block text-sm font-medium"
+          >
             {contact.form.phone}
           </label>
           <input
+            id="integration-hub-phone"
             name="telefone"
             type="tel"
+            autoComplete="tel"
             placeholder={contact.form.phonePlaceholder}
             className={inputClass("telefone")}
           />
@@ -1179,23 +1229,42 @@ const IntegrationHubContactForm = ({ locale }: { locale: Locale }) => {
       </div>
 
       <div>
-        <label className="mb-1.5 block text-sm font-medium">
+        <label
+          htmlFor="integration-hub-message"
+          className="mb-1.5 block text-sm font-medium"
+        >
           {contact.form.message}
         </label>
         <textarea
+          id="integration-hub-message"
           name="mensagem"
           rows={5}
+          autoComplete="off"
           placeholder={contact.form.messagePlaceholder}
           className={inputClass("mensagem") + " resize-none"}
+          required
+          maxLength={maxMessageLength}
+          aria-invalid={Boolean(errors.mensagem)}
+          aria-describedby={
+            errors.mensagem
+              ? "integration-hub-message-error integration-hub-message-count"
+              : "integration-hub-message-count"
+          }
           onChange={(event) => setMessageLength(event.target.value.length)}
         />
         <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
           {errors.mensagem ? (
-            <p className="text-xs text-destructive">{errors.mensagem}</p>
+            <p
+              id="integration-hub-message-error"
+              className="text-xs text-destructive"
+            >
+              {errors.mensagem}
+            </p>
           ) : (
             <span />
           )}
           <span
+            id="integration-hub-message-count"
             className={`text-xs ${messageLength > maxMessageLength ? "text-destructive" : "text-muted-foreground"}`}
           >
             {messageLength}/{maxMessageLength}

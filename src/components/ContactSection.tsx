@@ -204,28 +204,35 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
               >
                 <div className="grid gap-5 md:grid-cols-2">
                   <div>
-                    <label className="home-form-label">
+                    <label htmlFor="contact-name" className="home-form-label">
                       {content.fields.name}
                     </label>
                     <input
+                      id="contact-name"
                       name="nome"
                       type="text"
+                      autoComplete="name"
                       placeholder={content.fields.namePlaceholder}
                       className={inputClass("nome")}
+                      required
+                      aria-invalid={Boolean(errors.nome)}
+                      aria-describedby={errors.nome ? "contact-name-error" : undefined}
                     />
                     {errors.nome && (
-                      <p className="mt-2 text-xs text-destructive">
+                      <p id="contact-name-error" className="mt-2 text-xs text-destructive">
                         {errors.nome}
                       </p>
                     )}
                   </div>
                   <div>
-                    <label className="home-form-label">
+                    <label htmlFor="contact-company" className="home-form-label">
                       {content.fields.company}
                     </label>
                     <input
+                      id="contact-company"
                       name="empresa"
                       type="text"
+                      autoComplete="organization"
                       placeholder={content.fields.companyPlaceholder}
                       className={inputClass("empresa")}
                     />
@@ -234,28 +241,35 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
 
                 <div className="grid gap-5 md:grid-cols-2">
                   <div>
-                    <label className="home-form-label">
+                    <label htmlFor="contact-email" className="home-form-label">
                       {content.fields.email}
                     </label>
                     <input
+                      id="contact-email"
                       name="email"
                       type="email"
+                      autoComplete="email"
                       placeholder={content.fields.emailPlaceholder}
                       className={inputClass("email")}
+                      required
+                      aria-invalid={Boolean(errors.email)}
+                      aria-describedby={errors.email ? "contact-email-error" : undefined}
                     />
                     {errors.email && (
-                      <p className="mt-2 text-xs text-destructive">
+                      <p id="contact-email-error" className="mt-2 text-xs text-destructive">
                         {errors.email}
                       </p>
                     )}
                   </div>
                   <div>
-                    <label className="home-form-label">
+                    <label htmlFor="contact-phone" className="home-form-label">
                       {content.fields.phone}
                     </label>
                     <input
+                      id="contact-phone"
                       name="telefone"
                       type="tel"
+                      autoComplete="tel"
                       placeholder={content.fields.phonePlaceholder}
                       className={inputClass("telefone")}
                     />
@@ -263,27 +277,41 @@ const ContactSection = ({ locale }: ContactSectionProps) => {
                 </div>
 
                 <div>
-                  <label className="home-form-label">
+                  <label htmlFor="contact-message" className="home-form-label">
                     {content.fields.message}
                   </label>
                   <textarea
+                    id="contact-message"
                     name="mensagem"
                     rows={5}
+                    autoComplete="off"
                     placeholder={content.fields.messagePlaceholder}
                     className={`${inputClass("mensagem")} resize-none`}
+                    required
+                    maxLength={maxMessageLength}
+                    aria-invalid={Boolean(errors.mensagem)}
+                    aria-describedby={
+                      errors.mensagem
+                        ? "contact-message-error contact-message-count"
+                        : "contact-message-count"
+                    }
                     onChange={(event) =>
                       setMessageLength(event.target.value.length)
                     }
                   />
                   <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                     {errors.mensagem ? (
-                      <p className="text-xs text-destructive">
+                      <p
+                        id="contact-message-error"
+                        className="text-xs text-destructive"
+                      >
                         {errors.mensagem}
                       </p>
                     ) : (
                       <span />
                     )}
                     <span
+                      id="contact-message-count"
                       className={`text-xs ${messageLength > maxMessageLength ? "text-destructive" : "text-muted-foreground"}`}
                     >
                       {messageLength}/{maxMessageLength}

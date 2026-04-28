@@ -16,60 +16,8 @@
     <link rel="alternate" hreflang="pt-BR" href="https://incentitech.com.br/pt-br/" />
     <link rel="alternate" hreflang="en" href="https://incentitech.com.br/en/" />
     <link rel="alternate" hreflang="x-default" href="https://incentitech.com.br/en/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      />
-    </noscript>
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXJ7J2404S"></script>
-    <script src="https://t.contentsquare.net/uxa/5fd4c5efcd298.js"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-TXJ7J2404S");
-      gtag("config", "AW-18088168150");
-    </script>
-
-    <script>
-      (function () {
-        var pathname = window.location.pathname;
-        if (pathname !== "/" && pathname !== "/index.html") {
-          return;
-        }
-
-        var preferred = "en";
-        var languages = Array.isArray(navigator.languages) && navigator.languages.length > 0
-          ? navigator.languages
-          : [navigator.language || ""];
-
-        for (var i = 0; i < languages.length; i += 1) {
-          if (String(languages[i]).trim().toLowerCase() === "pt-br") {
-            preferred = "pt-br";
-            break;
-          }
-        }
-
-        window.location.replace(preferred === "pt-br" ? "/pt-br/" : "/en/");
-      })();
-    </script>
+    <script defer src="/language-redirect.js"></script>
+    <script defer src="/third-party-loader.js"></script>
   </head>
 
   <body>

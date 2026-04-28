@@ -55,7 +55,7 @@
       transparent 26rem
     ),
     linear-gradient(180deg, #ffffff 0%, #f6f8fc 45%, #ffffff 100%);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -127,7 +127,7 @@
 }
 
 .integration-hub-theme .ih-hero-title {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(3rem, 6vw, 5.8rem);
   font-weight: 600;
   line-height: 0.93;
@@ -135,7 +135,7 @@
 }
 
 .integration-hub-theme .ih-section-title {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(2.05rem, 3.8vw, 3.3rem);
   font-weight: 600;
   line-height: 0.98;
@@ -149,7 +149,7 @@
 }
 
 .integration-hub-theme .ih-card-title {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   font-size: clamp(1.15rem, 1.9vw, 1.38rem);
   font-weight: 600;
   line-height: 1.08;
